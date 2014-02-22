@@ -292,6 +292,11 @@
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = "Holy Moley";
+				TargetAttributes = {
+					AB3CACEE2FC30032E41BA68B = {
+						DevelopmentTeam = BR8U28N786;
+					};
+				};
 			};
 			buildConfigurationList = AB3CA9EC0667F779B9F2624B /* Build configuration list for PBXProject "AskAround" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -456,10 +461,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AskAround/AskAround-Prefix.pch";
 				INFOPLIST_FILE = "AskAround/AskAround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -471,10 +479,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AskAround/AskAround-Prefix.pch";
 				INFOPLIST_FILE = "AskAround/AskAround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};

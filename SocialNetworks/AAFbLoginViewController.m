@@ -4,6 +4,8 @@
 //
 
 #import "AAFbLoginViewController.h"
+#import "AAPerson.h"
+#import <Parse/PFFacebookUtils.h>
 
 @interface AAFbLoginViewController ()
 @property (nonatomic, strong)  UIButton *btnLogin;
@@ -67,6 +69,9 @@
 //            [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
         } else {
             NSLog(@"User with facebook logged in!");
+            AAPerson * newPerson = [[AAPerson alloc] init];
+            [newPerson initializeWithDataFromFacebook];
+
 //            [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
         }
     }];
