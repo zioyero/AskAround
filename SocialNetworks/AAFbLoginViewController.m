@@ -5,7 +5,7 @@
 
 #import "AAFbLoginViewController.h"
 
-@interface AAFbLoginViewController () <AACommsDelegate>
+@interface AAFbLoginViewController ()
 @property (nonatomic, strong)  UIButton *btnLogin;
 @property (nonatomic, strong)  UIActivityIndicatorView *activityLogin;
 @end
@@ -34,23 +34,44 @@
     [self.btnLogin addTarget:self action:@selector(loginPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnLogin];
 
-    // Ensure the User is Logged out when loading this View Controller
-    // Going forward, we would check the state of the current user and bypass the Login Screen
-    // but here, the Login screen is an important part of the tutorial
-    [PFUser logOut];
+    // Check if user is cached and linked to Facebook, if so, bypass login
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+//        [self.navigationController pushViewController:[[UserDetailsViewController alloc]
+//                initWithStyle:UITableViewStyleGrouped] animated:NO];
+    }
+
 }
 
 // Outlet for FBLogin button
 - (IBAction) loginPressed:(id)sender
 {
-    // Disable the Login button to prevent multiple touches
-    [_btnLogin setEnabled:NO];
+    // Set permissions required from the facebook user account
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
 
-    // Show an activity indicator
-    [_activityLogin startAnimating];
+    // Login PFUser using facebook
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        [self.activityLogin stopAnimating]; // Hide loading indicator
 
-    // Do the login
-    [AAComms login:self];
+        if (!user) {
+            if (!error) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:@"Uh oh. The user cancelled the Facebook login." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+                [alert show];
+            } else {
+                NSLog(@"Uh oh. An error occurred: %@", error);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+                [alert show];
+            }
+        } else if (user.isNew) {
+            NSLog(@"User with facebook signed up and logged in!");
+//            [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+        } else {
+            NSLog(@"User with facebook logged in!");
+//            [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+        }
+    }];
+
+    [self.activityLogin startAnimating]; // Show loading indicator until login is finished
 }
 
 
