@@ -38,6 +38,14 @@
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
 //        [self.navigationController pushViewController:[[UserDetailsViewController alloc]
 //                initWithStyle:UITableViewStyleGrouped] animated:NO];
+
+        // Create request for user's Facebook data
+        FBRequest *request = [FBRequest requestForMe];
+
+        // Send request to Facebook
+        [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            // handle response
+        }];
     }
 
 }

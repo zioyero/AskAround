@@ -8,6 +8,7 @@
 
 #import "AAAppDelegate.h"
 #import "AAFbLoginViewController.h"
+#import "AAProfileViewController.h"
 
 @implementation AAAppDelegate
 
@@ -24,8 +25,9 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:login];
+//    AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
+    AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
     self.window.rootViewController = navigationController;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

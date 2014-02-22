@@ -17,6 +17,7 @@
 
 - (instancetype)initializeWithFacebookUser:(FBGraphObject *)user
 {
+
     [FBRequestConnection startWithGraphPath:@"me/friends"
                                  parameters:nil
                                  HTTPMethod:@"GET"
@@ -24,6 +25,7 @@
                           {
                               NSLog(@"Got friend lists!");
                           }];
+    return nil;
 }
 
 
