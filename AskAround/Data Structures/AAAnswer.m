@@ -3,20 +3,19 @@
 // Copyright (c) 2014 Holy Moley. All rights reserved.
 //
 
-#import "Ask.h"
+#import "AAAnswer.h"
+#import "AAPerson.h"
 
 
-@implementation Ask
+@implementation AAAnswer
 {
 
 }
 
 
-#pragma mark Parse
-
 +(NSString *)parseClassName
 {
-    return @"Ask";
+    return @"AAAnswer";
 }
 
 
