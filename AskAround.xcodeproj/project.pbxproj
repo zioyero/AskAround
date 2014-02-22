@@ -36,7 +36,6 @@
 		AB3CABDA63FA52C5A4969865 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB3CAA0119D4CBA1FF284516 /* InfoPlist.strings */; };
 		AB3CAD8D6DEC2E19805960FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA128E219B162C2F82FEC /* Foundation.framework */; };
 		AB3CAFC592940E55F66D1A63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CAB8F70D13CA534EE333A /* UIKit.framework */; };
-		AB5F621ADD1F3C70B1836B9B /* AAComms.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6F139D634D13F2E940D3 /* AAComms.m */; };
 		AB5F62AB5B65ED72ED4032DC /* AAFbLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -90,8 +89,6 @@
 		AB3CAE13ADAD481896BC1835 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFbLoginViewController.m; sourceTree = "<group>"; };
 		AB5F64CD5C03F0749E568553 /* AAFbLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFbLoginViewController.h; sourceTree = "<group>"; };
-		AB5F684B929AAC9EE1FD1B7B /* AAComms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAComms.h; sourceTree = "<group>"; };
-		AB5F6F139D634D13F2E940D3 /* AAComms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAComms.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,8 +239,6 @@
 		AB5F6D1895FC17BE69B20714 /* SocialNetworks */ = {
 			isa = PBXGroup;
 			children = (
-				AB5F6F139D634D13F2E940D3 /* AAComms.m */,
-				AB5F684B929AAC9EE1FD1B7B /* AAComms.h */,
 				AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */,
 				AB5F64CD5C03F0749E568553 /* AAFbLoginViewController.h */,
 			);
@@ -388,7 +383,6 @@
 				AB3CA1A80B5FA6CA51EDA768 /* AAAsk.m in Sources */,
 				AB3CA031E37BA771B838CB85 /* AAPerson.m in Sources */,
 				AB3CA6323B31690988AA614F /* AAAnswer.m in Sources */,
-				AB5F621ADD1F3C70B1836B9B /* AAComms.m in Sources */,
 				AB5F62AB5B65ED72ED4032DC /* AAFbLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
