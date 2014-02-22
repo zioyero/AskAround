@@ -5,13 +5,22 @@
 
 #import "AAAnswer.h"
 #import "AAPerson.h"
+#import "AAAsk.h"
 
 
 @implementation AAAnswer
-{
 
+#pragma mark Initialization
+
+
+#pragma mark Ask Around
+
+- (void)postAnswer
+{
+    [self.ask addAnswer:self];
 }
 
+#pragma mark Parse
 
 +(NSString *)parseClassName
 {

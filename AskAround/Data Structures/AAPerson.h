@@ -54,7 +54,7 @@
 /**
 * Pulls the user data fields from their facebook account.
 */
-- (id)initializeWithDataFromFacebook;
+- (id)initializeWithDataFromFacebookWithCompletion:(void (^)(BOOL done))completion;
 
 #pragma mark Ask Around
 

@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 
 @class AAPerson;
+@class AAAnswer;
 
 @interface AAAsk : PFObject <PFSubclassing>
 
@@ -45,6 +46,23 @@
 * Whether or not this ask can be answered by Yes/No
 */
 @property (nonatomic, assign) BOOL isYesNo;
+
+#pragma mark Initialization
+
+- (id)initWithFromPerson:(AAPerson *)from aboutPerson:(AAPerson *)about withTitle:(NSString *)title;
+
+#pragma mark Ask Around
+/**
+* Sends this AAAsk up to the server for processing
+*/
+- (void)sendOut;
+
+/**
+* Adds an AAAnswer and updates the server
+*/
+- (void)addAnswer:(AAAnswer *)answer;
+
+#pragma mark Parse
 
 /**
 * Class method required by the Parse Framework

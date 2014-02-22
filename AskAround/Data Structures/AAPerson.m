@@ -62,7 +62,9 @@
             else
             {
                 self.facebookID = facebookID;
-                [self initializeWithDataFromFacebook];
+                [self initializeWithDataFromFacebookWithCompletion:^(BOOL done)
+                {
+                }];
                 if(completion)
                     completion(NO);
             }
@@ -72,7 +74,7 @@
 }
 
 
-- (id)initializeWithDataFromFacebook
+- (id)initializeWithDataFromFacebookWithCompletion:(void (^)(BOOL done))completion
 {
     if(!self.facebookID)
     {
@@ -89,7 +91,11 @@
         self.birthday = [f dateFromString:response[@"birthday"]];
         self.username = response[@"username"];
 
-        NSLog(@"Saving Email(%@) for %@", self.email, self.name);
+        NSLog(@"Saving %@ as AAPerson to cloud", self.name);
+        if(completion)
+        {
+            completion(YES);
+        }
         [self saveInBackground];
     }];
 
