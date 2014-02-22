@@ -92,6 +92,7 @@
 */
 + (void)friendsWithBlock:(void (^)(NSArray *friends, NSError *error))block
 {
+
     [FBRequestConnection startWithGraphPath:@"me/friends"
                                  parameters:nil
                                  HTTPMethod:@"GET"

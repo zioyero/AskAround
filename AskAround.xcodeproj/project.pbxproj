@@ -38,6 +38,8 @@
 		AB3CAD8D6DEC2E19805960FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA128E219B162C2F82FEC /* Foundation.framework */; };
 		AB3CAFC592940E55F66D1A63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CAB8F70D13CA534EE333A /* UIKit.framework */; };
 		AB5F62AB5B65ED72ED4032DC /* AAFbLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */; };
+		AB5F63CAC4189C561AE521E1 /* AAProfilePhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */; };
+		AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F646443C0032A2C53B20E /* AAProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +94,11 @@
 		AB3CAC805BC1A72B3126351E /* AskAroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AskAroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CAE13ADAD481896BC1835 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFbLoginViewController.m; sourceTree = "<group>"; };
+		AB5F624D76E2A42999270A1E /* AAProfilePhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfilePhotoCell.h; sourceTree = "<group>"; };
+		AB5F646443C0032A2C53B20E /* AAProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileViewController.m; sourceTree = "<group>"; };
 		AB5F64CD5C03F0749E568553 /* AAFbLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFbLoginViewController.h; sourceTree = "<group>"; };
+		AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfilePhotoCell.m; sourceTree = "<group>"; };
+		AB5F6F0CB2655FE845CD8EFF /* AAProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,8 +253,20 @@
 				AB3CA1AFB1835A4B7E18D3A1 /* Data Structures */,
 				AB3CA26BE2F7372679270207 /* AskAroundDefines.h */,
 				AB3CAAFC815E8C36D4415911 /* Utils */,
+				AB5F6830D07A878E5A239551 /* Profiles */,
 			);
 			path = AskAround;
+			sourceTree = "<group>";
+		};
+		AB5F6830D07A878E5A239551 /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				AB5F6F0CB2655FE845CD8EFF /* AAProfileViewController.h */,
+				AB5F646443C0032A2C53B20E /* AAProfileViewController.m */,
+				AB5F624D76E2A42999270A1E /* AAProfilePhotoCell.h */,
+				AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */,
+			);
+			path = Profiles;
 			sourceTree = "<group>";
 		};
 		AB5F6D1895FC17BE69B20714 /* SocialNetworks */ = {
@@ -405,6 +423,8 @@
 				AB3CA6323B31690988AA614F /* AAAnswer.m in Sources */,
 				AB5F62AB5B65ED72ED4032DC /* AAFbLoginViewController.m in Sources */,
 				AB3CA41DB456B3F6AA4EB106 /* NSArray+AskAround.m in Sources */,
+				AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */,
+				AB5F63CAC4189C561AE521E1 /* AAProfilePhotoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
