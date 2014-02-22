@@ -12,7 +12,7 @@
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
-
+    #import <Parse/Parse.h>
     #import <Foundation/Foundation.h>
 
 #endif
