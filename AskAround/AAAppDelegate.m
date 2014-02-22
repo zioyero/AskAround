@@ -9,6 +9,8 @@
 #import "AAAppDelegate.h"
 #import "AAFbLoginViewController.h"
 #import "AAProfileViewController.h"
+#import "AAPerson.h"
+#import <Parse/PFFacebookUtils.h>
 
 @implementation AAAppDelegate
 
@@ -18,6 +20,8 @@
     // Register our Parse Application.
     [Parse setApplicationId:@"kVViVSOYYHOuHetEpHTXNM2mCriXlqenfzxEFiOw"
                   clientKey:@"41kOXDdJRuRNGuLTKmCmObjDIh7C8DPvNuTndHnl"];
+
+    [AAPerson registerSubclass];
     
 
     // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
