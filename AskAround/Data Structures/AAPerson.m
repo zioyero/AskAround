@@ -7,6 +7,7 @@
 #import "FBGraphObject.h"
 #import "FBRequestConnection.h"
 #import "FBRequest.h"
+#import "AAAsk.h"
 
 
 @implementation AAPerson
@@ -27,6 +28,31 @@
 
 #pragma mark Initialization
 
+- (id)initWithFacebookID:(NSString *)facebookID
+{
+    self = [self init];
+    if(self)
+    {
+        self.facebookID = facebookID;
+        // Check the server for this person
+        [AAPerson findPersonWithFacebookID:facebookID withBlock:^(AAPerson * person, NSError * error)
+        {
+            if(person && !error)
+            {
+                self.name = person.name;
+
+            }
+            else
+            {
+                self.facebookID = facebookID;
+                [self initializeWithDataFromFacebook];
+            }
+        }];
+    }
+    return self;
+}
+
+
 - (id)initializeWithDataFromFacebook
 {
     if(!self.facebookID)
@@ -40,6 +66,7 @@
         self.name = response[@"name"];
         self.email = response[@"email"];
 
+
         NSLog(@"Saving Email(%@) for %@", self.email, self.name);
         [self saveInBackground];
     }];
@@ -47,12 +74,23 @@
     return self;
 }
 
+
+#pragma mark AskAround
+
+-(void) sendAsk:(AAAsk *)ask
+{
+    [self.pendingAsks addObject:ask];
+    [self saveInBackground];
+}
+
+
+
 #pragma mark Facebook Helpers
 
 /**
 * Friends array is an array of AAPerson objects
 */
-- (void)friendsWithBlock:(void (^)(NSArray *friends, NSError *error))block
++ (void)friendsWithBlock:(void (^)(NSArray *friends, NSError *error))block
 {
     [FBRequestConnection startWithGraphPath:@"me/friends"
                                  parameters:nil
@@ -74,23 +112,8 @@
         NSArray * friendBareBones = response[@"data"];
         for(NSDictionary * bareBonesProfile in friendBareBones)
         {
-            // Check for existance on the server first
-            [AAPerson findPersonWithFacebookID:bareBonesProfile[@"id"] withBlock:^(AAPerson * person, NSError * queryError)
-            {
-                if(person)
-                {
-                    [ret addObject:person];
-                }
-                else
-                {
-                    // Otherwise, create them
-                    AAPerson * friend = [[AAPerson alloc] init];
-                    friend.facebookID = bareBonesProfile[@"id"];
-                    friend.name = bareBonesProfile[@"name"];
-                    [friend saveInBackground];
-                    [ret addObject:friend];
-                }
-            }];
+            AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"]];
+            [ret addObject:person];
         }
 
         if(block)
@@ -118,16 +141,45 @@
     }];
 }
 
+#pragma mark Query Methods
+
 + (void)findPersonWithFacebookID:(NSString *)facebookID withBlock:(void (^)(AAPerson * person, NSError *error))block
 {
     PFQuery * q = [PFQuery queryWithClassName:[AAPerson parseClassName]];
     [q whereKey:@"facebookID" equalTo:facebookID];
 
-    [q getFirstObjectInBackgroundWithBlock:^(AAPerson * per, NSError *error)
+    [q getFirstObjectInBackgroundWithBlock:^(PFObject * per, NSError *error)
     {
         if(!error && block)
         {
-            block(per, nil);
+            block((AAPerson*)per, nil);
+        }
+        else if(block)
+        {
+            block(nil, error);
+        }
+    }];
+}
+
+/**
+* Finds the first 100 people that match on the facebook IDs.
+*/
++(void)findPeopleWithFacebookIDs:(NSArray *)facebookIDs withBlock:(void (^)(NSArray * people, NSError * error))block
+{
+    NSMutableArray * queries = [NSMutableArray arrayWithCapacity:[facebookIDs count]];
+    for(NSString * facebookID in facebookIDs)
+    {
+        PFQuery * q = [PFQuery queryWithClassName:[AAPerson parseClassName]];
+        [q whereKey:@"facebookID" equalTo:facebookID];
+        [queries addObject:q];
+    }
+    PFQuery * compoundQuery = [PFQuery orQueryWithSubqueries:queries];
+    [compoundQuery findObjectsInBackgroundWithBlock:^(NSArray * response, NSError * error)
+    {
+        // response is an array of AAPerson objects
+        if(!error && block)
+        {
+            block(response, nil);
         }
         else if(block)
         {

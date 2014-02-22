@@ -26,6 +26,7 @@
 		AB3CA1F23515D9C0D981686C /* AskAroundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA73D507C7D55BF5F0054 /* AskAroundTests.m */; };
 		AB3CA2E8D83EDFB9AB870CE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA73CE43136A42E372D27 /* Images.xcassets */; };
 		AB3CA3346247E6D88CB88BB7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA128E219B162C2F82FEC /* Foundation.framework */; };
+		AB3CA41DB456B3F6AA4EB106 /* NSArray+AskAround.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CAA5C54215601ABF658F1 /* NSArray+AskAround.m */; };
 		AB3CA5DDBF1C0D917ABC2458 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CAB8F70D13CA534EE333A /* UIKit.framework */; };
 		AB3CA6323B31690988AA614F /* AAAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA9D47295A2D1BB22C3BF /* AAAnswer.m */; };
 		AB3CA6B532C5F123D4014F2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA3E7D26364F9AD07C4F5 /* CoreGraphics.framework */; };
@@ -67,6 +68,7 @@
 		9D74F810693C4B6C808860D4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CA09E1908CF53F50111CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB3CA128E219B162C2F82FEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AB3CA26BE2F7372679270207 /* AskAroundDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskAroundDefines.h; sourceTree = "<group>"; };
 		AB3CA2E4265D99FCD92CFAED /* AAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAAppDelegate.h; sourceTree = "<group>"; };
 		AB3CA3A94EEF8315B3CC2585 /* AskAround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AskAround.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CA3E7D26364F9AD07C4F5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -79,8 +81,10 @@
 		AB3CA9CDE81614AD8F649FB4 /* AAAsk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAsk.h; sourceTree = "<group>"; };
 		AB3CA9D47295A2D1BB22C3BF /* AAAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAnswer.m; sourceTree = "<group>"; };
 		AB3CAA42834911F31E4FDFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB3CAA5C54215601ABF658F1 /* NSArray+AskAround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AskAround.m"; sourceTree = "<group>"; };
 		AB3CAA60812C768FA8652F80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB3CAA68F7E4B97AE1461FD5 /* AskAround-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "AskAround-Info.plist"; sourceTree = "<group>"; };
+		AB3CAB1BE73961CC674DEC4C /* NSArray+AskAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AskAround.h"; sourceTree = "<group>"; };
 		AB3CAB61319BC991EB7D2A91 /* AAAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAnswer.h; sourceTree = "<group>"; };
 		AB3CAB8856D3227DA26430DD /* AAAsk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAsk.m; sourceTree = "<group>"; };
 		AB3CAB8F70D13CA534EE333A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -223,6 +227,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		AB3CAAFC815E8C36D4415911 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AB3CAA5C54215601ABF658F1 /* NSArray+AskAround.m */,
+				AB3CAB1BE73961CC674DEC4C /* NSArray+AskAround.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		AB3CACD5E837D5EF06FF959C /* AskAround */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +245,8 @@
 				AB3CA73CE43136A42E372D27 /* Images.xcassets */,
 				AB3CA326E981B8CC2C265EE2 /* User Interface */,
 				AB3CA1AFB1835A4B7E18D3A1 /* Data Structures */,
+				AB3CA26BE2F7372679270207 /* AskAroundDefines.h */,
+				AB3CAAFC815E8C36D4415911 /* Utils */,
 			);
 			path = AskAround;
 			sourceTree = "<group>";
@@ -389,6 +404,7 @@
 				AB3CA031E37BA771B838CB85 /* AAPerson.m in Sources */,
 				AB3CA6323B31690988AA614F /* AAAnswer.m in Sources */,
 				AB5F62AB5B65ED72ED4032DC /* AAFbLoginViewController.m in Sources */,
+				AB3CA41DB456B3F6AA4EB106 /* NSArray+AskAround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +475,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8F70FEF5335042AB91502471 /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -477,7 +493,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8F70FEF5335042AB91502471 /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

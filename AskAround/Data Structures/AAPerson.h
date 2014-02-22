@@ -34,6 +34,8 @@
 
 #pragma mark Initialization
 
+- (id)initWithFacebookID:(NSString *)facebookID;
+
 /**
 * Pulls the user data fields from their facebook account.
 */
@@ -42,13 +44,20 @@
 
 #pragma mark Friends
 
-- (void) friendsWithBlock:(void (^)(NSArray * friends, NSError * error))block;
++ (void)friendsWithBlock:(void (^)(NSArray *friends, NSError *error))block;
+
+#pragma mark Facebook
+
++ (void)findPersonWithFacebookID:(NSString *)facebookID withBlock:(void (^)(AAPerson *person, NSError *error))block;
+
++ (void)findPeopleWithFacebookIDs:(NSArray *)facebookIDs withBlock:(void (^)(NSArray *people, NSError *error))block;
+
++ (void)currentUserFacebookIDWithBlock:(void (^)(NSString *facebookID, NSError *error))block;
 
 
 #pragma mark Parse
 
 + (NSString *)parseClassName;
 
-+ (NSString *)currentUserFacebookID;
 
 @end

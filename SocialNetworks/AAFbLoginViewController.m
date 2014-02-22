@@ -5,6 +5,8 @@
 
 #import "AAFbLoginViewController.h"
 #import "AAPerson.h"
+#import "NSArray+AskAround.h"
+#import "AskAroundDefines.h"
 #import <Parse/PFFacebookUtils.h>
 
 @interface AAFbLoginViewController ()
@@ -69,10 +71,7 @@
 //            [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
         } else {
             NSLog(@"User with facebook logged in!");
-            AAPerson * newPerson = [[AAPerson alloc] init];
-            [newPerson initializeWithDataFromFacebook];
-
-//            [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+//          [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
         }
     }];
 
