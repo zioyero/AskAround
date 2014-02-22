@@ -7,6 +7,7 @@
 //
 
 #import "AAAppDelegate.h"
+#import "AAFbLoginViewController.h"
 
 @implementation AAAppDelegate
 
@@ -22,6 +23,10 @@
     [PFFacebookUtils initializeFacebook];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:login];
+    self.window.rootViewController = navigationController;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
