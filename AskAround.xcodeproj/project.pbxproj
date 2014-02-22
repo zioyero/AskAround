@@ -504,7 +504,7 @@
 				INFOPLIST_FILE = "AskAround/AskAround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -522,7 +522,7 @@
 				INFOPLIST_FILE = "AskAround/AskAround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

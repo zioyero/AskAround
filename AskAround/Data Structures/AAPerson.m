@@ -8,6 +8,7 @@
 #import "FBRequestConnection.h"
 #import "FBRequest.h"
 #import "AAAsk.h"
+#import "NSArray+OCTotallyLazy.h"
 
 
 @implementation AAPerson
@@ -17,7 +18,11 @@
 @dynamic birthday;
 @dynamic username;
 @dynamic pendingAsks;
-@dynamic answersAbout;
+@dynamic asksAbout;
+@dynamic sentAsks;
+@dynamic facebookID;
+@dynamic facebookLikes;
+@dynamic picture;
 
 #pragma mark Parse
 
@@ -28,7 +33,12 @@
 
 #pragma mark Initialization
 
-- (id)initWithFacebookID:(NSString *)facebookID
+- (id) initWithFacebookID:(NSString *)facebookID
+{
+    return [self initWithFacebookID:facebookID completion:nil];
+}
+
+- (id)initWithFacebookID:(NSString *)facebookID completion:(void (^)(BOOL done))completion
 {
     self = [self init];
     if(self)
@@ -40,12 +50,21 @@
             if(person && !error)
             {
                 self.name = person.name;
-
+                self.sentAsks = person.sentAsks;
+                self.pendingAsks = person.pendingAsks;
+                self.asksAbout = person.asksAbout;
+                self.username = person.username;
+                self.birthday = person.birthday;
+                self.email = person.email;
+                if(completion)
+                    completion(YES);
             }
             else
             {
                 self.facebookID = facebookID;
                 [self initializeWithDataFromFacebook];
+                if(completion)
+                    completion(NO);
             }
         }];
     }
@@ -65,7 +84,10 @@
     {
         self.name = response[@"name"];
         self.email = response[@"email"];
-
+        NSDateFormatter * f = [[NSDateFormatter alloc] init];
+        [f setDateFormat:@"MM/dd/yyyy"];
+        self.birthday = [f dateFromString:response[@"birthday"]];
+        self.username = response[@"username"];
 
         NSLog(@"Saving Email(%@) for %@", self.email, self.name);
         [self saveInBackground];
@@ -77,13 +99,32 @@
 
 #pragma mark AskAround
 
--(void) sendAsk:(AAAsk *)ask
+/**
+* Sends this ask to the server for processing
+*/
+-(void)sendAsk:(AAAsk *)ask
 {
-    [self.pendingAsks addObject:ask];
+    if(!self.sentAsks)
+    {
+        self.sentAsks = [[NSMutableArray alloc] init];
+    }
+
+    [self.sentAsks addObject:ask];
+    [ask.aboutPerson addAskAbout:ask];
+
+    [ask.aboutPerson saveInBackground];
     [self saveInBackground];
 }
 
-
+- (void)addAskAbout:(AAAsk *)ask
+{
+    if(!self.asksAbout)
+    {
+        self.asksAbout = [[NSMutableSet alloc] init];
+    }
+    [self.asksAbout addObject:ask];
+    [self saveInBackground];
+}
 
 #pragma mark Facebook Helpers
 
@@ -113,7 +154,9 @@
         NSArray * friendBareBones = response[@"data"];
         for(NSDictionary * bareBonesProfile in friendBareBones)
         {
-            AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"]];
+            AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"] completion:^(BOOL done)
+            {
+            }];
             [ret addObject:person];
         }
 
@@ -138,6 +181,37 @@
         else if(block)
         {
             block(nil, error);
+        }
+    }];
+}
+
+- (void) populateLikesWithBlock:(void (^)(NSSet * likes))block
+{
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/likes", self.facebookID]
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
+    {
+        NSArray * likes = response[@"data"];
+        self.facebookLikes = [likes asSet];
+    }];
+}
+
+- (void) fetchPictureWithBlock:(void (^)(UIImage * picture, NSError * error))block
+{
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/picture", self.facebookID]
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection * connection, id response, NSError * error)
+    {
+        if(response && !error)
+        {
+            self.picture = (UIImage *)response;
+        }
+
+        if(block)
+        {
+            block(self.picture, error);
         }
     }];
 }

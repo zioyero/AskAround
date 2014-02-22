@@ -20,6 +20,10 @@
 */
 @property (nonatomic, strong) AAPerson * fromPerson;
 
+/**
+* Set of answers
+*/
+@property (nonatomic, strong) NSMutableSet * answers;
 
 /**
  * The group of people that this AAAsk will be going out to. AAnswers
@@ -32,6 +36,15 @@
 */
 @property (nonatomic, strong) NSDate * deadline;
 
+/**
+* Title of the Ask, e.g. "Does <AAPerson> like wine?"
+*/
+@property (nonatomic, strong) NSString * title;
+
+/**
+* Whether or not this ask can be answered by Yes/No
+*/
+@property (nonatomic, assign) BOOL isYesNo;
 
 /**
 * Class method required by the Parse Framework
