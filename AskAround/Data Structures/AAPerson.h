@@ -4,7 +4,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PFSubclassing.h"
 
 @class FBGraphObject;
 @class FBRequest;
