@@ -5,6 +5,7 @@
 
 #import "AAPerson.h"
 #import "FBGraphObject.h"
+#import "FBRequestConnection.h"
 
 
 @implementation AAPerson
@@ -12,11 +13,26 @@
 
 }
 
+#pragma mark Initialization
+
+- (instancetype)initializeWithFacebookUser:(FBGraphObject *)user
+{
+    [FBRequestConnection startWithGraphPath:@"me/friends"
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection * connection, id results, NSError * error)
+                          {
+                              NSLog(@"Got friend lists!");
+                          }];
+}
+
+
 #pragma mark Parse
 
 +(NSString *)parseClassName
 {
     return @"AAPerson";
 }
+
 
 @end

@@ -11,6 +11,7 @@
 @interface AAPerson : PFObject <PFSubclassing>
 
 #pragma mark Properties
+
 /**
 * A set of AAAnswers whose aboutPerson is this person
 */
@@ -28,6 +29,7 @@
 
 
 
+#pragma mark Parse
 
 + (NSString *)parseClassName;
 
