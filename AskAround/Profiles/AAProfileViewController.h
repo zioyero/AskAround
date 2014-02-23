@@ -13,7 +13,7 @@
 
 @interface AAProfileViewController : UITableViewController
 
-
+@property (nonatomic, assign) BOOL currentUserView;
 @property (nonatomic, strong) AAMyProfileModelView *profileModelView;
 
 - (id)initWithPerson:(AAPerson *)person;

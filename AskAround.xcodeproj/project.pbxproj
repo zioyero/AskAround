@@ -49,6 +49,7 @@
 		AB5F68B59DAC7B0996DE9A6B /* AAMyProfileModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */; };
 		AB5F691BB9AA5D0354ECFDB5 /* AAProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F61D48C7F345087779DFC /* AAProfileCell.m */; };
 		AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */; };
+		AB5F6C8A347357AD649AF1BF /* AAFriendProfileModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F68F85DAA33BE038B5B74 /* AAFriendProfileModelView.m */; };
 		AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */; };
 		AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F646443C0032A2C53B20E /* AAProfileViewController.m */; };
 		D2DB678518B9AAE400039857 /* AATabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB678418B9AAE400039857 /* AATabBarController.m */; };
@@ -120,6 +121,8 @@
 		AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAMyProfileModelView.m; sourceTree = "<group>"; };
 		AB5F679A04A27E5C9D953F93 /* UIFont+AAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AAUtils.h"; sourceTree = "<group>"; };
 		AB5F68D108AC88137548E353 /* AAProfileBirthdayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileBirthdayCell.m; sourceTree = "<group>"; };
+		AB5F68F85DAA33BE038B5B74 /* AAFriendProfileModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendProfileModelView.m; sourceTree = "<group>"; };
+		AB5F6964CC09A81A5926F214 /* AAFriendProfileModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendProfileModelView.h; sourceTree = "<group>"; };
 		AB5F69855705537F15388E35 /* AAFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendTableViewCell.h; sourceTree = "<group>"; };
 		AB5F6C0F67A40F802537DE2B /* UIColor+AAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AAUtils.h"; sourceTree = "<group>"; };
 		AB5F6C21B8D3E2AD1BE07E9B /* AAMyProfileModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAMyProfileModelView.h; sourceTree = "<group>"; };
@@ -302,6 +305,7 @@
 				AB5F6830D07A878E5A239551 /* Profiles */,
 				AB5F67396A5C155E2C2639D9 /* Friends */,
 				AB5F60BB747D00395A502CCD /* tableViews */,
+				AB5F6262B31EF54F9BDF5622 /* FriendProfile */,
 			);
 			path = AskAround;
 			sourceTree = "<group>";
@@ -313,6 +317,15 @@
 				AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */,
 			);
 			path = tableViews;
+			sourceTree = "<group>";
+		};
+		AB5F6262B31EF54F9BDF5622 /* FriendProfile */ = {
+			isa = PBXGroup;
+			children = (
+				AB5F68F85DAA33BE038B5B74 /* AAFriendProfileModelView.m */,
+				AB5F6964CC09A81A5926F214 /* AAFriendProfileModelView.h */,
+			);
+			path = FriendProfile;
 			sourceTree = "<group>";
 		};
 		AB5F67396A5C155E2C2639D9 /* Friends */ = {
@@ -513,6 +526,7 @@
 				AB5F61F97B08822C984ABC14 /* UIColor+AAUtils.m in Sources */,
 				AB5F6160616C6AE4564567B6 /* UIFont+AAUtils.m in Sources */,
 				AB5F6678B22D098FB955BC8D /* AAProfileAsk.m in Sources */,
+				AB5F6C8A347357AD649AF1BF /* AAFriendProfileModelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
