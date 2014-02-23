@@ -240,4 +240,21 @@
     return NO;
 }
 
+- (void)refreshPerson
+{
+    @weakify(self);
+    [self.person refreshWithCompletion:^(AAPerson *person, NSError *error) {
+        @strongify(self);
+        if(!error){
+            self.person = person;
+            NSLog(@"refreshed person %@, %d about, %d pending, %d sent", self.person, self.person.asksAbout.count,
+            self.person.pendingAsks.count, self.person.sentAsks.count);
+
+        }
+        else{
+            NSLog(@"error refresh");
+        }
+    }];
+}
+
 @end

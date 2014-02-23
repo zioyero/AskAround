@@ -53,6 +53,8 @@
     self.nameLabel.numberOfLines = 0;
     [self.contentView addSubview:self.nameLabel];
 
+    self.selectionStyle = UITableViewCellSelectionStyleGray;
+
     // Location and birthday
     self.infoLabel = [[UILabel alloc] init];
     self.infoLabel.translatesAutoresizingMaskIntoConstraints = NO;

@@ -7,7 +7,14 @@
 //
 
 
+@class AAPerson;
+
 
 @interface AAAskPersonHeaderView : UIView
+
+@property (nonatomic, strong) UIImageView *pictureView;
+@property (nonatomic, strong) UILabel * nameLabel;
+
+@property (nonatomic, strong) AAPerson *person;
 
 @end

@@ -130,12 +130,12 @@
     self.addLabel = [[UILabel alloc] init];
     self.addLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.addLabel.text = @"ADD";
-    [self.contentView addSubview:self.addLabel];
+//    [self.contentView addSubview:self.addLabel];
 
     self.optionsView = [[AAAskOptionsView alloc] init];
     self.optionsView.translatesAutoresizingMaskIntoConstraints = NO;
     self.optionsView.backgroundColor = [UIColor whiteColor];
-    [self.contentView addSubview:self.optionsView];
+//    [self.contentView addSubview:self.optionsView];
 
     self.sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.sendButton setImage:[UIImage imageNamed:@"Send"] forState:UIControlStateNormal];
@@ -146,8 +146,11 @@
 
     NSString *vertical = @"V:|-(askAboutT)-[askAbout(askAboutH)]-(askAboutB)-"
             "[personHeader(personHeaderH)]-2-[message(messageH)]"
-            "-(askAboutT)-[addLabel(askAboutH)]-(askAboutB)-"
-            "[options(optionsH)]-(sendT@900)-[send]";
+            "-(sendT@900)-[send]";
+//    NSString *vertical = @"V:|-(askAboutT)-[askAbout(askAboutH)]-(askAboutB)-"
+//            "[personHeader(personHeaderH)]-2-[message(messageH)]"
+//            "-(askAboutT)-[addLabel(askAboutH)]-(askAboutB)-"
+//            "[options(optionsH)]-(sendT@900)-[send]";
     NSDictionary *views = @{
             @"askAbout": self.askAboutLabel,
             @"personHeader": self.personHeaderView,
@@ -178,11 +181,11 @@
                   options:0 metrics:nil views:views]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[message]-0-|"
                   options:0 metrics:nil views:views]];
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(labelPad)-[addLabel]-"
-            "(labelPad)-|"
-                  options:0 metrics:hMetrics views:views]];
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[options]-0-|"
-                  options:0 metrics:nil views:views]];
+//    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(labelPad)-[addLabel]-"
+//            "(labelPad)-|"
+//                  options:0 metrics:hMetrics views:views]];
+//    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[options]-0-|"
+//                  options:0 metrics:nil views:views]];
 
     [constraints addObject:[NSLayoutConstraint constraintWithItem:self.sendButton
                                                         attribute:NSLayoutAttributeCenterX
@@ -213,6 +216,8 @@
     [self createScrollview];
     [self createViews];
     [self addGestureRecognizer];
+
+    self.personHeaderView.person = self.aboutPerson;
 
     self.sendButton.enabled = NO;
 

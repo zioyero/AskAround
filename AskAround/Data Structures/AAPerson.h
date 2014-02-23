@@ -85,6 +85,8 @@
 
 + (void)findPeopleWithFacebookIDs:(NSArray *)facebookIDs withBlock:(void (^)(NSArray *people, NSError *error))block;
 
+- (void)refreshWithCompletion:(void (^)(AAPerson *person, NSError *error))block;
+
 + (void)currentUserFacebookIDWithBlock:(void (^)(NSString *facebookID, NSError *error))block;
 
 - (void)populateLikesWithBlock:(void (^)(NSSet *likes))block;

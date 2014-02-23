@@ -106,6 +106,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     AAPerson * person = [self.friendsModelView.friends objectAtIndex:indexPath.row];
 //    AAAsk * ask = [[AAAsk alloc] initWithTitle:@"New ask! For Debugging!" andBody:@"No body"];
 //    [AAAsk sendOutAsk:ask aboutPerson:person];
