@@ -114,6 +114,8 @@
 - (void)createViews
 {
     self.askAboutLabel = [[UILabel alloc] init];
+    self.askAboutLabel.font = [UIFont mediumFontWithSize:14.0];
+    self.askAboutLabel.textColor = [UIColor darkerTextColor];
     self.askAboutLabel.text = @"PENDING ASK";
     self.askAboutLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.askAboutLabel];

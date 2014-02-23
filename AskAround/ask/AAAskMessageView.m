@@ -17,10 +17,11 @@
     self = [super init];
     if (!self) return nil;
 
+    self.style = style;
+
     [self createViews];
 
     self.hasValidBody = @NO;
-    self.style = style;
 
     @weakify(self);
     [self.textView.rac_textSignal subscribeNext:^(id x) {
@@ -48,11 +49,11 @@
     if(self.style == AAAskMessageViewStyleAsk)
         self.textView.placeholder = @"I need a gift idea...";
     else if(self.style == AAAskMessageViewStyleAnswer)
-        self.textView.placeholder = @"Type...";
+        self.textView.placeholder = @"Type an idea...";
     self.textView.placeholderColor = [UIColor lighterTextColor];
     self.textView.textColor = [UIColor lighterTextColor];
-    self.textView.font = [UIFont mediumFontWithSize:16.0];
-    self.textView.backgroundColor = [UIColor yellowColor];
+    self.textView.font = [UIFont mediumFontWithSize:14.0];
+    self.textView.backgroundColor = [UIColor clearColor];
     [self addSubview:self.textView];
 
     NSDictionary *metrics = @{
