@@ -1,8 +1,8 @@
 {
   "images" : [
     {
-      "size" : "29x29",
       "idiom" : "iphone",
+<<<<<<< HEAD
       "filename" : "AppIcon29x29.png",
       "scale" : "1x"
     },
@@ -10,6 +10,9 @@
       "size" : "29x29",
       "idiom" : "iphone",
       "filename" : "AppIcon29x29@2x.png",
+=======
+      "size" : "29x29",
+>>>>>>> e994433f8f8beba75a60ad87256e1742c277a2a1
       "scale" : "2x"
     },
     {

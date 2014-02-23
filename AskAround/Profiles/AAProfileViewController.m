@@ -51,7 +51,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:[UIImage imageNamed:@"TabHome"] selectedImage:[UIImage imageNamed:@"TabHomeSelected"]];
 
-
     @weakify(self);
     [RACObserve(self.profileModelView, sections) subscribeNext:^(id x) {
         @strongify(self);
@@ -109,8 +108,11 @@
     id object = [self.profileModelView objectAtIndexPath:indexPath];
     if(object && [resultCell respondsToSelector:@selector(setObject:)])
         [resultCell performSelector:@selector(setObject:) withObject:object];
-    else
-        resultCell.textLabel.text = @"something";
+    else{
+        NSString *text = [self.profileModelView emptyTextAtIndexPath:indexPath];
+        resultCell.textLabel.text = text;
+    }
+
 
 //    switch (indexPath.section){
 //        case 0:
@@ -139,17 +141,18 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section==0 && indexPath.row==0){
-        return [AAProfilePhotoCell cellHeight];
-    }
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    return [self.profileModelView heightForRowAtIndexPath:indexPath];
+//    if(indexPath.section==0 && indexPath.row==0){
+//        return [AAProfilePhotoCell cellHeight];
+//    }
+//    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     switch (section){
         case 0: return 0;
         default:
-            return 44.0;
+            return 44.0; // big cell, 134/2, 84/2
     }
 }
 
