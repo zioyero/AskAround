@@ -42,21 +42,16 @@
 //      AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
         AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
 
-        UITabBarController *tabBarController = [[UITabBarController alloc] init];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
         navigationController.navigationBarHidden = NO;
-        [tabBarController addChildViewController:navigationController];
-        self.window.rootViewController = tabBarController;
 
-
-        AAFriendsListViewController *friendsListViewController = [[AAFriendsListViewController alloc] init];
-        navigationController = [[UINavigationController alloc] initWithRootViewController:friendsListViewController];
-        [tabBarController addChildViewController:navigationController];
+        self.window.rootViewController = navigationController;
         [AAPerson currentUser];
     }
     else
     {
         AALoginViewController * login = [[AALoginViewController alloc] init];
+        login.delegate = self;
         self.window.rootViewController = login;
     }
 
@@ -103,5 +98,17 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
+
+- (void)loginSuceeded
+{
+    AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
+
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
+    navigationController.navigationBarHidden = NO;
+
+    self.window.rootViewController = navigationController;
+    [AAPerson currentUser];
+}
+
 
 @end

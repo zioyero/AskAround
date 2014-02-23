@@ -29,6 +29,9 @@ static AAPerson * currentUser;
 @dynamic facebookID;
 @dynamic facebookLikes;
 @dynamic picture;
+@dynamic location;
+@dynamic employer;
+@dynamic profession;
 
 #pragma mark Current User
 
@@ -116,6 +119,7 @@ static AAPerson * currentUser;
                 self.objectId = person.objectId;
                 self.employer = person.employer;
                 self.location = person.location;
+                self.picture = person.picture;
                 if(completion)
                     completion(YES);
             }
@@ -375,6 +379,8 @@ static AAPerson * currentUser;
             if(response && !error)
             {
                 self.picture = response[@"data"][@"url"];
+                self.picture = [self.picture stringByReplacingOccurrencesOfString:@"https://" withString:@"http://"];
+                [self saveInBackground];
                 if(block)
                 {
                     block(self.picture, error);
@@ -467,6 +473,7 @@ static AAPerson * currentUser;
             self.objectId = person.objectId;
             self.employer = person.employer;
             self.location = person.location;
+            self.picture = person.picture;
         }
 
         if(block)

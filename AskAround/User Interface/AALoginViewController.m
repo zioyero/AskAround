@@ -5,6 +5,7 @@
 
 #import "AALoginViewController.h"
 #import "NSLayoutConstraint+SimpleFormatLanguage.h"
+#import "AAAppDelegate.h"
 #import <Parse/PFFacebookUtils.h>
 
 
@@ -122,10 +123,13 @@
         }
         else if (user.isNew)
         {
+            [self.delegate loginSuceeded];
             NSLog(@"User with facebook signed up and logged in!");
         }
         else
         {
+            [self.delegate loginSuceeded];
+
             NSLog(@"User with facebook logged in!");
         }
     }];

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AALoginViewController.h"
 
-@interface AAAppDelegate : UIResponder <UIApplicationDelegate>
+@interface AAAppDelegate : UIResponder <UIApplicationDelegate, AALoginViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -67,9 +67,16 @@
     if(person){
         @weakify(self);
         self.nameLabel.text = [NSString stringWithFormat:@"%@\n%@", [self name], [self birthday]];
-        [person fetchHttpPictureWithBlockWithBlock:^(NSURL *pictureURL, NSError *error) {
-            [self.pictureView setImageWithURL:pictureURL placeholderImage:[UIImage imageNamed:@"DefaultProfile"]];
-        }];
+        if(person.picture)
+        {
+            [self.pictureView setImageWithURL:[NSURL URLWithString:person.picture]];
+        }
+        else
+        {
+            [person fetchHttpPictureWithBlockWithBlock:^(NSURL *pictureURL, NSError *error) {
+                [self.pictureView setImageWithURL:pictureURL placeholderImage:[UIImage imageNamed:@"DefaultProfile"]];
+            }];
+        }
         [self setNeedsDisplay];
     }
 }
