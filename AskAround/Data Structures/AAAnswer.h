@@ -12,14 +12,19 @@
 @interface AAAnswer : PFObject <PFSubclassing>
 
 /**
-* The AAPerson that wrote this AAAnswer
+* The ID of the AAPerson that wrote this AAAnswer
 */
-@property (nonatomic, weak) AAPerson * fromTrustee;
+@property (nonatomic, weak) NSString * responderID;
 
 /**
 * The AAAsk this is an AAAnswer for
 */
-@property (nonatomic, weak) AAAsk * ask;
+//@property (nonatomic, weak) AAAsk * ask;
+
+/**
+* The objectId of the AAAsk this AAAnswer belongs to.
+*/
+@property (nonatomic, copy) NSString * askID;
 
 /**
 * Whether or not this is a yes or no answer.
@@ -37,12 +42,13 @@
 */
 @property (nonatomic, assign) NSString * extraText;
 
-/**
-* Adds this answer to the original ask
-*/
--(void)postAnswer;
+
+#pragma mark Ask Around
+
++(void)postAnswer:(AAAnswer *)answer forAsk:(AAAsk *)ask;
 
 
+#pragma mark Parse
 
 +(NSString *)parseClassName;
 

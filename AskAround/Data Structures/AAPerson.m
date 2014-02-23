@@ -188,7 +188,14 @@ static AAPerson * currentUser;
     }
     [self.sentAsks addObject:ask];
 
-    [self saveInBackground];
+    if(self.objectId)
+    {
+        [self saveInBackground];
+    }
+    else
+    {
+        NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+    }
 }
 
 - (void)addAskAbout:(AAAsk *)ask
@@ -198,7 +205,14 @@ static AAPerson * currentUser;
         self.asksAbout = [[NSMutableArray alloc] init];
     }
     [self.asksAbout addObject:ask];
-    [self saveInBackground];
+    if(self.objectId)
+    {
+        [self saveInBackground];
+    }
+    else
+    {
+        NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+    }
 }
 
 - (void)wasAsked:(AAAsk *)ask
@@ -208,7 +222,14 @@ static AAPerson * currentUser;
         self.pendingAsks = [[NSMutableArray alloc] init];
     }
     [self.pendingAsks addObject:ask];
-    [self saveInBackground];
+    if(self.objectId)
+    {
+        [self saveInBackground];
+    }
+    else
+    {
+        NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+    }
 }
 
 #pragma mark Facebook Helpers
@@ -365,9 +386,11 @@ static AAPerson * currentUser;
 
 - (void)fetchPictureWithBlock:(void (^)(NSString *pictureURL, NSError *error))block
 {
-    if(self.picture){
+    if(self.picture)
+    {
         if(block)
             block(self.picture, nil);
+        return;
     }
     else{
         @weakify(self);
@@ -380,7 +403,16 @@ static AAPerson * currentUser;
             {
                 self.picture = response[@"data"][@"url"];
                 self.picture = [self.picture stringByReplacingOccurrencesOfString:@"https://" withString:@"http://"];
-                [self saveInBackground];
+                if(self.objectId)
+                {
+                    [self saveInBackground];
+                }
+                else
+                {
+                    NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+                }
+
+
                 if(block)
                 {
                     block(self.picture, error);

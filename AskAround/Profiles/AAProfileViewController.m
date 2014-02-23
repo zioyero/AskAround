@@ -12,6 +12,7 @@
 #import "AAMyProfileModelView.h"
 #import "AAFriendProfileModelView.h"
 #import "AAFriendsListViewController.h"
+#import "AAAsk.h"
 
 @interface AAProfileViewController ()
 
@@ -70,7 +71,8 @@
         UITableViewCell *cell = [value objectAtIndex:0];
         NSIndexPath *path = [self.tableView indexPathForCell:cell];
         NSLog(@"button clicked %@", path);
-        if([self.profileModelView showFriendsListViewControllerForClickAt:path]){
+        if([self.profileModelView showFriendsListViewControllerForClickAt:path])
+        {
             AAFriendsListViewController *viewController = [[AAFriendsListViewController alloc] init];
             [self.navigationController pushViewController:viewController animated:YES];
         }
@@ -79,6 +81,10 @@
         }
         else{
             // TEST BUTTON????
+            NSLog(@"Test Button Pushed");
+            AAPerson * person = [AAPerson currentUser];
+            AAAsk * testAsk = [[AAAsk alloc] initWithTitle:@"Ask for debugging" andBody:@"This space intentionally left blank"];
+            [AAAsk sendOutAsk:testAsk aboutPerson:person];
         }
     }];
 

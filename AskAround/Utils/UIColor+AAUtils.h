@@ -16,4 +16,6 @@
 + (UIColor *)darkerTextColor;
 
 + (UIColor *)lighterTextColor;
+
++ (UIColor *)headerColor;
 @end

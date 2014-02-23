@@ -44,6 +44,7 @@
 
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
         navigationController.navigationBarHidden = NO;
+        [navigationController.navigationBar setBarTintColor:[UIColor headerColor]];
 
         self.window.rootViewController = navigationController;
         [AAPerson currentUser];
