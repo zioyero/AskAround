@@ -434,7 +434,7 @@ static AAPerson * currentUser;
     [q includeKey:@"pendingAsks"];
     [q includeKey:@"asksAbout"];
     [q includeKey:@"sentAsks"];
-    [q setCachePolicy:kPFCachePolicyCacheElseNetwork];
+//    [q setCachePolicy:kPFCachePolicyCacheElseNetwork];
 
     [q getFirstObjectInBackgroundWithBlock:^(PFObject * per, NSError *error)
     {
