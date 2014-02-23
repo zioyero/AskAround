@@ -7,6 +7,8 @@
 #import "AAPerson.h"
 #import "AAProfilePhotoCell.h"
 #import "AAProfileBirthdayCell.h"
+#import "AAAsk.h"
+#import "AAProfileAsk.h"
 
 
 @interface  AAMyProfileModelView()
@@ -51,10 +53,26 @@
             [firstSection addObject:self.person];
 
         // pending requests
-        NSArray *secondRow = @[[NSNull null]];
+        NSArray *secondRow = self.person.pendingAsks;
+        if(!secondRow){
+//            @weakify(self);
+//            [AAPerson findPeopleWithFacebookIDs:@[@"585384921", @"718387594"
+//            ] withBlock:^(NSArray *people, NSError *error) {
+//                AAAsk *newAsk = [[AAAsk alloc] initWithFromPerson:people[1] aboutPerson:people[0]
+//                                                        withTitle:@"What should i do for her?"];
+//                [AAAsk sendOutAsk:newAsk aboutPerson:people[0]];
+//
+//            }];
 
+            secondRow = @[[NSNull null]];
+        }
 
-        self.sections = @[firstSection, secondRow];
+        // sent asks
+        NSArray *thirdRow = self.person.sentAsks;
+        if(!thirdRow)
+            thirdRow = @[[NSNull null]];
+
+        self.sections = @[firstSection, secondRow, thirdRow];
     }
 }
 
@@ -70,6 +88,29 @@
     if(section < self.sections.count)
         return [(NSArray*)self.sections[section] count];
     return 0;
+}
+
+- (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section){
+        case 0:
+        {
+            if(indexPath.row==0)
+                return [AAProfilePhotoCell cellHeight];
+            else
+                return 44.0;
+        }
+        case 1:
+        case 2:
+        {
+            id object = [self objectAtIndexPath:indexPath];
+            if(object != [NSNull null])
+                return 134 / 2.0;
+            return 44.0;
+        }
+        default:
+            return 44.0; // big cell, 134/2, 84/2
+    }
 }
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath
@@ -93,7 +134,17 @@
         }
         case 1:
         { // ?
-            return @"requestCell";
+            id object = [self objectAtIndexPath:indexPath];
+            if(object != [NSNull null])
+                return @"askCell";
+            return @"cell";
+        }
+        case 2:
+        {
+            id object = [self objectAtIndexPath:indexPath];
+            if(object != [NSNull null])
+                return @"askCell";
+            return @"cell";
         }
     }
     return @"cell";
@@ -108,18 +159,41 @@
         }
         case 1:
         { // ?
-            return @"Pending Requests";
+            return @"PENDING ASKS";
+        }
+        case 2:
+        { // ?
+            return @"MY ASKS";
         }
     }
     return nil;
 }
 
+- (NSString*)emptyTextAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section){
+        case 0:
+        { // profile photo
+            return @"";
+        }
+        case 1:
+        { // ?
+            return @"No pending ask!";
+        }
+        case 2:
+        { // ?
+            return @"You have not sent asks!";
+        }
+    }
+    return nil;
+}
 
 - (void)registerCellIdentifiersFor:(UITableView*)tableView
 {
     [tableView registerClass:[AAProfilePhotoCell class] forCellReuseIdentifier:@"photoCell"];
     [tableView registerClass:[AAProfileBirthdayCell class] forCellReuseIdentifier:@"birthdayCell"];
-    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"requestCell"];
+    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [tableView registerClass:[AAProfileAsk class] forCellReuseIdentifier:@"askCell"];
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"notificationsCell"];
 }
 

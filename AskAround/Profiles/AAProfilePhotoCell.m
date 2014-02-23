@@ -94,8 +94,9 @@
 {
     AAPerson *person = [self person];
     if(person){
-        self.nameLabel.text = person.name ? [NSString stringWithFormat:@"%@\nAwesome Hacker at Launch",
-                        person.name] : person.facebookID;
+        self.nameLabel.text = person.name ?
+                [NSString stringWithFormat:@"%@ (%@)\nAwesome Hacker at Launch", person.name, person.objectId]
+                : [NSString stringWithFormat:@"%@ (%@)\n", person.facebookID, person.objectId];
         self.nameLabel.frame = self.contentView.bounds;
         [self.nameLabel sizeToFit];
         self.nameLabel.center = CGPointMake(self.contentView.center.x,

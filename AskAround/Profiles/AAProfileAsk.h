@@ -1,5 +1,5 @@
 //
-//  AAFriendTableViewCell.h
+//  AAProfileAsk.h
 //  AskAround
 //
 //  Created by Agathe Battestini on 2/22/14.
@@ -10,10 +10,10 @@
 
 #import "AAProfileCell.h"
 
-@class AAPerson;
-
-@interface AAFriendTableViewCell : AAProfileCell
+@interface AAProfileAsk : AAProfileCell
 
 @property (nonatomic, strong) UIImageView *pictureView;
 @property (nonatomic, strong) UILabel * nameLabel;
+
+
 @end
