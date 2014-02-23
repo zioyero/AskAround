@@ -48,6 +48,7 @@
 		AB5F6678B22D098FB955BC8D /* AAProfileAsk.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D73CFE1B7076D7C7183 /* AAProfileAsk.m */; };
 		AB5F68B59DAC7B0996DE9A6B /* AAMyProfileModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */; };
 		AB5F691BB9AA5D0354ECFDB5 /* AAProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F61D48C7F345087779DFC /* AAProfileCell.m */; };
+		AB5F6B5560D264809233B9F6 /* AAButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6C0DFBDD1D585DF67231 /* AAButtonCell.m */; };
 		AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */; };
 		AB5F6C8A347357AD649AF1BF /* AAFriendProfileModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F68F85DAA33BE038B5B74 /* AAFriendProfileModelView.m */; };
 		AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */; };
@@ -119,11 +120,13 @@
 		AB5F64CD5C03F0749E568553 /* AAFbLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFbLoginViewController.h; sourceTree = "<group>"; };
 		AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListViewController.m; sourceTree = "<group>"; };
 		AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAMyProfileModelView.m; sourceTree = "<group>"; };
+		AB5F6781AC29B069481722A6 /* AAButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAButtonCell.h; sourceTree = "<group>"; };
 		AB5F679A04A27E5C9D953F93 /* UIFont+AAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AAUtils.h"; sourceTree = "<group>"; };
 		AB5F68D108AC88137548E353 /* AAProfileBirthdayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileBirthdayCell.m; sourceTree = "<group>"; };
 		AB5F68F85DAA33BE038B5B74 /* AAFriendProfileModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendProfileModelView.m; sourceTree = "<group>"; };
 		AB5F6964CC09A81A5926F214 /* AAFriendProfileModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendProfileModelView.h; sourceTree = "<group>"; };
 		AB5F69855705537F15388E35 /* AAFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendTableViewCell.h; sourceTree = "<group>"; };
+		AB5F6C0DFBDD1D585DF67231 /* AAButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAButtonCell.m; sourceTree = "<group>"; };
 		AB5F6C0F67A40F802537DE2B /* UIColor+AAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AAUtils.h"; sourceTree = "<group>"; };
 		AB5F6C21B8D3E2AD1BE07E9B /* AAMyProfileModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAMyProfileModelView.h; sourceTree = "<group>"; };
 		AB5F6CB9477BFE6EE6166036 /* AAProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileCell.h; sourceTree = "<group>"; };
@@ -323,6 +326,8 @@
 			children = (
 				AB5F69855705537F15388E35 /* AAFriendTableViewCell.h */,
 				AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */,
+				AB5F6C0DFBDD1D585DF67231 /* AAButtonCell.m */,
+				AB5F6781AC29B069481722A6 /* AAButtonCell.h */,
 			);
 			path = tableViews;
 			sourceTree = "<group>";
@@ -424,7 +429,7 @@
 				ORGANIZATIONNAME = "Holy Moley";
 				TargetAttributes = {
 					AB3CACEE2FC30032E41BA68B = {
-						DevelopmentTeam = BR8U28N786;
+						DevelopmentTeam = PTA88CMJZF;
 					};
 				};
 			};
@@ -535,6 +540,7 @@
 				AB5F6160616C6AE4564567B6 /* UIFont+AAUtils.m in Sources */,
 				AB5F6678B22D098FB955BC8D /* AAProfileAsk.m in Sources */,
 				AB5F6C8A347357AD649AF1BF /* AAFriendProfileModelView.m in Sources */,
+				AB5F6B5560D264809233B9F6 /* AAButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
