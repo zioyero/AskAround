@@ -27,9 +27,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         NSMutableArray *constraints = [@[] mutableCopy];
-        NSDictionary *views = @{
-                @"image": self.button,
-        };
+
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self.button
                                                             attribute:NSLayoutAttributeCenterX
                                                             relatedBy:NSLayoutRelationEqual

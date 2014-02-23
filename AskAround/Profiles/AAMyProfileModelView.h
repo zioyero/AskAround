@@ -36,4 +36,6 @@
 - (void)registerCellIdentifiersFor:(UITableView *)tableView;
 
 - (BOOL)showFriendsListViewControllerForClickAt:(NSIndexPath *)indexPath;
+
+- (BOOL)showCreateAskForClickAt:(NSIndexPath *)indexPath;
 @end

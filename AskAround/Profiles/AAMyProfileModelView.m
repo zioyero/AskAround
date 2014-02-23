@@ -222,8 +222,16 @@
 
 - (BOOL)showFriendsListViewControllerForClickAt:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==1 && indexPath.row==0)
-        return YES;
+    if (indexPath.section==1 && indexPath.row==0){
+        id object = [self objectAtIndexPath:indexPath];
+        if([object isKindOfClass:[NSString class]])
+            return YES;
+    }
+    return NO;
+}
+
+- (BOOL)showCreateAskForClickAt:(NSIndexPath *)indexPath
+{
     return NO;
 }
 

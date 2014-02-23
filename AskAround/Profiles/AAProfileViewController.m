@@ -74,6 +74,9 @@
             AAFriendsListViewController *viewController = [[AAFriendsListViewController alloc] init];
             [self.navigationController pushViewController:viewController animated:YES];
         }
+        else if([self.profileModelView showCreateAskForClickAt:path]){
+
+        }
         else{
             // TEST BUTTON????
         }
