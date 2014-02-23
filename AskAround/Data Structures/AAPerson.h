@@ -90,6 +90,8 @@
 
 + (AAPerson *)currentUser;
 
++ (RACSignal *)fetchCurrentUser;
+
 + (NSString *)parseClassName;
 
 

@@ -9,6 +9,7 @@
 #import "AAProfileViewController.h"
 #import "AAPerson.h"
 #import "AAProfilePhotoCell.h"
+#import "AAMyProfileModelView.h"
 
 @interface AAProfileViewController ()
 
@@ -18,12 +19,25 @@
 
 @implementation AAProfileViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init {
+    self = [super initWithStyle:UITableViewStylePlain];
+
+    if (! self) { return nil ; }
+
+    self.profileModelView = [[AAMyProfileModelView alloc] init];
+
+    return self;
+
+}
+
+- (id)initWithPerson:(AAPerson*)person
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
+    self = [super initWithStyle:UITableViewStylePlain];
+
+    if (! self) { return nil ; }
+
+    self.profileModelView = [[AAMyProfileModelView alloc] init];
+
     return self;
 }
 
@@ -31,7 +45,7 @@
 {
     [super viewDidLoad];
 
-    self.title = @"Me";
+    self.title = @"";
     [self.tableView registerClass:[AAProfilePhotoCell class] forCellReuseIdentifier:@"photoCell"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"birthdayCell"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"requestCell"];
@@ -41,6 +55,12 @@
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:nil
                                             selectedImage:nil];
 
+    @weakify(self);
+    [RACObserve(self.profileModelView, person) subscribeNext:^(id x) {
+        @strongify(self);
+        [self reloadProfile];
+    }];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -49,15 +69,16 @@
 
 }
 
+- (void)reloadProfile
+{
+    self.title = [NSString stringWithFormat:@"Name: %@",self.profileModelView.person.name];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setPerson:(AAPerson *)person {
-    _person = person;
-    [self.tableView reloadData];
 }
 
 

@@ -17,6 +17,8 @@
 
 @implementation AAPerson
 
+static AAPerson * currentUser;
+
 @dynamic name;
 @dynamic email;
 @dynamic birthday;
@@ -32,13 +34,49 @@
 
 +(AAPerson *)currentUser
 {
-    static AAPerson * currentUser = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-//        currentUser = [[AAPerson alloc] initWithFacebookID:[PFUser currentUser][@"authData"]];
+        if(currentUser == nil){
+            [FBRequestConnection startWithGraphPath:@"me" parameters:nil HTTPMethod:@"GET"
+                       completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
+            {
+                currentUser = [[AAPerson alloc] initWithFacebookID:response[@"id"]];
+            }];
+        }
     });
     return currentUser;
+}
+
++ (void)setNewCurrentUser:(AAPerson*)user {
+    currentUser = user;
+}
+
++ (RACSignal *)fetchCurrentUser
+{
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        if(currentUser){
+            [subscriber sendNext:currentUser];
+            [subscriber sendCompleted];
+        }
+        else {
+            [FBRequestConnection startWithGraphPath:@"me" parameters:nil HTTPMethod:@"GET"
+              completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
+              {
+                  if(!error){
+                      AAPerson *me = [[AAPerson alloc] initWithFacebookID:response[@"id"]];
+                      [AAPerson setNewCurrentUser:me];
+                      [subscriber sendNext:me];
+                      [subscriber sendCompleted];
+
+                  }
+                  else{
+                      [subscriber sendError:error];
+                  }
+              }];
+        }
+        return nil;
+    }];
 }
 
 #pragma mark Parse

@@ -19,9 +19,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
+    if (!self) return nil;
+    self.title = @"My Friends";
     return self;
 }
 
@@ -29,7 +28,7 @@
 {
     [super viewDidLoad];
 
-    self.title = @"My Friends";
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
