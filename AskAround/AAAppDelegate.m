@@ -14,6 +14,7 @@
 #import "AAAnswer.h"
 #import "AAFriendsListViewController.h"
 #import <Parse/PFFacebookUtils.h>
+#import "AATabBarController.h"
 
 @implementation AAAppDelegate
 
@@ -31,20 +32,20 @@
 
     // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
     [PFFacebookUtils initializeFacebook];
-    [PFFacebookUtils logInWithPermissions:@[@"user_likes", @"user_about_me", @"user_work_history", @"friends_likes", @"friends_birthday", @"friends_about_me"]  block:nil];
+    [PFFacebookUtils logInWithPermissions:@[@"user_likes", @"user_about_me", @"user_work_history", @"friends_likes", @"friends_birthday", @"friends_about_me", @"friends_work_history", @"friends_location"]  block:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 //    AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
     AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
 
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    AATabBarController *tabBarController = [[AATabBarController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
     navigationController.navigationBarHidden = NO;
     [tabBarController addChildViewController:navigationController];
     self.window.rootViewController = tabBarController;
 
-
+    
     AAFriendsListViewController *friendsListViewController = [[AAFriendsListViewController alloc] init];
     navigationController = [[UINavigationController alloc] initWithRootViewController:friendsListViewController];
     [tabBarController addChildViewController:navigationController];

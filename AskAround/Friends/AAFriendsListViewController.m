@@ -9,6 +9,8 @@
 #import "AAFriendsListViewController.h"
 #import "AAFriendsListModelView.h"
 #import "AAFriendTableViewCell.h"
+#import "AAAsk.h"
+#import "AAPerson.h"
 
 @interface AAFriendsListViewController ()
 

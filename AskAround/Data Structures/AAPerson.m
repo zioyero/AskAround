@@ -42,13 +42,15 @@ static AAPerson * currentUser;
                        completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
             {
                 currentUser = [[AAPerson alloc] initWithFacebookID:response[@"id"]];
+                currentUser.name = response[@"name"];
             }];
         }
     });
     return currentUser;
 }
 
-+ (void)setNewCurrentUser:(AAPerson*)user {
++ (void)setNewCurrentUser:(AAPerson*)user
+{
     currentUser = user;
 }
 
@@ -174,11 +176,8 @@ static AAPerson * currentUser;
     {
         self.sentAsks = [[NSMutableArray alloc] init];
     }
-
     [self.sentAsks addObject:ask];
-    [ask.aboutPerson addAskAbout:ask];
 
-    [ask.aboutPerson saveInBackground];
     [self saveInBackground];
 }
 
@@ -186,9 +185,19 @@ static AAPerson * currentUser;
 {
     if(!self.asksAbout)
     {
-        self.asksAbout = [[NSMutableSet alloc] init];
+        self.asksAbout = [[NSMutableArray alloc] init];
     }
     [self.asksAbout addObject:ask];
+    [self saveInBackground];
+}
+
+- (void)wasAsked:(AAAsk *)ask
+{
+    if(!self.pendingAsks)
+    {
+        self.pendingAsks = [[NSMutableArray alloc] init];
+    }
+    [self.pendingAsks addObject:ask];
     [self saveInBackground];
 }
 
@@ -201,17 +210,20 @@ static AAPerson * currentUser;
                                  HTTPMethod:@"GET"
                           completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
     {
-        NSArray * bareBones = response[@"data"];
-        NSMutableArray * ret = [[NSMutableArray alloc] initWithCapacity:[bareBones count]];
-        for(NSDictionary * personDict in bareBones)
+        if(!error)
         {
-            AAPerson * person = [[AAPerson alloc] initWithFacebookID:personDict[@"id"]];
-            [ret addObject:person];
-        }
-
-        if(block)
-        {
-            block(ret, error);
+            NSArray * bareBones = response[@"data"];
+            NSArray * facebookIDs = [bareBones map:^(NSDictionary * personDict)
+            {
+                return personDict[@"id"];
+            }];
+            [AAPerson findPeopleWithFacebookIDs:facebookIDs withBlock:^(NSArray * people, NSError * errorFind)
+            {
+                if(block)
+                {
+                   block(people, errorFind);
+                }
+            }];
         }
     }];
 }

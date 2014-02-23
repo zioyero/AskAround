@@ -49,9 +49,7 @@
     [self.profileModelView registerCellIdentifiersFor:self.tableView];
 //    [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:nil
-                                            selectedImage:nil];
+    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:[UIImage imageNamed:@"TabHome"] selectedImage:[UIImage imageNamed:@"TabHomeSelected"]];
 
 
     @weakify(self);

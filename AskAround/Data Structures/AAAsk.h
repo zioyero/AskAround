@@ -14,12 +14,12 @@
 * The person that this Ask is about. When this ask is answered, the AAAnswers will be stored on this
 * person's account
 */
-@property (nonatomic, weak) AAPerson * aboutPerson;
+@property (nonatomic, weak) NSString *aboutPersonID;
 
 /**
 * The person making this ask
 */
-@property (nonatomic, weak) AAPerson * fromPerson;
+@property (nonatomic, weak) NSString *fromPersonID;
 
 /**
 * Set of answers
@@ -52,10 +52,8 @@
 - (id)initWithFromPerson:(AAPerson *)from aboutPerson:(AAPerson *)about withTitle:(NSString *)title;
 
 #pragma mark Ask Around
-/**
-* Sends this AAAsk up to the server for processing
-*/
-- (void)sendOut;
+
++ (void)sendOutAsk:(AAAsk *)ask aboutPerson:(AAPerson *)about;
 
 /**
 * Adds an AAAnswer and updates the server
