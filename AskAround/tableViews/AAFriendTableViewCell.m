@@ -61,9 +61,9 @@
 - (void)setPerson:(AAPerson *)person {
     _person = person;
     self.nameLabel.text = [NSString stringWithFormat:@"%@\n%@", [self name], [self birthday]];
-    [person fetchPictureWithBlock:^(UIImage *picture, NSError *error) {
+    [person fetchPictureWithBlock:^(NSURL *url, NSError *error) {
         if(!error)
-            [self.pictureView setImage:picture];
+            [self.pictureView setImageWithURL:url];
     }];
 }
 
