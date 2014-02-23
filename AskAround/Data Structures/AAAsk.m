@@ -52,6 +52,7 @@
         }
 
         [trusteeIDs addObject:ask.fromPersonID];
+        [[AAPerson currentUser] wasAsked:ask];
         ask.trustees = trusteeIDs;
         [ask saveInBackgroundWithBlock:^(BOOL succeed, NSError *error)
         {

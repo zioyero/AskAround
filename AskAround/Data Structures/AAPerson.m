@@ -194,7 +194,7 @@ static AAPerson * currentUser;
     }
     else
     {
-        NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+        NSLog(@"Cannot save sentAsk for uninitialized person. Check your code for race conditions");
     }
 }
 
@@ -211,7 +211,7 @@ static AAPerson * currentUser;
     }
     else
     {
-        NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+        NSLog(@"Cannot save askAbout for uninitialized person. Check your code for race conditions");
     }
 }
 
@@ -228,7 +228,7 @@ static AAPerson * currentUser;
     }
     else
     {
-        NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+        NSLog(@"Cannot save pendingAnsk for uninitialized person. Check your code for race conditions");
     }
 }
 
@@ -409,9 +409,8 @@ static AAPerson * currentUser;
                 }
                 else
                 {
-                    NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+                    NSLog(@"Tried to save a new person because of their picture");
                 }
-
 
                 if(block)
                 {
@@ -435,7 +434,7 @@ static AAPerson * currentUser;
     [q includeKey:@"pendingAsks"];
     [q includeKey:@"asksAbout"];
     [q includeKey:@"sentAsks"];
-    [q setCachePolicy:kPFCachePolicyCacheElseNetwork];
+//    [q setCachePolicy:kPFCachePolicyCacheElseNetwork];
 
     [q getFirstObjectInBackgroundWithBlock:^(PFObject * per, NSError *error)
     {
@@ -466,7 +465,7 @@ static AAPerson * currentUser;
     [compoundQuery includeKey:@"pendingAsks"];
     [compoundQuery includeKey:@"asksAbout"];
     [compoundQuery includeKey:@"sentAsks"];
-    [compoundQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
+//    [compoundQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
     [compoundQuery findObjectsInBackgroundWithBlock:^(NSArray * response, NSError * error)
     {
         // response is an array of AAPerson objects
