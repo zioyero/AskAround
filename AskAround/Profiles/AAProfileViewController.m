@@ -11,6 +11,7 @@
 #import "AAProfilePhotoCell.h"
 #import "AAMyProfileModelView.h"
 #import "AAFriendProfileModelView.h"
+#import "AAFriendsListViewController.h"
 
 @interface AAProfileViewController ()
 
@@ -63,9 +64,25 @@
         [self reloadProfile];
     }];
 
+    [[self rac_signalForSelector:@selector(buttonCell:clicked:)
+                    fromProtocol:@protocol(AAButtonCellDelegate)] subscribeNext:^(RACTuple *value) {
+        @strongify(self);
+        UITableViewCell *cell = [value objectAtIndex:0];
+        NSIndexPath *path = [self.tableView indexPathForCell:cell];
+        NSLog(@"button clicked %@", path);
+        if([self.profileModelView showFriendsListViewControllerForClickAt:path]){
+            AAFriendsListViewController *viewController = [[AAFriendsListViewController alloc] init];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else{
+            // TEST BUTTON????
+        }
+    }];
+
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
@@ -122,29 +139,10 @@
         resultCell.textLabel.text = text;
     }
 
+    if([resultCell respondsToSelector:@selector(setButtonClickDelegate:)]){
+        [resultCell performSelector:@selector(setButtonClickDelegate:) withObject:self];
+    }
 
-//    switch (indexPath.section){
-//        case 0:
-//        { // profile photo
-//            if(indexPath.row==0){
-//                // photo cell
-//                AAProfilePhotoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"photoCell"];
-//                id object = [self.profileModelView objectAtIndexPath:indexPath];
-//                resultCell = cell;
-//            }
-//            else if (indexPath.row==1){
-//                resultCell = [tableView dequeueReusableCellWithIdentifier:@"birthdayCell"];
-//                resultCell.textLabel.text = @"Birthday";
-//            }
-//            break;
-//        }
-//        case 1:
-//        { // ?
-//            resultCell = [tableView dequeueReusableCellWithIdentifier:@"requestCell"];
-//            resultCell.textLabel.text = @"request";
-//            break;
-//        }
-//    }
 
     return resultCell;
 }
@@ -158,11 +156,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    switch (section){
-        case 0: return 0;
-        default:
-            return 44.0; // big cell, 134/2, 84/2
-    }
+    return [self.profileModelView heightForHeaderInSection:section];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
