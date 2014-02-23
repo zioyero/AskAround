@@ -45,14 +45,20 @@
 		AB5F62F81B9A2D5611ED7F7C /* AAProfileBirthdayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F68D108AC88137548E353 /* AAProfileBirthdayCell.m */; };
 		AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */; };
 		AB5F63CAC4189C561AE521E1 /* AAProfilePhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */; };
+		AB5F65C6B4674853689FBAE0 /* AACreateAskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6BBE8F49109AC1D3822B /* AACreateAskViewController.m */; };
 		AB5F6678B22D098FB955BC8D /* AAProfileAsk.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D73CFE1B7076D7C7183 /* AAProfileAsk.m */; };
+		AB5F6803F5FEFE01890EB38F /* AAAskOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6FB94C824EEDB3AB6647 /* AAAskOptionsView.m */; };
 		AB5F68B59DAC7B0996DE9A6B /* AAMyProfileModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */; };
 		AB5F691BB9AA5D0354ECFDB5 /* AAProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F61D48C7F345087779DFC /* AAProfileCell.m */; };
+		AB5F6A63D13F5F0C8E3D0977 /* AAAnswerYesNoOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F65DEBD5227EA0748F1C6 /* AAAnswerYesNoOptionView.m */; };
 		AB5F6B5560D264809233B9F6 /* AAButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6C0DFBDD1D585DF67231 /* AAButtonCell.m */; };
 		AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */; };
+		AB5F6C797DF4443847534980 /* AAAskPersonHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F65F28D897600ADC6A72F /* AAAskPersonHeaderView.m */; };
 		AB5F6C8A347357AD649AF1BF /* AAFriendProfileModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F68F85DAA33BE038B5B74 /* AAFriendProfileModelView.m */; };
 		AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */; };
 		AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F646443C0032A2C53B20E /* AAProfileViewController.m */; };
+		AB5F6E4306E8F1112710E66E /* AAAskMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6F54DB8695FE851BD8F6 /* AAAskMessageView.m */; };
+		AB5F6FE14B23E4157B3AA1EE /* AAAnswerAskView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F62941486684C017F8540 /* AAAnswerAskView.m */; };
 		D2DB678518B9AAE400039857 /* AATabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB678418B9AAE400039857 /* AATabBarController.m */; };
 /* End PBXBuildFile section */
 
@@ -113,32 +119,44 @@
 		AB3CAE13ADAD481896BC1835 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AB5F6018634868063E183E9F /* AAProfileAsk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileAsk.h; sourceTree = "<group>"; };
 		AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFbLoginViewController.m; sourceTree = "<group>"; };
+		AB5F60EE0F0D2A11EC420FA8 /* AAAskPersonHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAskPersonHeaderView.h; sourceTree = "<group>"; };
 		AB5F6139B7BB879B0C8F2126 /* UIFont+AAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AAUtils.m"; sourceTree = "<group>"; };
 		AB5F61D48C7F345087779DFC /* AAProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileCell.m; sourceTree = "<group>"; };
 		AB5F624D76E2A42999270A1E /* AAProfilePhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfilePhotoCell.h; sourceTree = "<group>"; };
+		AB5F62941486684C017F8540 /* AAAnswerAskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAnswerAskView.m; sourceTree = "<group>"; };
 		AB5F646443C0032A2C53B20E /* AAProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileViewController.m; sourceTree = "<group>"; };
 		AB5F64CD5C03F0749E568553 /* AAFbLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFbLoginViewController.h; sourceTree = "<group>"; };
+		AB5F65ABC14541C1D289132D /* AAAnswerAskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAnswerAskView.h; sourceTree = "<group>"; };
+		AB5F65DEBD5227EA0748F1C6 /* AAAnswerYesNoOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAnswerYesNoOptionView.m; sourceTree = "<group>"; };
+		AB5F65F28D897600ADC6A72F /* AAAskPersonHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAskPersonHeaderView.m; sourceTree = "<group>"; };
 		AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListViewController.m; sourceTree = "<group>"; };
 		AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAMyProfileModelView.m; sourceTree = "<group>"; };
+		AB5F6754A572EC9E11DF4480 /* AACreateAskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AACreateAskViewController.h; sourceTree = "<group>"; };
 		AB5F6781AC29B069481722A6 /* AAButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAButtonCell.h; sourceTree = "<group>"; };
 		AB5F679A04A27E5C9D953F93 /* UIFont+AAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AAUtils.h"; sourceTree = "<group>"; };
 		AB5F68D108AC88137548E353 /* AAProfileBirthdayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileBirthdayCell.m; sourceTree = "<group>"; };
 		AB5F68F85DAA33BE038B5B74 /* AAFriendProfileModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendProfileModelView.m; sourceTree = "<group>"; };
 		AB5F6964CC09A81A5926F214 /* AAFriendProfileModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendProfileModelView.h; sourceTree = "<group>"; };
 		AB5F69855705537F15388E35 /* AAFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendTableViewCell.h; sourceTree = "<group>"; };
+		AB5F6A06A9DBE7FC062748E3 /* AAAskOptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAskOptionsView.h; sourceTree = "<group>"; };
+		AB5F6BBE8F49109AC1D3822B /* AACreateAskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AACreateAskViewController.m; sourceTree = "<group>"; };
 		AB5F6C0DFBDD1D585DF67231 /* AAButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAButtonCell.m; sourceTree = "<group>"; };
 		AB5F6C0F67A40F802537DE2B /* UIColor+AAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AAUtils.h"; sourceTree = "<group>"; };
 		AB5F6C21B8D3E2AD1BE07E9B /* AAMyProfileModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAMyProfileModelView.h; sourceTree = "<group>"; };
 		AB5F6CB9477BFE6EE6166036 /* AAProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileCell.h; sourceTree = "<group>"; };
 		AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListModelView.m; sourceTree = "<group>"; };
 		AB5F6D28EA8BE437A78E7FB6 /* AAProfileBirthdayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileBirthdayCell.h; sourceTree = "<group>"; };
+		AB5F6D32E4A1578B5B40CFA8 /* AAAskMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAskMessageView.h; sourceTree = "<group>"; };
 		AB5F6D73CFE1B7076D7C7183 /* AAProfileAsk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileAsk.m; sourceTree = "<group>"; };
 		AB5F6DAF8AB1E69B2327E5E7 /* AAFriendsListModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendsListModelView.h; sourceTree = "<group>"; };
 		AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfilePhotoCell.m; sourceTree = "<group>"; };
 		AB5F6F0CB2655FE845CD8EFF /* AAProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileViewController.h; sourceTree = "<group>"; };
+		AB5F6F16169A4CAC2945815A /* AAAnswerYesNoOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAnswerYesNoOptionView.h; sourceTree = "<group>"; };
+		AB5F6F54DB8695FE851BD8F6 /* AAAskMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAskMessageView.m; sourceTree = "<group>"; };
 		AB5F6F90499E96D683D3A81F /* UIColor+AAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AAUtils.m"; sourceTree = "<group>"; };
 		AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendTableViewCell.m; sourceTree = "<group>"; };
 		AB5F6FA7CCAA5E483F8112E8 /* AAFriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendsListViewController.h; sourceTree = "<group>"; };
+		AB5F6FB94C824EEDB3AB6647 /* AAAskOptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAskOptionsView.m; sourceTree = "<group>"; };
 		D2DB678318B9AAE400039857 /* AATabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AATabBarController.h; sourceTree = SOURCE_ROOT; };
 		D2DB678418B9AAE400039857 /* AATabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AATabBarController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -316,7 +334,9 @@
 				AB5F67396A5C155E2C2639D9 /* Friends */,
 				AB5F60BB747D00395A502CCD /* tableViews */,
 				AB5F6262B31EF54F9BDF5622 /* FriendProfile */,
+				AB5F62E7F21C37D12883D147 /* ask */,
 				AB3CA7CC1A1D486532E1B1F4 /* Caching */,
+				AB5F6C326901EE558A723514 /* answer */,
 			);
 			path = AskAround;
 			sourceTree = "<group>";
@@ -339,6 +359,21 @@
 				AB5F6964CC09A81A5926F214 /* AAFriendProfileModelView.h */,
 			);
 			path = FriendProfile;
+			sourceTree = "<group>";
+		};
+		AB5F62E7F21C37D12883D147 /* ask */ = {
+			isa = PBXGroup;
+			children = (
+				AB5F6754A572EC9E11DF4480 /* AACreateAskViewController.h */,
+				AB5F6BBE8F49109AC1D3822B /* AACreateAskViewController.m */,
+				AB5F60EE0F0D2A11EC420FA8 /* AAAskPersonHeaderView.h */,
+				AB5F65F28D897600ADC6A72F /* AAAskPersonHeaderView.m */,
+				AB5F6D32E4A1578B5B40CFA8 /* AAAskMessageView.h */,
+				AB5F6F54DB8695FE851BD8F6 /* AAAskMessageView.m */,
+				AB5F6A06A9DBE7FC062748E3 /* AAAskOptionsView.h */,
+				AB5F6FB94C824EEDB3AB6647 /* AAAskOptionsView.m */,
+			);
+			path = ask;
 			sourceTree = "<group>";
 		};
 		AB5F67396A5C155E2C2639D9 /* Friends */ = {
@@ -369,6 +404,17 @@
 				AB5F6D73CFE1B7076D7C7183 /* AAProfileAsk.m */,
 			);
 			path = Profiles;
+			sourceTree = "<group>";
+		};
+		AB5F6C326901EE558A723514 /* answer */ = {
+			isa = PBXGroup;
+			children = (
+				AB5F65ABC14541C1D289132D /* AAAnswerAskView.h */,
+				AB5F62941486684C017F8540 /* AAAnswerAskView.m */,
+				AB5F6F16169A4CAC2945815A /* AAAnswerYesNoOptionView.h */,
+				AB5F65DEBD5227EA0748F1C6 /* AAAnswerYesNoOptionView.m */,
+			);
+			path = answer;
 			sourceTree = "<group>";
 		};
 		AB5F6D1895FC17BE69B20714 /* SocialNetworks */ = {
@@ -541,6 +587,12 @@
 				AB5F6678B22D098FB955BC8D /* AAProfileAsk.m in Sources */,
 				AB5F6C8A347357AD649AF1BF /* AAFriendProfileModelView.m in Sources */,
 				AB5F6B5560D264809233B9F6 /* AAButtonCell.m in Sources */,
+				AB5F65C6B4674853689FBAE0 /* AACreateAskViewController.m in Sources */,
+				AB5F6C797DF4443847534980 /* AAAskPersonHeaderView.m in Sources */,
+				AB5F6E4306E8F1112710E66E /* AAAskMessageView.m in Sources */,
+				AB5F6803F5FEFE01890EB38F /* AAAskOptionsView.m in Sources */,
+				AB5F6FE14B23E4157B3AA1EE /* AAAnswerAskView.m in Sources */,
+				AB5F6A63D13F5F0C8E3D0977 /* AAAnswerYesNoOptionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
