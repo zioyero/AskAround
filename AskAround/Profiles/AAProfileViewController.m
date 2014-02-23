@@ -44,7 +44,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-
+    #if 0
+    [AAPerson friendsWithBlock:^(NSArray * friends, NSError * error)
+    {
+        NSLog(@"%@", friends);
+    }];
+    #endif
 }
 
 - (void)didReceiveMemoryWarning

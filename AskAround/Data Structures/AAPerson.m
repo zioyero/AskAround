@@ -109,6 +109,11 @@
         NSDateFormatter * f = [[NSDateFormatter alloc] init];
         [f setDateFormat:@"MM/dd/yyyy"];
         self.birthday = [f dateFromString:response[@"birthday"]];
+        if(!self.birthday)
+        {
+            [f setDateFormat:@"MM/dd"];
+            self.birthday = [f dateFromString:response[@"birthday"]];
+        }
         self.username = response[@"username"];
 
         NSLog(@"Saving %@ as AAPerson to cloud", self.name);
@@ -203,9 +208,7 @@
         NSArray * friendBareBones = response[@"data"];
         for(NSDictionary * bareBonesProfile in friendBareBones)
         {
-            AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"] completion:^(BOOL done)
-            {
-            }];
+            AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"]];
             [ret addObject:person];
         }
 
@@ -238,9 +241,7 @@
                               NSArray * friendBareBones = response[@"data"];
                               for(NSDictionary * bareBonesProfile in friendBareBones)
                               {
-                                  AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"] completion:^(BOOL done)
-                                  {
-                                  }];
+                                  AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"]];
                                   [ret addObject:person];
                               }
 
