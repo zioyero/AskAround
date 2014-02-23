@@ -11,8 +11,8 @@
 
 @implementation AAAsk
 
-@dynamic aboutPerson;
-@dynamic fromPerson;
+//@dynamic aboutPerson;
+//@dynamic fromPerson;
 @dynamic answers;
 @dynamic title;
 @dynamic isYesNo;

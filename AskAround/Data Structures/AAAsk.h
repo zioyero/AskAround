@@ -14,22 +14,22 @@
 * The person that this Ask is about. When this ask is answered, the AAAnswers will be stored on this
 * person's account
 */
-@property (nonatomic, strong) AAPerson * aboutPerson;
+@property (nonatomic, weak) AAPerson * aboutPerson;
 
 /**
 * The person making this ask
 */
-@property (nonatomic, strong) AAPerson * fromPerson;
+@property (nonatomic, weak) AAPerson * fromPerson;
 
 /**
 * Set of answers
 */
-@property (nonatomic, strong) NSMutableSet * answers;
+@property (nonatomic, strong) NSMutableArray * answers;
 
 /**
  * The group of people that this AAAsk will be going out to. AAnswers
  */
-@property (nonatomic, strong) NSSet * trustees;
+@property (nonatomic, strong) NSArray * trustees;
 
 /**
 * Date by which this AAAsk must be answered. After this date, the AAAsk will disappear from all of the trustee's
@@ -40,7 +40,7 @@
 /**
 * Title of the Ask, e.g. "Does <AAPerson> like wine?"
 */
-@property (nonatomic, strong) NSString * title;
+@property (nonatomic, copy) NSString * title;
 
 /**
 * Whether or not this ask can be answered by Yes/No

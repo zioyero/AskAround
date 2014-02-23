@@ -18,7 +18,7 @@
 /**
 * A set of AAAsks whose aboutPerson is this person
 */
-@property (nonatomic, strong) NSMutableSet *asksAbout;
+@property (nonatomic, strong) NSMutableArray *asksAbout;
 
 /**
 * The set of AAAsks currently waiting to be answered by this person
