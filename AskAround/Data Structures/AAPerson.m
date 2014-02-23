@@ -397,6 +397,7 @@ static AAPerson * currentUser;
     [q includeKey:@"pendingAsks"];
     [q includeKey:@"asksAbout"];
     [q includeKey:@"sentAsks"];
+    [q setCachePolicy:kPFCachePolicyCacheElseNetwork];
 
     [q getFirstObjectInBackgroundWithBlock:^(PFObject * per, NSError *error)
     {
@@ -424,6 +425,10 @@ static AAPerson * currentUser;
         [queries addObject:q];
     }
     PFQuery * compoundQuery = [PFQuery orQueryWithSubqueries:queries];
+    [compoundQuery includeKey:@"pendingAsks"];
+    [compoundQuery includeKey:@"asksAbout"];
+    [compoundQuery includeKey:@"sentAsks"];
+    [compoundQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
     [compoundQuery findObjectsInBackgroundWithBlock:^(NSArray * response, NSError * error)
     {
         // response is an array of AAPerson objects
@@ -442,10 +447,32 @@ static AAPerson * currentUser;
 {
     PFQuery * q = [PFQuery queryWithClassName:[AAPerson parseClassName]];
     [q whereKey:AAPERSON_FACEBOOK_ID equalTo:self.facebookID];
+    [q includeKey:@"pendingAsks"];
+    [q includeKey:@"asksAbout"];
+    [q includeKey:@"sentAsks"];
 
     [q getFirstObjectInBackgroundWithBlock:^(PFObject * obj, NSError * error)
     {
-        NSLog(@"%@", obj);
+        NSLog(@"Refreshing %@", obj);
+        AAPerson * person = (AAPerson *)obj;
+        if(person)
+        {
+            self.name = person.name;
+            self.sentAsks = person.sentAsks;
+            self.pendingAsks = person.pendingAsks;
+            self.asksAbout = person.asksAbout;
+            self.username = person.username;
+            self.birthday = person.birthday;
+            self.email = person.email;
+            self.objectId = person.objectId;
+            self.employer = person.employer;
+            self.location = person.location;
+        }
+
+        if(block)
+        {
+            block(person, nil);
+        }
     }];
 }
 

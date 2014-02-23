@@ -5,6 +5,7 @@
 
 #import "AALoginViewController.h"
 #import "NSLayoutConstraint+SimpleFormatLanguage.h"
+#import <Parse/PFFacebookUtils.h>
 
 
 @interface AALoginViewController ()
@@ -27,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.frame = [[UIScreen mainScreen] bounds];
+    self.view.backgroundColor = [UIColor backgroundGrayColor];
 
     // Creating the logo view
     self.logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo"]];
@@ -35,14 +38,20 @@
 
     // Facebook login button
     self.facebookLoginButton = [[UIButton alloc] init];
-    self.facebookLoginButton.backgroundColor = [UIColor blueColor];
+    [self.facebookLoginButton setImage:[UIImage imageNamed:@"SignIn"] forState:UIControlStateNormal];
     self.facebookLoginButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.facebookLoginButton addTarget:self action:@selector(loginPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.facebookLoginButton];
 
     // Disclaimer View
     self.disclaimerView = [[UILabel alloc] init];
-    self.disclaimerView.text = @"We will not post anything to your Facebook account without your permission";
+    NSString * string = @"We will not post anything to your Facebook account without your permission";
+    [self.disclaimerView setFont:[UIFont italicFontWithSize:14.0f]];
+    [self.disclaimerView setTextColor:[UIColor lighterTextColor]];
+    [self.disclaimerView setText:string];
+    [self.disclaimerView setTextAlignment:NSTextAlignmentCenter];
+    self.disclaimerView.numberOfLines = 0;
+    self.disclaimerView.lineBreakMode = NSLineBreakByWordWrapping;
     self.disclaimerView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.disclaimerView];
 
@@ -66,16 +75,21 @@
                                                                               @"logo.bottom <= fbbutton - 20",
                                                                               @"logo.width = 200",
                                                                               @"logo.height = 200",
-                                                                              @"logo.left = superview.left + 200",
-                                                                              @"logo.right = superview.right -200",
-                                                                              @"fbbutton.left >= superview.left + 100",
-                                                                              @"fbbutton.right <= superview.right -100",
-                                                                              @"fbbutton.height = 100",
-                                                                              @"fbbutton.bottom <= disclaimer.top - 20",
-                                                                              @"disclaimer.bottom <= superview.bottom - 200",
-                                                                              @"disclaimer.height = 200",
-                                                                              @"disclaimer.left >= fbbutton.left",
-                                                                              @"disclaimer.right <= fbbuton.right"]
+                                                                              @"logo.left >= superview.left",
+                                                                              @"logo.right <= superview.right",
+                                                                              @"logo.centerX = superview.centerX",
+                                                                              @"fbbutton.left >= superview.left",
+                                                                              @"fbbutton.right <= superview.right",
+                                                                              @"fbbutton.width = 0.7 * superview.width",
+                                                                              @"fbbutton.top >= logo.bottom + 10",
+                                                                              @"fbbutton.centerX = superview.centerX"
+                                                                              @"disclaimer.top = fbbutton.bottom + 10",
+                                                                              @"disclaimer.bottom <= superview.bottom - 100",
+                                                                              @"disclaimer.height = 50",
+                                                                              @"disclaimer.width = 200",
+                                                                              @"disclaimer.left >= superview.left",
+                                                                              @"disclaimer.centerX = superview.centerX"
+                                                                              @"disclaimer.right <= superview.right"]
                                                                     metrics:nil
                                                                       views:NSDictionaryOfVariableBindings(logo, fbbutton, disclaimer, superview)];
     [self.view addConstraints:constraints];
@@ -103,14 +117,10 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
-//            [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
         } else {
             NSLog(@"User with facebook logged in!");
-//          [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
         }
     }];
-
-//    [self.activityLogin startAnimating]; // Show loading indicator until login is finished
 }
 
 
