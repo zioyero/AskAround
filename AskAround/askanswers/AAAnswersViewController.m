@@ -32,6 +32,7 @@
 
     [self.answerModelView registerCellIdentifiersFor:self.tableView];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor clearColor];
 
     @weakify(self);
     [RACObserve(self.answerModelView, sections) subscribeNext:^(id x) {

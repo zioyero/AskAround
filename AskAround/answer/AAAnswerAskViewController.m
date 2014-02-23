@@ -176,7 +176,7 @@
             "[aboutPersonHeader(aboutPersonHeaderH)]-2-"
             "[fromPersonHeader(>=fromPersonHeaderH@750)]"
             "-2-[message(messageH)]"
-            "-(sendT@900)-[send]-(sendT@900)-[answers(>=300)]";
+            "-(sendT@900)-[send]-(sendT@900)-[answers(>=400)]-8-|";
     if(!self.showResults)
         self.answersViewController.view.hidden = YES;
     self.answersViewController.view.translatesAutoresizingMaskIntoConstraints = NO;

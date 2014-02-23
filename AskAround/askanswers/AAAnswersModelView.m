@@ -34,7 +34,6 @@
 //            RAC(self, person) = [AAPerson fetchCurrentUser];
 
 
-
     return self;
 }
 
