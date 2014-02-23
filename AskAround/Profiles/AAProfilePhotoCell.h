@@ -13,6 +13,7 @@
 @interface AAProfilePhotoCell : AAProfileCell
 
 @property (nonatomic, strong) UIImageView *photoView;
+@property (nonatomic, strong) UIImageView *photoBackgroundView;
 @property (nonatomic, strong) UILabel *nameLabel;
 
 
