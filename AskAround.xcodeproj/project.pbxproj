@@ -271,6 +271,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		AB3CA7CC1A1D486532E1B1F4 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Caching;
+			sourceTree = "<group>";
+		};
 		AB3CAAD9AF0AAFCEDED2E34A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +320,7 @@
 				AB5F60BB747D00395A502CCD /* tableViews */,
 				AB5F6262B31EF54F9BDF5622 /* FriendProfile */,
 				AB5F62E7F21C37D12883D147 /* ask */,
+				AB3CA7CC1A1D486532E1B1F4 /* Caching */,
 			);
 			path = AskAround;
 			sourceTree = "<group>";
