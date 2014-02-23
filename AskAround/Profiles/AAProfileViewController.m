@@ -10,6 +10,7 @@
 #import "AAPerson.h"
 #import "AAProfilePhotoCell.h"
 #import "AAMyProfileModelView.h"
+#import "AAFriendProfileModelView.h"
 
 @interface AAProfileViewController ()
 
@@ -25,6 +26,7 @@
     if (! self) { return nil ; }
 
     self.profileModelView = [[AAMyProfileModelView alloc] init];
+    self.currentUserView = YES;
 
     return self;
 
@@ -36,7 +38,7 @@
 
     if (! self) { return nil ; }
 
-    self.profileModelView = [[AAMyProfileModelView alloc] init];
+    self.profileModelView = [[AAFriendProfileModelView alloc] initWithPerson:person];
 
     return self;
 }
@@ -45,11 +47,15 @@
 {
     [super viewDidLoad];
 
-    self.title = @"ME";
+    if(self.currentUserView){
+        self.title = @"ME";
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME"
+                                                        image:[UIImage imageNamed:@"TabHome"]
+                                                selectedImage:[UIImage imageNamed:@"TabHomeSelected"]];
+    }
     [self.profileModelView registerCellIdentifiersFor:self.tableView];
 //    [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:[UIImage imageNamed:@"TabHome"] selectedImage:[UIImage imageNamed:@"TabHomeSelected"]];
 
     @weakify(self);
     [RACObserve(self.profileModelView, sections) subscribeNext:^(id x) {
@@ -68,9 +74,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    AAPerson *person = [AAPerson currentUser];
-    if(person)
-        self.profileModelView.person = person;
+    if (self.currentUserView){
+        AAPerson *person = [AAPerson currentUser];
+        if(person)
+            self.profileModelView.person = person;
+
+    }
 }
 
 - (void)reloadProfile

@@ -11,6 +11,7 @@
 #import "AAFriendTableViewCell.h"
 #import "AAAsk.h"
 #import "AAPerson.h"
+#import "AAProfileViewController.h"
 
 @interface AAFriendsListViewController ()
 
@@ -103,11 +104,14 @@
 //    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AAPerson * person = [self.friendsModelView.friends objectAtIndex:indexPath.row];
-    AAAsk * ask = [[AAAsk alloc] initWithTitle:@"New ask! For Debugging!" andBody:@"No body"];
-    [AAAsk sendOutAsk:ask aboutPerson:person];
+//    AAAsk * ask = [[AAAsk alloc] initWithTitle:@"New ask! For Debugging!" andBody:@"No body"];
+//    [AAAsk sendOutAsk:ask aboutPerson:person];
+
+    AAProfileViewController * viewController = [[AAProfileViewController alloc] initWithPerson:person];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 /*
