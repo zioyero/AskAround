@@ -42,7 +42,7 @@
 - (NSString*)birthday
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MMMM dd"];
+    [dateFormat setDateFormat:@"MMMM d"];
     if(self.person.birthday)
         return [dateFormat stringFromDate:self.person.birthday];
     return @"";

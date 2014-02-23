@@ -23,7 +23,18 @@
 {
     self = [super initWithStyle:style];
     if (!self) return nil;
-    self.title = @"My Friends";
+    UILabel * titleLabel = [[UILabel alloc] init];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont lightFontWithSize:15.0f];
+//    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = @"My Friends";
+
+    self.navigationItem.titleView = titleLabel;
+    [titleLabel sizeToFit];
+
+//    self.title = @"My Friends";
     return self;
 }
 

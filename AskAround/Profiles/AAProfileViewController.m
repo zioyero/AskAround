@@ -52,8 +52,8 @@
     [super viewDidLoad];
 
     if(self.currentUserView){
-        self.title = @"ME";
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME"
+        self.title = @"Me";
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Me"
                                                         image:[UIImage imageNamed:@"TabHome"]
                                                 selectedImage:[UIImage imageNamed:@"TabHomeSelected"]];
     }
@@ -95,9 +95,6 @@
         else{
             // TEST BUTTON????
             NSLog(@"Test Button Pushed");
-            AAPerson * person = [AAPerson currentUser];
-            AAAsk * testAsk = [[AAAsk alloc] initWithTitle:@"Ask for debugging" andBody:@"This space intentionally left blank"];
-            [AAAsk sendOutAsk:testAsk aboutPerson:person];
         }
     }];
 
@@ -128,7 +125,19 @@
 
 - (void)reloadProfile
 {
-    self.navigationItem.title = [NSString stringWithFormat:@"%@",self.profileModelView.person.name];
+    UILabel * titleLabel = [[UILabel alloc] init];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont lightFontWithSize:15.0f];
+//    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = [NSString stringWithFormat:@"%@", self.profileModelView.person.name];
+
+    self.navigationItem.titleView = titleLabel;
+    [titleLabel sizeToFit];
+
+//    self.navigationItem.title = [NSString stringWithFormat:@"%@",self.profileModelView.person.name];
+
     [self.tableView reloadData];
 }
 
