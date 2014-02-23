@@ -74,8 +74,11 @@
         NSLog(@"button clicked %@", path);
         if([self.profileModelView showFriendsListViewControllerForClickAt:path])
         {
-            AAFriendsListViewController *viewController = [[AAFriendsListViewController alloc] init];
-            [self.navigationController pushViewController:viewController animated:YES];
+            if(!self.friendsListViewController){
+                AAFriendsListViewController *viewController = [[AAFriendsListViewController alloc] init];
+                self.friendsListViewController = viewController;
+            }
+            [self.navigationController pushViewController:self.friendsListViewController animated:YES];
         }
         else if([self.profileModelView showCreateAskForClickAt:path]){
             AAPerson *person = self.profileModelView.person;

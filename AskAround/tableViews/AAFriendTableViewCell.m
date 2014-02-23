@@ -130,6 +130,8 @@
         @weakify(self);
         self.nameLabel.text = [NSString stringWithFormat:@"%@", [self name]];
         self.infoLabel.text = [self infoText];
+        [self.nameLabel sizeToFit];
+        [self.infoLabel sizeToFit];
         if(person.picture)
         {
             [self.pictureView setImageWithURL:[NSURL URLWithString:person.picture]];

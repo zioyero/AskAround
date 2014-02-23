@@ -81,7 +81,7 @@
                             withColor:[UIColor darkerTextColor]]] ];
                 [string appendAttributedString:[[NSAttributedString alloc]
                                     initWithString:@" is asking: "
-                                        attributes:[UIFont mediumStringAttributesWithSize:14.0
+                                        attributes:[UIFont mediumStringAttributesWithSize:12.0
                                         withColor:[UIColor lighterTextColor]]] ];
                 [string appendAttributedString:[[NSAttributedString alloc]
                         initWithString:[NSString stringWithFormat:@"%@\n", ask.title]

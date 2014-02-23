@@ -17,6 +17,7 @@
 
 @property (nonatomic, assign) BOOL currentUserView;
 @property (nonatomic, strong) AAMyProfileModelView *profileModelView;
+@property (nonatomic, strong)UIViewController *friendsListViewController;
 
 - (id)initWithPerson:(AAPerson *)person;
 @end
