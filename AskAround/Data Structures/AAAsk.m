@@ -39,6 +39,8 @@
 
 + (void)sendOutAsk:(AAAsk *)ask aboutPerson:(AAPerson *)about
 {
+    ask.aboutPersonID = about.facebookID;
+    ask.fromPersonID = [AAPerson currentUser].facebookID;
     [AAPerson mutualFriendsWith:about withBlock:^(NSArray * mutualFriends, NSError * error)
     {
         NSArray * trustees = [mutualFriends subarrayWithRange:NSMakeRange(0, MIN(5, mutualFriends.count))];
@@ -48,14 +50,25 @@
             [trusteeIDs addObject:trustee.facebookID];
             [trustee wasAsked:ask];
         }
+
         [trusteeIDs addObject:ask.fromPersonID];
         ask.trustees = trusteeIDs;
-        [ask saveInBackground];
+        [ask saveInBackgroundWithBlock:^(BOOL succeed, NSError *error)
+        {
+            if(succeed)
+            {
+                [[AAPerson currentUser] sendAsk:ask];
+                [about addAskAbout:ask];
+                NSLog(@"Sent out ask about %@", about.name);
+            }
+            else
+            {
+                NSLog(@"Check your code, something went wrong");
+            }
+        }];
+
     }];
 
-    [[AAPerson currentUser] sendAsk:ask];
-    [about addAskAbout:ask];
-    NSLog(@"Sent out ask about %@", about.name);
 }
 
 - (void)addAnswer:(AAAnswer *)answer
