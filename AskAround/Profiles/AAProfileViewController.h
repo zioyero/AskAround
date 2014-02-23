@@ -8,10 +8,12 @@
 
 
 
+#import "AAButtonCell.h"
+
 @class AAPerson;
 @class AAMyProfileModelView;
 
-@interface AAProfileViewController : UITableViewController
+@interface AAProfileViewController : UITableViewController <AAButtonCellDelegate>
 
 @property (nonatomic, assign) BOOL currentUserView;
 @property (nonatomic, strong) AAMyProfileModelView *profileModelView;

@@ -9,6 +9,7 @@
 #import "AAProfileBirthdayCell.h"
 #import "AAAsk.h"
 #import "AAProfileAsk.h"
+#import "AAButtonCell.h"
 
 
 @interface  AAMyProfileModelView()
@@ -52,6 +53,9 @@
         if(self.person.birthday)
             [firstSection addObject:self.person];
 
+        // my friends
+        NSArray * friendsRow = @[@"FriendsButton"];
+
         // pending requests
         NSArray *secondRow = self.person.pendingAsks;
         if(!secondRow){
@@ -72,7 +76,11 @@
         if(!thirdRow)
             thirdRow = @[[NSNull null]];
 
-        self.sections = @[firstSection, secondRow, thirdRow];
+        // test button
+        NSArray * testRow = @[@"TestButton"];
+
+
+        self.sections = @[firstSection, friendsRow, secondRow, thirdRow, testRow];
     }
 }
 
@@ -90,6 +98,17 @@
     return 0;
 }
 
+- (CGFloat)heightForHeaderInSection:(NSInteger)section {
+    switch (section){
+        case 2:
+        case 3:
+            return 44.0;
+        default:
+            return 0;
+    }
+}
+
+
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section){
@@ -101,7 +120,11 @@
                 return 44.0;
         }
         case 1:
+        case 4:
+            return 156.0/2.0;
+
         case 2:
+        case 3:
         {
             id object = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
@@ -133,13 +156,18 @@
             }
         }
         case 1:
+        case 4:
+        {
+            return @"buttonCell";
+        }
+        case 2:
         { // ?
             id object = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
                 return @"askCell";
             return @"cell";
         }
-        case 2:
+        case 3:
         {
             id object = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
@@ -153,49 +181,58 @@
 - (NSString *)headerTitleForSection:(NSInteger)section
 {
     switch (section){
-        case 0:
-        { // profile photo
-            return nil;
-        }
-        case 1:
-        { // ?
+        case 2:
+        { // pending asks
             return @"PENDING ASKS";
         }
-        case 2:
-        { // ?
+        case 3:
+        { // my asks
             return @"MY ASKS";
         }
+        default:
+            return nil;
     }
-    return nil;
 }
 
 - (NSString*)emptyTextAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section){
-        case 0:
-        { // profile photo
-            return @"";
-        }
-        case 1:
+        case 2:
         { // ?
             return @"No pending ask!";
         }
-        case 2:
+        case 3:
         { // ?
             return @"You have not sent asks!";
         }
+        default:
+            return nil;
     }
-    return nil;
 }
 
 - (void)registerCellIdentifiersFor:(UITableView*)tableView
 {
     [tableView registerClass:[AAProfilePhotoCell class] forCellReuseIdentifier:@"photoCell"];
+    [tableView registerClass:[AAButtonCell class] forCellReuseIdentifier:@"buttonCell"];
     [tableView registerClass:[AAProfileBirthdayCell class] forCellReuseIdentifier:@"birthdayCell"];
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [tableView registerClass:[AAProfileAsk class] forCellReuseIdentifier:@"askCell"];
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"notificationsCell"];
 }
 
+- (BOOL)showFriendsListViewControllerForClickAt:(NSIndexPath *)indexPath
+{
+    if (indexPath.section==1 && indexPath.row==0){
+        id object = [self objectAtIndexPath:indexPath];
+        if([object isKindOfClass:[NSString class]])
+            return YES;
+    }
+    return NO;
+}
+
+- (BOOL)showCreateAskForClickAt:(NSIndexPath *)indexPath
+{
+    return NO;
+}
 
 @end

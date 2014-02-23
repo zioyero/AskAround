@@ -21,6 +21,8 @@
 
 - (NSInteger)numberOfRowsInSection:(NSUInteger)section;
 
+- (CGFloat)heightForHeaderInSection:(NSInteger)section;
+
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
@@ -32,4 +34,8 @@
 - (NSString *)emptyTextAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)registerCellIdentifiersFor:(UITableView *)tableView;
+
+- (BOOL)showFriendsListViewControllerForClickAt:(NSIndexPath *)indexPath;
+
+- (BOOL)showCreateAskForClickAt:(NSIndexPath *)indexPath;
 @end

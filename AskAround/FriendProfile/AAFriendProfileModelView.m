@@ -8,6 +8,7 @@
 #import "AAProfileAsk.h"
 #import "AAProfileBirthdayCell.h"
 #import "AAProfilePhotoCell.h"
+#import "AAButtonCell.h"
 
 
 @implementation AAFriendProfileModelView {
@@ -37,13 +38,16 @@
         if(self.person.birthday)
             [firstSection addObject:self.person];
 
+        // ask about
+        NSArray * askRow = @[@"AskButton"];
+
         // about asks (asks about this person)
         NSArray *secondRow = self.person.asksAbout;
         if(!secondRow){
             secondRow = @[[NSNull null]];
         }
 
-        self.sections = @[firstSection, secondRow];
+        self.sections = @[firstSection, askRow, secondRow];
     }
 }
 
@@ -71,13 +75,16 @@
             else
                 return 44.0;
         }
-        case 1:
+        case 2:
         {
             id object = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
                 return 134 / 2.0;
             return 44.0;
         }
+        case 1:
+            return 156.0/2.0;
+
         default:
             return 44.0; // big cell, 134/2, 84/2
     }
@@ -103,6 +110,10 @@
             }
         }
         case 1:
+        {
+            return @"buttonCell";
+        }
+        case 2:
         { // ?
             id object = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
@@ -116,14 +127,12 @@
 - (NSString *)headerTitleForSection:(NSInteger)section
 {
     switch (section){
-        case 0:
-        { // profile photo
-            return nil;
-        }
-        case 1:
+        case 2:
         { // ?
             return @"FRIENDS' ASKS ABOUT this friend";
         }
+        default:
+            return nil;
     }
     return nil;
 }
@@ -131,16 +140,13 @@
 - (NSString*)emptyTextAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section){
-        case 0:
-        { // profile photo
-            return @"";
-        }
-        case 1:
+        case 2:
         { // ?
             return @"No ask about this friend";
         }
+        default:
+            return nil;
     }
-    return nil;
 }
 
 - (void)registerCellIdentifiersFor:(UITableView*)tableView
@@ -149,6 +155,20 @@
     [tableView registerClass:[AAProfileBirthdayCell class] forCellReuseIdentifier:@"birthdayCell"];
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [tableView registerClass:[AAProfileAsk class] forCellReuseIdentifier:@"askCell"];
+    [tableView registerClass:[AAButtonCell class] forCellReuseIdentifier:@"buttonCell"];
 }
+
+- (BOOL)showFriendsListViewControllerForClickAt:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)showCreateAskForClickAt:(NSIndexPath *)indexPath
+{
+    if(indexPath.section==1 && indexPath.row==0)
+        return YES;
+    return NO;
+}
+
 
 @end
