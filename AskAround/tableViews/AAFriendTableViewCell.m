@@ -59,13 +59,21 @@
     // Configure the view for the selected state
 }
 
-- (void)setPerson:(AAPerson *)person {
-    _person = person;
-    self.nameLabel.text = [NSString stringWithFormat:@"%@\n%@", [self name], [self birthday]];
-    [person fetchHttpPictureWithBlockWithBlock:^(NSURL *pictureURL, NSError *error) {
-        [self.pictureView setImageWithURL:pictureURL];
-    }];
+- (void)setObject:(id)object
+{
+    [super setObject:object];
+
+    AAPerson *person = [self person];
+    if(person){
+        @weakify(self);
+        self.nameLabel.text = [NSString stringWithFormat:@"%@\n%@", [self name], [self birthday]];
+        [person fetchHttpPictureWithBlockWithBlock:^(NSURL *pictureURL, NSError *error) {
+            [self.pictureView setImageWithURL:pictureURL];
+        }];
+        [self setNeedsDisplay];
+    }
 }
+
 
 - (NSString *)name
 {
@@ -87,6 +95,13 @@
     [super prepareForReuse];
     [self.pictureView setImage:nil];
     self.nameLabel.text = @"";
+}
+
+- (AAPerson*)person
+{
+    if([self.object isKindOfClass:[AAPerson class]])
+        return  (AAPerson *) self.object;
+    return nil;
 }
 
 

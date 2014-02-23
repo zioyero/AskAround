@@ -8,11 +8,13 @@
 
 
 
+#import "AAProfileCell.h"
+
 @class AAPerson;
 
-@interface AAFriendTableViewCell : UITableViewCell
+@interface AAFriendTableViewCell : AAProfileCell
 
-@property (nonatomic, strong) AAPerson * person;
+//@property (nonatomic, strong) AAPerson * person;
 @property (nonatomic, strong) UIImageView *pictureView;
 @property (nonatomic, strong) UILabel * nameLabel;
 @end

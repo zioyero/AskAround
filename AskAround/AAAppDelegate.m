@@ -15,6 +15,7 @@
 #import "AAFriendsListViewController.h"
 #import "AALoginViewController.h"
 #import <Parse/PFFacebookUtils.h>
+#import "AATabBarController.h"
 
 @implementation AAAppDelegate
 
@@ -57,8 +58,6 @@
         AALoginViewController * login = [[AALoginViewController alloc] init];
         self.window.rootViewController = login;
     }
-
-
 
 
     [AAPerson currentUser];
