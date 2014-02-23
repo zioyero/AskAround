@@ -209,6 +209,7 @@
         for(NSDictionary * bareBonesProfile in friendBareBones)
         {
             AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"]];
+            person.name = bareBonesProfile[@"name"];
             [ret addObject:person];
         }
 
@@ -285,7 +286,7 @@
 - (void)fetchPictureWithBlock:(void (^)(NSURL *pictureURL, NSError *error))block
 {
     [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/picture", self.facebookID]
-                                 parameters:@{@"redirect" : @0}
+                                 parameters:@{@"redirect" : @"0"}
                                  HTTPMethod:@"GET"
                           completionHandler:^(FBRequestConnection * connection, id response, NSError * error)
     {
