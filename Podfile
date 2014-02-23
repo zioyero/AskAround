@@ -13,5 +13,6 @@ pod 'EGOCache'
 pod 'OCTotallyLazy'
 pod 'libextobjc'
 pod 'GCPlaceholderTextView', '~> 1.0.1'
+pod 'MMProgressHUD', '~> 0.2.1'
 
 

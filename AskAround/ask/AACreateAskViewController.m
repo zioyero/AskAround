@@ -12,6 +12,7 @@
 #import "AAAskPersonHeaderView.h"
 #import "AAAskOptionsView.h"
 #import "AAAsk.h"
+#import "MMProgressHUD.h"
 
 @interface AACreateAskViewController ()
 
@@ -30,6 +31,8 @@
 //@property (nonatomic, strong) UIButton *previewButton;
 
 @property (strong, nonatomic) NSArray *contentViewConstraints;
+
+@property (strong, nonatomic) MMProgressHUD *hudView; // the thing that is modal and spinning
 @end
 
 @implementation AACreateAskViewController
@@ -219,12 +222,38 @@
         self.sendButton.enabled = [x boolValue];
     }];
 
-    [[self.sendButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        @strongify(self);
-        AAAsk *ask = [[AAAsk alloc] initWithTitle:@"Gift idea" andBody:[self.messageView messageBody] ];
-        [AAAsk sendOutAsk:ask aboutPerson:self.aboutPerson];
-        NSLog(@"button clicked");
-    }];
+    [[self.sendButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+      subscribeNext:^(id x) {
+          @strongify(self);
+          NSLog(@"button clicked");
+          AAAsk *ask = [[AAAsk alloc] initWithTitle:@"Gift idea" andBody:[self.messageView messageBody] ];
+          [AAAsk sendOutAsk:ask aboutPerson:self.aboutPerson];
+          RACSignal *first = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+              [MMProgressHUD showWithTitle:@"Sending"];
+              [subscriber sendCompleted];
+              return nil;
+          }];
+//          RACSignal *second = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//              [MMProgressHUD dismiss];
+//              [subscriber sendCompleted];
+//              return nil;
+//          }];
+          RACSignal *third = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+              [MMProgressHUD showWithTitle:@"Sent!" status:nil image:[UIImage imageNamed:@"CheckMark"]];
+              [subscriber sendCompleted];
+              return nil;
+          }];
+          RACSignal *fourth = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+              [MMProgressHUD dismiss];
+              [subscriber sendCompleted];
+              return nil;
+          }];
+          NSArray *signals = @[[first delay:5.0] , /*[second delay:1.0f], */[third delay:3.0], [fourth delay:0.2] ];
+          [[RACSignal concat:signals] subscribeCompleted:^{
+              NSLog(@"Done!");
+              [self.navigationController popViewControllerAnimated:YES];
+          }];
+      }];
 
 }
 
