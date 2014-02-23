@@ -11,6 +11,7 @@
 #import "AAAskMessageView.h"
 #import "AAAskPersonHeaderView.h"
 #import "AAAskOptionsView.h"
+#import "AAAsk.h"
 
 @interface AACreateAskViewController ()
 
@@ -89,6 +90,21 @@
     }
 
 
+}
+
+- (void)addGestureRecognizer
+{
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector
+                                                                                           (tappedView:)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+
+}
+
+-(void)tappedView:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    if([self.messageView isFirstResponder])
+        [self.messageView resignFirstResponder];
 }
 
 - (void)createViews
@@ -193,6 +209,22 @@
 
     [self createScrollview];
     [self createViews];
+    [self addGestureRecognizer];
+
+    self.sendButton.enabled = NO;
+
+    @weakify(self);
+    [RACObserve(self.messageView, hasValidBody) subscribeNext:^(id x) {
+        @strongify(self);
+        self.sendButton.enabled = [x boolValue];
+    }];
+
+    [[self.sendButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
+        AAAsk *ask = [[AAAsk alloc] initWithTitle:@"Gift idea" andBody:[self.messageView messageBody] ];
+        [AAAsk sendOutAsk:ask aboutPerson:self.aboutPerson];
+        NSLog(@"button clicked");
+    }];
 
 }
 

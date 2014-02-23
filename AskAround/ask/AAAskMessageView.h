@@ -16,4 +16,7 @@
 
 @property (nonatomic, strong) GCPlaceholderTextView *textView;
 
+@property (nonatomic, assign) NSNumber * hasValidBody;
+
+- (NSString *)messageBody;
 @end

@@ -18,6 +18,17 @@
     if (!self) return nil;
 
     [self createViews];
+
+    self.hasValidBody = @NO;
+
+    @weakify(self);
+    [self.textView.rac_textSignal subscribeNext:^(id x) {
+        @strongify(self);
+        NSString *text = (NSString*)x;
+        self.hasValidBody = (text.length>5) ? @YES : @NO;
+//        NSLog(@"text ?? %@", x);
+    }];
+
     return self;
 }
 
@@ -58,6 +69,23 @@
     [self addConstraints:constraints];
 
 
+}
+
+- (BOOL)isFirstResponder {
+    if([self.textView isFirstResponder])
+        return YES;
+    return [super isFirstResponder];
+}
+
+- (BOOL)resignFirstResponder {
+    if([self.textView isFirstResponder])
+        return [self.textView resignFirstResponder];
+    return [super resignFirstResponder];
+}
+
+- (NSString*)messageBody
+{
+    return self.textView.text;
 }
 
 /*
