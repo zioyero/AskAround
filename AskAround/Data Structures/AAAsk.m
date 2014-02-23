@@ -48,6 +48,7 @@
             [trusteeIDs addObject:trustee.facebookID];
             [trustee wasAsked:ask];
         }
+        [trusteeIDs addObject:ask.fromPersonID];
         ask.trustees = trusteeIDs;
         [ask saveInBackground];
     }];
