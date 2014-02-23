@@ -68,44 +68,50 @@
 
     @weakify(self);
     AAAsk *ask = [self ask];
-    [AAPerson findPersonWithFacebookID:ask.fromPersonID withBlock:^(AAPerson *person, NSError *error) {
-        @strongify(self);
-        if(ask && ask != [NSNull null]){
-            if(ask.isDataAvailable){
+    if (ask){
+        [AAPerson findPersonWithFacebookID:ask.fromPersonID withBlock:^(AAPerson *person, NSError *error) {
+            @strongify(self);
+            if(ask && ask != [NSNull null]){
+                if(ask.isDataAvailable){
 //                self.nameLabel.text = [NSString stringWithFormat:@"%@ is asking: %@\n%@",person.name,
 //                                ask.title, ask.body ];
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] init];
-                [string appendAttributedString:[[NSAttributedString alloc]
-                        initWithString:person.name ? person.name :@"Somebody"
-                            attributes:[UIFont mediumStringAttributesWithSize:14.0
-                            withColor:[UIColor darkerTextColor]]] ];
-                [string appendAttributedString:[[NSAttributedString alloc]
-                                    initWithString:@" is asking: "
-                                        attributes:[UIFont mediumStringAttributesWithSize:12.0
-                                        withColor:[UIColor lighterTextColor]]] ];
-                [string appendAttributedString:[[NSAttributedString alloc]
-                        initWithString:[NSString stringWithFormat:@"%@\n", ask.title]
-                            attributes:[UIFont mediumStringAttributesWithSize:14.0
-                             withColor:[UIColor darkerTextColor]]] ];
-                [string appendAttributedString:[[NSAttributedString alloc]
-                        initWithString:ask.body
-                            attributes:[UIFont lightStringAttributesWithSize:12.0
-                            withColor:[UIColor lighterTextColor]]] ];
-                [string addAttribute:NSParagraphStyleAttributeName value:[UIFont
-                        paragraphStyleForLineBreakStyle:NSLineBreakByTruncatingTail] range:NSMakeRange(0,
-                        [string length])];
-                self.nameLabel.attributedText = string;
+                    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] init];
+                    [string appendAttributedString:[[NSAttributedString alloc]
+                            initWithString:person.name ? person.name :@"Somebody"
+                                attributes:[UIFont mediumStringAttributesWithSize:14.0
+                                                                        withColor:[UIColor darkerTextColor]]] ];
+                    [string appendAttributedString:[[NSAttributedString alloc]
+                            initWithString:@" is asking: "
+                                attributes:[UIFont mediumStringAttributesWithSize:12.0
+                                                                        withColor:[UIColor lighterTextColor]]] ];
+                    [string appendAttributedString:[[NSAttributedString alloc]
+                            initWithString:[NSString stringWithFormat:@"%@\n", ask.title]
+                                attributes:[UIFont mediumStringAttributesWithSize:14.0
+                                                                        withColor:[UIColor darkerTextColor]]] ];
+                    [string appendAttributedString:[[NSAttributedString alloc]
+                            initWithString:ask.body
+                                attributes:[UIFont lightStringAttributesWithSize:12.0
+                                                                       withColor:[UIColor lighterTextColor]]] ];
+                    [string addAttribute:NSParagraphStyleAttributeName value:[UIFont
+                            paragraphStyleForLineBreakStyle:NSLineBreakByTruncatingTail] range:NSMakeRange(0,
+                            [string length])];
+                    self.nameLabel.attributedText = string;
 
 
+                }
+                else
+                    self.nameLabel.text = [NSString stringWithFormat:@"Loading %@", ask.objectId ];
             }
-            else
-                self.nameLabel.text = [NSString stringWithFormat:@"Loading %@", ask.objectId ];
-        }
-        [person fetchHttpPictureWithBlockWithBlock:^(NSURL *pictureURL, NSError *error) {
-            @strongify(self);
-            [self.pictureView setImageWithURL:pictureURL];
+            [person fetchHttpPictureWithBlockWithBlock:^(NSURL *pictureURL, NSError *error) {
+                @strongify(self);
+                [self.pictureView setImageWithURL:pictureURL];
+            }];
         }];
-    }];
+    }
+    else{
+        self.nameLabel.text = [NSString stringWithFormat:@"Loading answer? %@", ask.objectId ];
+    }
+
 }
 
 - (AAAsk*)ask

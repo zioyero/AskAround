@@ -10,12 +10,18 @@
 
 @class AAPerson;
 @class AAAsk;
+@class AAAnswersViewController;
 
 @interface AAAnswerAskViewController : UIViewController
 
 @property (nonatomic, strong) AAAsk* ask;
 @property (nonatomic, strong) AAPerson* fromPerson;
 @property (nonatomic, strong) AAPerson* aboutPerson;
+@property (nonatomic, assign) BOOL showResults;
+@property (nonatomic, strong) AAAnswersViewController * answersViewController;
 
 - (id)initWithAsk:(AAAsk *)ask;
+
+- (id)initWithAsk:(AAAsk *)ask andShowResults:(BOOL)showResults;
+
 @end

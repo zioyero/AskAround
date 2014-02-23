@@ -14,6 +14,7 @@
 #import "MMProgressHUD.h"
 #import "AAAnswer.h"
 #import "AAAskingPersonMessageView.h"
+#import "AAAnswersViewController.h"
 
 @interface AAAnswerAskViewController()
 
@@ -45,6 +46,17 @@
     self = [super init];
     if (self) {
         // Custom initialization
+        self.ask = ask;
+    }
+    return self;
+}
+
+- (id)initWithAsk:(AAAsk*)ask andShowResults:(BOOL)showResults
+{
+    self = [super init];
+    if (self) {
+        // Custom initialization
+        self.showResults = showResults;
         self.ask = ask;
     }
     return self;
@@ -111,6 +123,13 @@
         [self.messageView resignFirstResponder];
 }
 
+- (void)createAnswersView{
+    if(self.answersViewController)
+        return;
+    self.answersViewController = [[AAAnswersViewController alloc] initWithAsk:self.ask];
+    [self addChildViewController:self.answersViewController];
+
+}
 - (void)createViews
 {
     self.askAboutLabel = [[UILabel alloc] init];
@@ -157,7 +176,19 @@
             "[aboutPersonHeader(aboutPersonHeaderH)]-2-"
             "[fromPersonHeader(>=fromPersonHeaderH@750)]"
             "-2-[message(messageH)]"
-            "-(sendT@900)-[send]";
+            "-(sendT@900)-[send]-(sendT@900)-[answers(>=300)]";
+    if(!self.showResults)
+        self.answersViewController.view.hidden = YES;
+    self.answersViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.answersViewController.view];
+
+//    NSString *verticalWithAnswers =
+//            @"V:|-(askAboutT)-[askAbout(askAboutH)]-(askAboutB)-"
+//            "[aboutPersonHeader(aboutPersonHeaderH)]-2-"
+//            "[fromPersonHeader(>=fromPersonHeaderH@750)]"
+//            "-2-[message(messageH)]"
+//            "-(sendT@900)-[send]";
+
 //    NSString *vertical = @"V:|-(askAboutT)-[askAbout(askAboutH)]-(askAboutB)-"
 //            "[personHeader(personHeaderH)]-2-[message(messageH)]"
 //            "-(askAboutT)-[addLabel(askAboutH)]-(askAboutB)-"
@@ -167,6 +198,7 @@
             @"aboutPersonHeader": self.aboutPersonHeaderView,
             @"fromPersonHeader": self.fromPersonHeaderView,
             @"message": self.messageView,
+            @"answers": self.answersViewController.view,
 //            @"addLabel": self.addLabel,
 //            @"options": self.optionsView,
             @"send": self.sendButton,
@@ -201,6 +233,9 @@
 //                  options:0 metrics:hMetrics views:views]];
 //    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[options]-0-|"
 //                  options:0 metrics:nil views:views]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[answers]-0-|"
+                                                                             options:0 metrics:nil views:views]];
+
 
     [constraints addObject:[NSLayoutConstraint constraintWithItem:self.sendButton
                                                         attribute:NSLayoutAttributeCenterX
@@ -229,6 +264,7 @@
 
     self.title = [NSString stringWithFormat:@"%@", self.ask.title ? self.ask.title : @"Idea"];
 
+    [self createAnswersView];
     [self createScrollview];
     [self createViews];
     [self addGestureRecognizer];
