@@ -198,12 +198,13 @@
                              options:0 metrics:vMetrics views:views]];
 
     // last element
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.sendButton
-                                                                        attribute:NSLayoutAttributeBottom
-                            relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.contentView
-                            attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-48.0f];
-    bottomConstraint.priority = 500;
-    [constraints addObject:bottomConstraint];
+//    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.sendButton
+//                                                                        attribute:NSLayoutAttributeBottom
+//                            relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.contentView
+//                            attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-48.0f];
+//    bottomConstraint.priority = 500;
+//    [constraints addObject:bottomConstraint];
+
     [self.contentView addConstraints:constraints];
 }
 
