@@ -12,6 +12,9 @@
 
 @property (nonatomic, strong) id object;
 
+@property (nonatomic, strong) UIView *lineView;
+
+
 - (void)setObject:(id)object;
 
 @end

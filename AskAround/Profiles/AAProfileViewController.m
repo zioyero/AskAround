@@ -45,14 +45,12 @@
 {
     [super viewDidLoad];
 
-    self.title = @"";
+    self.title = @"ME";
     [self.profileModelView registerCellIdentifiersFor:self.tableView];
-//    [self.tableView registerClass:[AAProfilePhotoCell class] forCellReuseIdentifier:@"photoCell"];
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"birthdayCell"];
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"requestCell"];
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"notificationsCell"];
+//    [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:[UIImage imageNamed:@"TabHome"] selectedImage:[UIImage imageNamed:@"TabHomeSelected"]];
+
 
     @weakify(self);
     [RACObserve(self.profileModelView, sections) subscribeNext:^(id x) {
@@ -68,9 +66,17 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    AAPerson *person = [AAPerson currentUser];
+    if(person)
+        self.profileModelView.person = person;
+}
+
 - (void)reloadProfile
 {
-    self.title = [NSString stringWithFormat:@"Name: %@",self.profileModelView.person.name];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@",self.profileModelView.person.name];
     [self.tableView reloadData];
 }
 
@@ -101,7 +107,7 @@
     NSString *cellIdentifier = [self.profileModelView cellIdentifierAtIndexPath:indexPath];
     resultCell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     id object = [self.profileModelView objectAtIndexPath:indexPath];
-    if([resultCell respondsToSelector:@selector(setObject:)])
+    if(object && [resultCell respondsToSelector:@selector(setObject:)])
         [resultCell performSelector:@selector(setObject:) withObject:object];
     else
         resultCell.textLabel.text = @"something";
@@ -147,12 +153,9 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-
-    switch (section){
-        case 0: return nil;
-        default: return @"Requests";
-    }
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.profileModelView headerTitleForSection:section];
 }
 
 

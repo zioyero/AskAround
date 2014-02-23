@@ -15,8 +15,21 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.lineView = [[UIView alloc] initWithFrame:self.bounds];
+        self.lineView.backgroundColor = [UIColor backgroundGrayColor];
+        [self.contentView addSubview:self.lineView];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    CGRect frame = self.bounds;
+    frame.origin.y = frame.size.height - 2.0;
+    frame.size.height = 2.0;
+    self.lineView.frame = frame;
+    [self bringSubviewToFront:self.lineView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

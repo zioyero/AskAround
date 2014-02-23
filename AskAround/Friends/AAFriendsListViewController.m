@@ -31,6 +31,7 @@
     [super viewDidLoad];
 
     [self.tableView registerClass:[AAFriendTableViewCell class] forCellReuseIdentifier:@"friendCell"];
+    self.tableView.separatorStyle = UITableViewCellEditingStyleNone;
 
     self.friendsModelView = [[AAFriendsListModelView alloc] init];
 
@@ -92,7 +93,7 @@
 {
     static NSString *CellIdentifier = @"friendCell";
     AAFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.person = [self.friendsModelView.friends objectAtIndex:indexPath.row];
+    [cell setObject:[self.friendsModelView.friends objectAtIndex:indexPath.row]];
 
     return cell;
 }
