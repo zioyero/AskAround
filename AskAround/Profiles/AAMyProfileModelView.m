@@ -34,7 +34,7 @@
     }];
 
     AAPerson *person = [AAPerson currentUser];
-    if(person)
+    if(person.objectId)
         self.person = person;
     else
         RAC(self, person) = [AAPerson fetchCurrentUser];

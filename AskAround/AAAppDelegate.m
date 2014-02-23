@@ -39,7 +39,6 @@
 
     if([PFUser currentUser])
     {
-//      AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
         AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
 
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
@@ -47,7 +46,7 @@
         [navigationController.navigationBar setBarTintColor:[UIColor headerColor]];
 
         self.window.rootViewController = navigationController;
-        [AAPerson currentUser];
+//        [AAPerson currentUser];
     }
     else
     {

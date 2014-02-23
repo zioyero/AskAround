@@ -67,6 +67,12 @@
         [self reloadProfile];
     }];
 
+    [RACObserve(self.profileModelView, person) subscribeNext:^(id x)
+    {
+       @strongify(self);
+        [self.view setNeedsDisplay];
+    }];
+
     [[self rac_signalForSelector:@selector(buttonCell:clicked:)
                     fromProtocol:@protocol(AAButtonCellDelegate)] subscribeNext:^(RACTuple *value) {
         @strongify(self);

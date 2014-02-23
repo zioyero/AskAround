@@ -68,12 +68,14 @@ static AAPerson * currentUser;
             [FBRequestConnection startWithGraphPath:@"me" parameters:nil HTTPMethod:@"GET"
               completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
               {
-                  if(!error){
-                      AAPerson *me = [[AAPerson alloc] initWithFacebookID:response[@"id"]];
-                      [AAPerson setNewCurrentUser:me];
-                      [subscriber sendNext:me];
-                      [subscriber sendCompleted];
-
+                  if(!error)
+                  {
+                    [AAPerson findPersonWithFacebookID:response[@"id"] withBlock:^(AAPerson * person, NSError * error)
+                    {
+                        [AAPerson setNewCurrentUser:person];
+                        [subscriber sendNext:person];
+                        [subscriber sendCompleted];
+                    }];
                   }
                   else{
                       [subscriber sendError:error];
