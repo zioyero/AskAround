@@ -88,6 +88,8 @@
 
 - (void)fetchPictureWithBlock:(void (^)(NSString *pictureURL, NSError *error))block;
 
++ (AAPerson *)currentUser;
+
 + (NSString *)parseClassName;
 
 

@@ -36,10 +36,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
     {
-        [FBRequestConnection startWithGraphPath:@"me" parameters:nil HTTPMethod:@"GET" completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
-        {
-            currentUser = [[AAPerson alloc] initWithFacebookID:response[@"id"]];
-        }];
+//        currentUser = [[AAPerson alloc] initWithFacebookID:[PFUser currentUser][@"authData"]];
     });
     return currentUser;
 }
@@ -292,7 +289,7 @@
     else{
         @weakify(self);
         [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/picture", self.facebookID]
-                                     parameters:@{@"redirect" : @"0"}
+                                     parameters:@{@"redirect" : @"0", @"height": @"140", @"width":@"140"}
                                      HTTPMethod:@"GET"
                               completionHandler:^(FBRequestConnection * connection, id response, NSError * error)
         {

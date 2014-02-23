@@ -46,6 +46,11 @@
     [AAPerson mutualFriendsWith:self.aboutPerson withBlock:^(NSArray * mutualFriends, NSError * error)
     {
         self.trustees = [[mutualFriends subarrayWithRange:NSMakeRange(0, MIN(10, mutualFriends.count))] asSet];
+        for(AAPerson * trustee in self.trustees)
+        {
+            [trustee.pendingAsks addObject:self];
+            [trustee saveInBackground];
+        }
         [self saveInBackground];
     }];
 }
