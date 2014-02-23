@@ -346,7 +346,7 @@ static AAPerson * currentUser;
     else{
         @weakify(self);
         [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/picture", self.facebookID]
-                                     parameters:@{@"redirect" : @"0"}
+                                     parameters:@{@"redirect" : @"0", @"height": @"140", @"width":@"140"}
                                      HTTPMethod:@"GET"
                               completionHandler:^(FBRequestConnection * connection, id response, NSError * error)
         {

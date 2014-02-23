@@ -14,7 +14,7 @@
 /**
 * The AAPerson that wrote this AAAnswer
 */
-@property (nonatomic, strong) AAPerson * fromTrustee;
+@property (nonatomic, weak) AAPerson * fromTrustee;
 
 /**
 * The AAAsk this is an AAAnswer for
