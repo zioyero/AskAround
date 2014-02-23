@@ -9,6 +9,8 @@
 #import "AAFriendsListViewController.h"
 #import "AAFriendsListModelView.h"
 #import "AAFriendTableViewCell.h"
+#import "AAAsk.h"
+#import "AAPerson.h"
 
 @interface AAFriendsListViewController ()
 
@@ -85,6 +87,16 @@
 //    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AAPerson * person = [self.friendsModelView.friends objectAtIndex:indexPath.row];
+
+    AAAsk * ask = [[AAAsk alloc] initWithFromPerson:[AAPerson currentUser] aboutPerson:person withTitle:@"New Ask!"];
+
+    AAPerson * user = [AAPerson currentUser];
+
+    [AAAsk sendOutAsk:ask aboutPerson:person];
+}
 
 /*
 // Override to support conditional editing of the table view.

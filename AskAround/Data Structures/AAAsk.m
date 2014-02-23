@@ -7,12 +7,13 @@
 #import "AAPerson.h"
 #import "AAAnswer.h"
 #import "NSArray+OCTotallyLazy.h"
+#import "FBRequestConnection.h"
 
 
 @implementation AAAsk
 
-//@dynamic aboutPerson;
-//@dynamic fromPerson;
+//@dynamic aboutPersonID;
+//@dynamic fromPersonID;
 @dynamic answers;
 @dynamic title;
 @dynamic isYesNo;
@@ -26,8 +27,8 @@
     self = [self init];
     if(self)
     {
-        self.aboutPerson = about;
-        self.fromPerson = from;
+        self.aboutPersonID = about.facebookID;
+        self.fromPersonID = from.facebookID;
         self.title = title;
     }
     return self;
@@ -35,31 +36,31 @@
 
 #pragma mark Ask Around
 
-/**
-* Sends this ask to the server for processing
-*/
--(void)sendOut
++ (void)sendOutAsk:(AAAsk *)ask aboutPerson:(AAPerson *)about
 {
-    [self.fromPerson sendAsk:self];
-
-    // Add trustees (for now only mutual friends)
-    [AAPerson mutualFriendsWith:self.aboutPerson withBlock:^(NSArray * mutualFriends, NSError * error)
+    [AAPerson mutualFriendsWith:about withBlock:^(NSArray * mutualFriends, NSError * error)
     {
-        self.trustees = [[mutualFriends subarrayWithRange:NSMakeRange(0, MIN(10, mutualFriends.count))] asSet];
-        for(AAPerson * trustee in self.trustees)
+        NSArray * trustees = [mutualFriends subarrayWithRange:NSMakeRange(0, MIN(5, mutualFriends.count))];
+        NSMutableArray * trusteeIDs = [NSMutableArray arrayWithCapacity:trustees.count];
+        for(AAPerson * trustee in trustees)
         {
-            [trustee.pendingAsks addObject:self];
-            [trustee saveInBackground];
+            [trusteeIDs addObject:trustee.facebookID];
+            [trustee wasAsked:ask];
         }
-        [self saveInBackground];
+        ask.trustees = trusteeIDs;
+        [ask saveInBackground];
     }];
+
+    [[AAPerson currentUser] sendAsk:ask];
+    [about addAskAbout:ask];
+    NSLog(@"Sent out ask about %@", about.name);
 }
 
 - (void)addAnswer:(AAAnswer *)answer
 {
     if(!self.answers)
     {
-        self.answers = [[NSMutableSet alloc] init];
+        self.answers = [[NSMutableArray alloc] init];
     }
     [self.answers addObject:answer];
     [self saveInBackground];

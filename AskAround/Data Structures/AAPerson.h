@@ -16,7 +16,7 @@
 #pragma mark Properties
 
 /**
-* A set of AAAsks whose aboutPerson is this person
+* A set of AAAsks whose aboutPersonID is this person
 */
 @property (nonatomic, strong) NSMutableArray *asksAbout;
 
@@ -67,6 +67,8 @@
 
 
 #pragma mark Friends
+
+- (void)wasAsked:(AAAsk *)ask;
 
 + (void)mutualFriendsWith:(AAPerson *)otherPerson withBlock:(void (^)(NSArray *mutualFriends, NSError *error))block;
 
