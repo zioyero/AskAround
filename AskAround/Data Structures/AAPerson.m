@@ -306,6 +306,8 @@ static AAPerson * currentUser;
     }];
 }
 
+#pragma mark - Likes
+
 - (void) populateLikesWithBlock:(void (^)(NSSet * likes))block
 {
     [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/likes", self.facebookID]
@@ -317,6 +319,8 @@ static AAPerson * currentUser;
         self.facebookLikes = [likes asSet];
     }];
 }
+
+#pragma mark - Pictures
 
 - (void)fetchHttpPictureWithBlockWithBlock:(void (^)(NSURL *pictureURL, NSError *error))block
 {

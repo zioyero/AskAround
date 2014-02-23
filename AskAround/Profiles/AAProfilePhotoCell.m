@@ -34,6 +34,10 @@
         [self.contentView addSubview:self.nameLabel];
         self.nameLabel.numberOfLines = 0;
         self.nameLabel.backgroundColor = [UIColor clearColor];
+        self.nameLabel.font = [UIFont lightFontWithSize:16.0];
+        self.nameLabel.textColor = [UIColor darkerTextColor];
+        self.nameLabel.textAlignment = NSTextAlignmentCenter;
+
     }
     return self;
 }
@@ -90,7 +94,8 @@
 {
     AAPerson *person = [self person];
     if(person){
-        self.nameLabel.text = /*person.name ? person.name :*/ person.facebookID;
+        self.nameLabel.text = person.name ? [NSString stringWithFormat:@"%@\nAwesome Hacker at Launch",
+                        person.name] : person.facebookID;
         self.nameLabel.frame = self.contentView.bounds;
         [self.nameLabel sizeToFit];
         self.nameLabel.center = CGPointMake(self.contentView.center.x,

@@ -25,5 +25,7 @@
 
 - (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
 
+- (NSString *)headerTitleForSection:(NSInteger)section;
+
 - (void)registerCellIdentifiersFor:(UITableView *)tableView;
 @end
