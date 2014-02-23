@@ -24,6 +24,10 @@
     return [UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:0.7];
 }
 
++ (UIColor *)headerColor
+{
+    return [UIColor colorWithRed:162.0/255.0 green:179.0/255.0 blue:186.0/255.0 alpha:1.0];
+}
 
 
 @end

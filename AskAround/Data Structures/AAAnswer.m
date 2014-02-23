@@ -19,23 +19,31 @@
     {
         self.answer = body;
         self.extraText = extra;
-        self.ask = ask;
+        self.askID = ask.objectId;
+        self.responderID = [AAPerson currentUser].facebookID;
     }
     return self;
 }
 
 #pragma mark Ask Around
 
-- (void)postAnswer
++(void)postAnswer:(AAAnswer *)answer forAsk:(AAAsk *)ask
 {
-    [self.ask addAnswer:self];
+    if(!answer.responderID)
+    {
+        answer.responderID = [AAPerson currentUser].facebookID;
+    }
+    [answer saveInBackgroundWithBlock:^(BOOL succeed, NSError * error)
+    {
+        [ask addAnswer:answer];
+    }];
 }
 
 #pragma mark Parse
 
 +(NSString *)parseClassName
 {
-    return @"AAAnswer";
+    return @"Answer";
 }
 
 

@@ -230,6 +230,11 @@
     return NO;
 }
 
+- (BOOL)showAnswerForAskForClickAt:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
 - (BOOL)showCreateAskForClickAt:(NSIndexPath *)indexPath
 {
     return NO;

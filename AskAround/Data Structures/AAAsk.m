@@ -78,7 +78,14 @@
         self.answers = [[NSMutableArray alloc] init];
     }
     [self.answers addObject:answer];
-    [self saveInBackground];
+    if(self.objectId)
+    {
+        [self saveInBackground];
+    }
+    else
+    {
+        NSLog(@"Cannot save answer for uninitialized person. Check your code for race conditions");
+    }
 }
 
 #pragma mark Parse
