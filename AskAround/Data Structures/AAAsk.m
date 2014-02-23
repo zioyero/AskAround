@@ -12,23 +12,24 @@
 
 @implementation AAAsk
 
-//@dynamic aboutPersonID;
-//@dynamic fromPersonID;
+@dynamic aboutPersonID;
+@dynamic fromPersonID;
 @dynamic answers;
 @dynamic title;
 @dynamic isYesNo;
 @dynamic trustees;
 @dynamic deadline;
+@dynamic body;
 
 #pragma mark Initialization
 
-- (id) initWithFromPerson:(AAPerson *)from aboutPerson:(AAPerson *)about withTitle:(NSString *)title
+- (id)initWithTitle:(NSString *)title andBody:(NSString *)body
 {
     self = [self init];
     if(self)
     {
-        self.aboutPersonID = about.facebookID;
-        self.fromPersonID = from.facebookID;
+        self.fromPersonID = [AAPerson currentUser].facebookID;
+        self.body = body;
         self.title = title;
     }
     return self;

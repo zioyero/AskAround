@@ -13,6 +13,7 @@
 #import "AAAsk.h"
 #import "AAAnswer.h"
 #import "AAFriendsListViewController.h"
+#import "AALoginViewController.h"
 #import <Parse/PFFacebookUtils.h>
 
 @implementation AAAppDelegate
@@ -35,19 +36,29 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-//    AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
-    AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
+    if([PFUser currentUser])
+    {
+//      AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
+        AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
 
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
-    navigationController.navigationBarHidden = NO;
-    [tabBarController addChildViewController:navigationController];
-    self.window.rootViewController = tabBarController;
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
+        navigationController.navigationBarHidden = NO;
+        [tabBarController addChildViewController:navigationController];
+        self.window.rootViewController = tabBarController;
 
 
-    AAFriendsListViewController *friendsListViewController = [[AAFriendsListViewController alloc] init];
-    navigationController = [[UINavigationController alloc] initWithRootViewController:friendsListViewController];
-    [tabBarController addChildViewController:navigationController];
+        AAFriendsListViewController *friendsListViewController = [[AAFriendsListViewController alloc] init];
+        navigationController = [[UINavigationController alloc] initWithRootViewController:friendsListViewController];
+        [tabBarController addChildViewController:navigationController];
+    }
+    else
+    {
+        AALoginViewController * login = [[AALoginViewController alloc] init];
+        self.window.rootViewController = login;
+    }
+
+
 
 
     [AAPerson currentUser];

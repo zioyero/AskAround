@@ -29,7 +29,9 @@
 		AB3CA41DB456B3F6AA4EB106 /* NSArray+AskAround.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CAA5C54215601ABF658F1 /* NSArray+AskAround.m */; };
 		AB3CA5DDBF1C0D917ABC2458 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CAB8F70D13CA534EE333A /* UIKit.framework */; };
 		AB3CA6323B31690988AA614F /* AAAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA9D47295A2D1BB22C3BF /* AAAnswer.m */; };
+		AB3CA6A31693CBDD7B2D2BE1 /* AALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA726150DED295D1E5B82 /* AALoginViewController.m */; };
 		AB3CA6B532C5F123D4014F2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA3E7D26364F9AD07C4F5 /* CoreGraphics.framework */; };
+		AB3CA7DC9C5A9D9BE3FCF138 /* NSLayoutConstraint+SimpleFormatLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA2815E809B9BA01CDC39 /* NSLayoutConstraint+SimpleFormatLanguage.m */; };
 		AB3CA8BB97E650D5FDF184A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB3CAEF6ADCFF6CD0BCA61D4 /* InfoPlist.strings */; };
 		AB3CA958EAFB7E6DE4B4BF33 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CAE13ADAD481896BC1835 /* XCTest.framework */; };
 		AB3CA9C8D2B8478906D1AF7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA09E1908CF53F50111CD /* main.m */; };
@@ -76,10 +78,14 @@
 		AB3CA09E1908CF53F50111CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB3CA128E219B162C2F82FEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB3CA26BE2F7372679270207 /* AskAroundDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskAroundDefines.h; sourceTree = "<group>"; };
+		AB3CA2815E809B9BA01CDC39 /* NSLayoutConstraint+SimpleFormatLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SimpleFormatLanguage.m"; sourceTree = "<group>"; };
 		AB3CA2E4265D99FCD92CFAED /* AAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAAppDelegate.h; sourceTree = "<group>"; };
 		AB3CA3A94EEF8315B3CC2585 /* AskAround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AskAround.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CA3E7D26364F9AD07C4F5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AB3CA41F96E2CA7026BF45C8 /* NSLayoutConstraint+SimpleFormatLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SimpleFormatLanguage.h"; sourceTree = "<group>"; };
 		AB3CA546FEB279F280EBA279 /* AskAround-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AskAround-Prefix.pch"; sourceTree = "<group>"; };
+		AB3CA5B1042ECD3099E5A390 /* AALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALoginViewController.h; sourceTree = "<group>"; };
+		AB3CA726150DED295D1E5B82 /* AALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALoginViewController.m; sourceTree = "<group>"; };
 		AB3CA73CE43136A42E372D27 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AB3CA73D507C7D55BF5F0054 /* AskAroundTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AskAroundTests.m; sourceTree = "<group>"; };
 		AB3CA8123681B3837502200E /* AAPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPerson.h; sourceTree = "<group>"; };
@@ -178,6 +184,8 @@
 		AB3CA326E981B8CC2C265EE2 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				AB3CA726150DED295D1E5B82 /* AALoginViewController.m */,
+				AB3CA5B1042ECD3099E5A390 /* AALoginViewController.h */,
 			);
 			path = "User Interface";
 			sourceTree = "<group>";
@@ -253,6 +261,8 @@
 			children = (
 				AB3CAA5C54215601ABF658F1 /* NSArray+AskAround.m */,
 				AB3CAB1BE73961CC674DEC4C /* NSArray+AskAround.h */,
+				AB3CA41F96E2CA7026BF45C8 /* NSLayoutConstraint+SimpleFormatLanguage.h */,
+				AB3CA2815E809B9BA01CDC39 /* NSLayoutConstraint+SimpleFormatLanguage.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -471,6 +481,8 @@
 				AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */,
 				AB5F68B59DAC7B0996DE9A6B /* AAMyProfileModelView.m in Sources */,
 				AB5F691BB9AA5D0354ECFDB5 /* AAProfileCell.m in Sources */,
+				AB3CA6A31693CBDD7B2D2BE1 /* AALoginViewController.m in Sources */,
+				AB3CA7DC9C5A9D9BE3FCF138 /* NSLayoutConstraint+SimpleFormatLanguage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

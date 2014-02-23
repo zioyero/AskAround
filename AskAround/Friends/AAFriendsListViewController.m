@@ -87,6 +87,12 @@
 //    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AAPerson * person = [self.friendsModelView.friends objectAtIndex:indexPath.row];
+    AAAsk * ask = [[AAAsk alloc] initWithTitle:@"New ask! For Debugging!" andBody:@"No body"];
+    [AAAsk sendOutAsk:ask aboutPerson:person];
+}
 
 /*
 // Override to support conditional editing of the table view.
