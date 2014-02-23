@@ -8,6 +8,11 @@
 
 
 
+@class AAPerson;
+
 @interface AACreateAskViewController : UIViewController
 
+@property (nonatomic, strong)AAPerson *aboutPerson;
+
+- (id)initWithAboutPerson:(AAPerson *)aboutPerson;
 @end

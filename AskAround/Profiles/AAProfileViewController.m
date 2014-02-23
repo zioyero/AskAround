@@ -12,6 +12,7 @@
 #import "AAMyProfileModelView.h"
 #import "AAFriendProfileModelView.h"
 #import "AAFriendsListViewController.h"
+#import "AACreateAskViewController.h"
 
 @interface AAProfileViewController ()
 
@@ -75,7 +76,9 @@
             [self.navigationController pushViewController:viewController animated:YES];
         }
         else if([self.profileModelView showCreateAskForClickAt:path]){
-
+            AAPerson *person = self.profileModelView.person;
+            AACreateAskViewController *viewController = [[AACreateAskViewController alloc] initWithAboutPerson:person];
+            [self.navigationController pushViewController:viewController animated:YES];
         }
         else{
             // TEST BUTTON????
