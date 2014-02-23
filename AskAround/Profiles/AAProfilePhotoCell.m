@@ -10,9 +10,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "AAPerson.h"
 
-#define PHOTO_PADDING 80
+#define PHOTO_PADDING 6
 #define PHOTO_OFFSET_CENTER_Y 24
-#define PHOTO_HEIGHT 140
+#define TEXT_OFFSET_CENTER_Y 16
 
 @implementation AAProfilePhotoCell
 
@@ -26,15 +26,17 @@
         self.backgroundColor = [UIColor whiteColor];
         self.contentView.backgroundColor = [UIColor whiteColor];
 
+        UIImage *bgIm = [UIImage imageNamed:@"BgProfile"];
+        self.photoBackgroundView = [[UIImageView alloc] initWithImage:bgIm];
+        self.photoBackgroundView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.photoBackgroundView.layer.masksToBounds = YES;
+        [self.contentView addSubview:self.photoBackgroundView];
+
         self.photoView = [[UIImageView alloc] init];
         self.photoView.translatesAutoresizingMaskIntoConstraints = NO;
         self.photoView.layer.masksToBounds = YES;
         [self.contentView addSubview:self.photoView];
 
-        self.photoBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BgProfile"]];
-        self.photoBackgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-        self.photoBackgroundView.layer.masksToBounds = YES;
-        [self.contentView addSubview:self.photoBackgroundView];
 
         self.nameLabel = [[UILabel alloc] init];
         self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -48,42 +50,64 @@
         NSMutableArray *constraints = [@[] mutableCopy];
         NSDictionary *views = @{
                 @"image": self.photoView,
+                @"bgimage": self.photoBackgroundView,
                 @"label": self.nameLabel};
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:
                 @"[image(height)]"
                                                                                  options:0
-                                                                                 metrics:@{@"height":@(PHOTO_HEIGHT)}
+                                                                                 metrics:@{@"height":@(bgIm.size
+                                                                                         .width - PHOTO_PADDING)}
                                                                                    views:views]];
-//        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-8-[label]-8-|"
-//                                                                                 options:0
-//                                                                                 metrics:nil views:views]];
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label]-8-|"
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:
+                @"[bgimage]"
                                                                                  options:0
-                                                                                 metrics:nil views:views]];
+                                                                                 metrics:nil
+                                                                                   views:views]];
+
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label]-(bottom)-|"
+                                                                                 options:0
+                                                                                 metrics:@{@"bottom":@(TEXT_OFFSET_CENTER_Y)}
+                                                                                   views:views]];
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self.photoView attribute:NSLayoutAttributeWidth
                                                             relatedBy:NSLayoutRelationEqual toItem:self.photoView
                                                             attribute:NSLayoutAttributeHeight
                                                            multiplier:1.0 constant:0.0]];
+
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self.photoView
+                                                            attribute:NSLayoutAttributeCenterX
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self.photoBackgroundView
+                                                            attribute:NSLayoutAttributeCenterX
+                                                           multiplier:1.0 constant:0.0]];
+        [constraints addObject:[NSLayoutConstraint constraintWithItem:self.photoView
+                                                            attribute:NSLayoutAttributeCenterY
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self.photoBackgroundView
+                                                            attribute:NSLayoutAttributeCenterY
+                                                           multiplier:1.0 constant:0.0]];
+
+        [constraints addObject:[NSLayoutConstraint constraintWithItem:self.photoBackgroundView
                                                             attribute:NSLayoutAttributeCenterX
                                                             relatedBy:NSLayoutRelationEqual
                                                                toItem:self.contentView
                                                             attribute:NSLayoutAttributeCenterX
                                                            multiplier:1.0 constant:0.0]];
-        [constraints addObject:[NSLayoutConstraint constraintWithItem:self.nameLabel
-                                                            attribute:NSLayoutAttributeCenterX
-                                                            relatedBy:NSLayoutRelationEqual
-                                                               toItem:self.contentView
-                                                            attribute:NSLayoutAttributeCenterX
-                                                           multiplier:1.0 constant:0.0]];
-        [constraints addObject:[NSLayoutConstraint constraintWithItem:self.photoView
+        [constraints addObject:[NSLayoutConstraint constraintWithItem:self.photoBackgroundView
                                                             attribute:NSLayoutAttributeCenterY
                                                             relatedBy:NSLayoutRelationEqual
                                                                toItem:self.contentView
                                                             attribute:NSLayoutAttributeCenterY
                                                            multiplier:1.0 constant:-PHOTO_OFFSET_CENTER_Y]];
 
+        [constraints addObject:[NSLayoutConstraint constraintWithItem:self.nameLabel
+                                                            attribute:NSLayoutAttributeCenterX
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self.contentView
+                                                            attribute:NSLayoutAttributeCenterX
+                                                           multiplier:1.0 constant:0.0]];
         [self.contentView addConstraints:constraints];
+
+        self.photoView.layer.cornerRadius = (bgIm.size.width - PHOTO_PADDING) / 2.0;
 
     }
     return self;
@@ -91,15 +115,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-//
-//    self.photoView.frame = CGRectMake(0.0, 0.0,
-//            [AAProfilePhotoCell cellHeight]-PHOTO_PADDING,
-//            [AAProfilePhotoCell cellHeight]-PHOTO_PADDING);
-//    self.photoView.center = CGPointMake(self.contentView.center.x, self.contentView.center.y - PHOTO_OFFSET_CENTER_Y);
-//    self.photoView.backgroundColor = [UIColor whiteColor];
-//
-//
-    self.photoView.layer.cornerRadius = PHOTO_HEIGHT / 2.0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
