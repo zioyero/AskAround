@@ -21,6 +21,7 @@
     self.pictureView = [[UIImageView alloc] init];
     self.pictureView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.pictureView];
+    self.pictureView.contentMode = UIViewContentModeScaleAspectFill;
     self.pictureView.backgroundColor = [UIColor lightGrayColor];
 
     self.nameLabel = [[UILabel alloc] initWithFrame:self.bounds];

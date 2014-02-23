@@ -9,10 +9,12 @@
 
 
 @class AAPerson;
+@class AAMyProfileModelView;
 
 @interface AAProfileViewController : UITableViewController
 
 
-@property (nonatomic, strong) AAPerson *person;
+@property (nonatomic, strong) AAMyProfileModelView *profileModelView;
 
+- (id)initWithPerson:(AAPerson *)person;
 @end

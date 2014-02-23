@@ -49,6 +49,8 @@
     navigationController = [[UINavigationController alloc] initWithRootViewController:friendsListViewController];
     [tabBarController addChildViewController:navigationController];
 
+
+    [AAPerson currentUser];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

@@ -40,6 +40,7 @@
 		AB5F62AB5B65ED72ED4032DC /* AAFbLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */; };
 		AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */; };
 		AB5F63CAC4189C561AE521E1 /* AAProfilePhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */; };
+		AB5F68B59DAC7B0996DE9A6B /* AAMyProfileModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */; };
 		AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */; };
 		AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */; };
 		AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F646443C0032A2C53B20E /* AAProfileViewController.m */; };
@@ -101,7 +102,9 @@
 		AB5F646443C0032A2C53B20E /* AAProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileViewController.m; sourceTree = "<group>"; };
 		AB5F64CD5C03F0749E568553 /* AAFbLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFbLoginViewController.h; sourceTree = "<group>"; };
 		AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListViewController.m; sourceTree = "<group>"; };
+		AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAMyProfileModelView.m; sourceTree = "<group>"; };
 		AB5F69855705537F15388E35 /* AAFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendTableViewCell.h; sourceTree = "<group>"; };
+		AB5F6C21B8D3E2AD1BE07E9B /* AAMyProfileModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAMyProfileModelView.h; sourceTree = "<group>"; };
 		AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListModelView.m; sourceTree = "<group>"; };
 		AB5F6DAF8AB1E69B2327E5E7 /* AAFriendsListModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendsListModelView.h; sourceTree = "<group>"; };
 		AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfilePhotoCell.m; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 				AB5F646443C0032A2C53B20E /* AAProfileViewController.m */,
 				AB5F624D76E2A42999270A1E /* AAProfilePhotoCell.h */,
 				AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */,
+				AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */,
+				AB5F6C21B8D3E2AD1BE07E9B /* AAMyProfileModelView.h */,
 			);
 			path = Profiles;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */,
 				AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */,
 				AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */,
+				AB5F68B59DAC7B0996DE9A6B /* AAMyProfileModelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
