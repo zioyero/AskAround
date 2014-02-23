@@ -12,6 +12,7 @@
 #import "AAPerson.h"
 #import "AAAsk.h"
 #import "AAAnswer.h"
+#import "AAFriendsListViewController.h"
 #import <Parse/PFFacebookUtils.h>
 
 @implementation AAAppDelegate
@@ -35,8 +36,18 @@
 
 //    AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
     AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
+
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
-    self.window.rootViewController = navigationController;
+    navigationController.navigationBarHidden = NO;
+    [tabBarController addChildViewController:navigationController];
+    self.window.rootViewController = tabBarController;
+
+
+    AAFriendsListViewController *friendsListViewController = [[AAFriendsListViewController alloc] init];
+    navigationController = [[UINavigationController alloc] initWithRootViewController:friendsListViewController];
+    [tabBarController addChildViewController:navigationController];
+
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

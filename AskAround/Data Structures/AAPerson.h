@@ -82,6 +82,8 @@
 
 #pragma mark Parse
 
+- (void)fetchPictureWithBlock:(void (^)(UIImage *picture, NSError *error))block;
+
 + (NSString *)parseClassName;
 
 
