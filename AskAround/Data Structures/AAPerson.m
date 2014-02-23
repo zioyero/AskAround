@@ -114,6 +114,8 @@ static AAPerson * currentUser;
                 self.birthday = person.birthday;
                 self.email = person.email;
                 self.objectId = person.objectId;
+                self.employer = person.employer;
+                self.location = person.location;
                 if(completion)
                     completion(YES);
             }
@@ -153,6 +155,9 @@ static AAPerson * currentUser;
             self.birthday = [f dateFromString:response[@"birthday"]];
         }
         self.username = response[@"username"];
+        self.location = response[@"location"][@"name"];
+        self.employer = [response[@"work"] firstObject][@"employer"][@"name"];
+        self.profession = [response[@"work"] firstObject][@"position"][@"name"];
 
         NSLog(@"Saving %@ as AAPerson to cloud", self.name);
         if(completion)
