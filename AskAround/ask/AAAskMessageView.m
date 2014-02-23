@@ -12,14 +12,15 @@
 
 @implementation AAAskMessageView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithStyle:(AAAskMessageViewStyle)style
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (!self) return nil;
 
     [self createViews];
 
     self.hasValidBody = @NO;
+    self.style = style;
 
     @weakify(self);
     [self.textView.rac_textSignal subscribeNext:^(id x) {
@@ -36,17 +37,22 @@
 {
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.text = @"Message";
+    if(self.style == AAAskMessageViewStyleAsk)
+        self.titleLabel.text = @"Message";
     self.titleLabel.font = [UIFont mediumFontWithSize:14.0];
     self.titleLabel.textColor = [UIColor darkerTextColor];
     [self addSubview:self.titleLabel];
 
     self.textView = [[GCPlaceholderTextView alloc] init];
     self.textView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.textView.placeholder = @"I need a gift idea...";
+    if(self.style == AAAskMessageViewStyleAsk)
+        self.textView.placeholder = @"I need a gift idea...";
+    else if(self.style == AAAskMessageViewStyleAnswer)
+        self.textView.placeholder = @"Type...";
     self.textView.placeholderColor = [UIColor lighterTextColor];
     self.textView.textColor = [UIColor lighterTextColor];
     self.textView.font = [UIFont mediumFontWithSize:16.0];
+    self.textView.backgroundColor = [UIColor yellowColor];
     [self addSubview:self.textView];
 
     NSDictionary *metrics = @{
@@ -54,7 +60,7 @@
             @"messagePad": @(12.0f),
             @"labelT": @(8.0f),
             @"messageT":@(2.0f),
-            @"messageB": @(8.0f)
+            @"messageB": @(8.0f),
     };
     NSDictionary *views = @{
             @"label": self.titleLabel,
@@ -71,6 +77,9 @@
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:
             @"V:|-(labelT)-[label]-(messageT)-[message]-(messageB)-|"
                              options:0 metrics:metrics views:views]];
+//    [constraints addObject:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeHeight
+//                            relatedBy:NSLayoutRelationEqual toItem:nil
+//                           attribute:0 multiplier:0.0 constant:0.0]];
 
     [self addConstraints:constraints];
 

@@ -28,10 +28,20 @@ HelveticaNeue-Italic
     return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
 }
 
++ (UIFont*)boldFontWithSize:(CGFloat )size
+{
+    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:size];
+}
+
 +(UIFont*)lightFontWithSize:(CGFloat )size
 {
     return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
 }
++(UIFont*)lightItalicFontWithSize:(CGFloat )size
+{
+    return [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:size];
+}
+
 + (UIFont*)italicFontWithSize:(CGFloat )size
 {
     return [UIFont fontWithName:@"Palatino-Italic" size:size];
@@ -46,9 +56,25 @@ HelveticaNeue-Italic
     };
 }
 
++ (NSDictionary *)boldStringAttributesWithSize:(CGFloat)size withColor:(UIColor*)color
+{
+    return @{ NSFontAttributeName : [UIFont boldFontWithSize:size],
+//            NSUnderlineStyleAttributeName : @1 ,
+            NSForegroundColorAttributeName : color
+    };
+}
+
 + (NSDictionary *)lightStringAttributesWithSize:(CGFloat)size withColor:(UIColor*)color
 {
     return @{ NSFontAttributeName : [UIFont mediumFontWithSize:size],
+//            NSUnderlineStyleAttributeName : @1 ,
+            NSForegroundColorAttributeName : color
+    };
+}
+
++ (NSDictionary *)lightItalicStringAttributesWithSize:(CGFloat)size withColor:(UIColor*)color
+{
+    return @{ NSFontAttributeName : [UIFont lightItalicFontWithSize:size],
 //            NSUnderlineStyleAttributeName : @1 ,
             NSForegroundColorAttributeName : color
     };

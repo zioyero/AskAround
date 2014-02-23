@@ -157,7 +157,10 @@
         [resultCell performSelector:@selector(setObject:) withObject:object];
     else{
         NSString *text = [self.profileModelView emptyTextAtIndexPath:indexPath];
-        resultCell.textLabel.text = text;
+
+        NSAttributedString *string = [[NSAttributedString alloc] initWithString:text attributes:
+                [UIFont lightItalicStringAttributesWithSize:12.0 withColor:[UIColor lighterTextColor]]];
+        resultCell.textLabel.attributedText = string;
     }
 
     if([resultCell respondsToSelector:@selector(setButtonClickDelegate:)]){
@@ -180,9 +183,26 @@
     return [self.profileModelView heightForHeaderInSection:section];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [self.profileModelView headerTitleForSection:section];
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *text = [self.profileModelView headerTitleForSection:section];
+    if(text){
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = [UIColor backgroundGrayColor];
+        UILabel * label = [[UILabel alloc] init];
+        label.translatesAutoresizingMaskIntoConstraints = NO;
+        [view addSubview:label];
+        [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[label]-(>=16)-|"
+                                                                     options:0
+                                                                     metrics:nil views:@{@"label": label}]];
+        [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[label]"
+                                                                     options:0
+                                                                     metrics:nil views:@{@"label": label}]];
+        label.attributedText = [[NSAttributedString alloc] initWithString:text attributes:[UIFont
+                boldStringAttributesWithSize:13.0 withColor:[UIColor darkerTextColor]]];
+        return view;
+    }
+    return [super tableView:tableView viewForHeaderInSection:section];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

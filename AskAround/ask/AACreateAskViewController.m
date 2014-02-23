@@ -122,7 +122,7 @@
     self.personHeaderView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.personHeaderView];
 
-    self.messageView = [[AAAskMessageView alloc] init];
+    self.messageView = [[AAAskMessageView alloc] initWithStyle:AAAskMessageViewStyleAsk];
     self.messageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.messageView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.messageView];

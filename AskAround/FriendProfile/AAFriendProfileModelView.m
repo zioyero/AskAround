@@ -129,7 +129,7 @@
     switch (section){
         case 2:
         { // ?
-            return @"FRIENDS' ASKS ABOUT this friend";
+            return @"FRIENDS HAVE ASKED";
         }
         default:
             return nil;

@@ -12,13 +12,21 @@
 
 + (UIFont *)mediumFontWithSize:(CGFloat)size;
 
++ (UIFont *)boldFontWithSize:(CGFloat)size;
+
 + (UIFont *)lightFontWithSize:(CGFloat)size;
+
++ (UIFont *)lightItalicFontWithSize:(CGFloat)size;
 
 + (UIFont *)italicFontWithSize:(CGFloat)size;
 
 + (NSDictionary *)mediumStringAttributesWithSize:(CGFloat)size withColor:(UIColor *)color;
 
++ (NSDictionary *)boldStringAttributesWithSize:(CGFloat)size withColor:(UIColor *)color;
+
 + (NSDictionary *)lightStringAttributesWithSize:(CGFloat)size withColor:(UIColor *)color;
+
++ (NSDictionary *)lightItalicStringAttributesWithSize:(CGFloat)size withColor:(UIColor *)color;
 
 + (NSDictionary *)paragraphStyleForLineBreakStyle:(NSLineBreakMode)lineBreakMode;
 @end

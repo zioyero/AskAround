@@ -46,12 +46,18 @@
         self.nameLabel.font = [UIFont lightFontWithSize:16.0];
         self.nameLabel.textColor = [UIColor darkerTextColor];
         self.nameLabel.textAlignment = NSTextAlignmentCenter;
+        self.nameLabel.lineBreakMode = NSLineBreakByTruncatingTail;
 
         NSMutableArray *constraints = [@[] mutableCopy];
         NSDictionary *views = @{
                 @"image": self.photoView,
                 @"bgimage": self.photoBackgroundView,
                 @"label": self.nameLabel};
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:
+                @"|-(>=8)-[label]-(>=8)-|"
+                                                                                 options:0
+                                                                                 metrics:nil
+                                                                                   views:views]];
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:
                 @"[image(height)]"
                                                                                  options:0
@@ -64,7 +70,8 @@
                                                                                  metrics:nil
                                                                                    views:views]];
 
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label]-(bottom)-|"
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bgimage]-(>=8)-[label]-"
+                "(bottom)-|"
                                                                                  options:0
                                                                                  metrics:@{@"bottom":@(TEXT_OFFSET_CENTER_Y)}
                                                                                    views:views]];
@@ -158,9 +165,9 @@
     AAPerson *person = [self person];
     if(person){
         self.nameLabel.text = person.name ?
-                [NSString stringWithFormat:@"%@ (%@)\n%@", person.name, person.objectId,
+                [NSString stringWithFormat:@"%@\n%@", person.name, /*person.objectId,*/
                                 person.profession ? person.profession : @""]
-                : [NSString stringWithFormat:@"%@ (%@)\n", person.facebookID, person.objectId];
+                : [NSString stringWithFormat:@"(Loading)\n", person.facebookID/*, person.objectId*/];
         [self.nameLabel sizeToFit];
         [self setNeedsUpdateConstraints];
         [self setNeedsDisplay];

@@ -80,7 +80,7 @@
         NSArray * testRow = @[@"TestButton"];
 
 
-        self.sections = @[firstSection, friendsRow, secondRow, thirdRow, testRow];
+        self.sections = @[firstSection, friendsRow, secondRow, thirdRow/*, testRow*/];
     }
 }
 
