@@ -19,6 +19,7 @@
         self.lineView.backgroundColor = [UIColor backgroundGrayColor];
         [self.contentView addSubview:self.lineView];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.clipsToBounds = YES;
     }
     return self;
 }

@@ -45,6 +45,8 @@
 
 #pragma mark Ask Around
 
+- (id)initWithBody:(NSString *)body andExtra:(NSString *)extra forAsk:(AAAsk *)ask;
+
 +(void)postAnswer:(AAAnswer *)answer forAsk:(AAAsk *)ask;
 
 

@@ -46,12 +46,16 @@
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[image]-4-|"
                                                                              options:0
                                                                              metrics:nil views:views]];
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[label]"
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label]"
                                                                              options:0
                                                                              metrics:nil views:views]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem:self.pictureView attribute:NSLayoutAttributeWidth
                                                         relatedBy:NSLayoutRelationEqual toItem:self.pictureView
                                                         attribute:NSLayoutAttributeHeight
+                                                       multiplier:1.0 constant:0.0]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeCenterY
+                                                        relatedBy:NSLayoutRelationEqual toItem:self
+                                                        attribute:NSLayoutAttributeCenterY
                                                        multiplier:1.0 constant:0.0]];
 
     [self addConstraints:constraints];

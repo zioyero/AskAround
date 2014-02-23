@@ -14,6 +14,7 @@
 #import "AAFriendsListViewController.h"
 #import "AAAsk.h"
 #import "AACreateAskViewController.h"
+#import "AAAnswerAskViewController.h"
 
 @interface AAProfileViewController ()
 
@@ -183,6 +184,19 @@
 {
     return [self.profileModelView headerTitleForSection:section];
 }
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.profileModelView willSelectRowAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id object = [self.profileModelView objectAtIndexPath:indexPath];
+    if([object isKindOfClass:[AAAsk class]]){
+        AAAnswerAskViewController *viewController = [[AAAnswerAskViewController alloc] initWithAsk:(AAAsk *)object];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+}
+
 
 
 /*

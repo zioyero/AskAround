@@ -41,6 +41,7 @@
 		AB3CAFC592940E55F66D1A63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CAB8F70D13CA534EE333A /* UIKit.framework */; };
 		AB5F6160616C6AE4564567B6 /* UIFont+AAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6139B7BB879B0C8F2126 /* UIFont+AAUtils.m */; };
 		AB5F61F97B08822C984ABC14 /* UIColor+AAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6F90499E96D683D3A81F /* UIColor+AAUtils.m */; };
+		AB5F622A2A2817FFFEF32C75 /* AAAskingPersonMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F60696583B5B8936E79EF /* AAAskingPersonMessageView.m */; };
 		AB5F62AB5B65ED72ED4032DC /* AAFbLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */; };
 		AB5F62F81B9A2D5611ED7F7C /* AAProfileBirthdayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F68D108AC88137548E353 /* AAProfileBirthdayCell.m */; };
 		AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */; };
@@ -58,7 +59,7 @@
 		AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */; };
 		AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F646443C0032A2C53B20E /* AAProfileViewController.m */; };
 		AB5F6E4306E8F1112710E66E /* AAAskMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6F54DB8695FE851BD8F6 /* AAAskMessageView.m */; };
-		AB5F6FE14B23E4157B3AA1EE /* AAAnswerAskView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F62941486684C017F8540 /* AAAnswerAskView.m */; };
+		AB5F6FE14B23E4157B3AA1EE /* AAAnswerAskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F62941486684C017F8540 /* AAAnswerAskViewController.m */; };
 		D2DB678518B9AAE400039857 /* AATabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB678418B9AAE400039857 /* AATabBarController.m */; };
 /* End PBXBuildFile section */
 
@@ -119,14 +120,16 @@
 		AB3CAE13ADAD481896BC1835 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AB5F6018634868063E183E9F /* AAProfileAsk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileAsk.h; sourceTree = "<group>"; };
 		AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFbLoginViewController.m; sourceTree = "<group>"; };
+		AB5F60696583B5B8936E79EF /* AAAskingPersonMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAskingPersonMessageView.m; sourceTree = "<group>"; };
 		AB5F60EE0F0D2A11EC420FA8 /* AAAskPersonHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAskPersonHeaderView.h; sourceTree = "<group>"; };
 		AB5F6139B7BB879B0C8F2126 /* UIFont+AAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AAUtils.m"; sourceTree = "<group>"; };
 		AB5F61D48C7F345087779DFC /* AAProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileCell.m; sourceTree = "<group>"; };
 		AB5F624D76E2A42999270A1E /* AAProfilePhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfilePhotoCell.h; sourceTree = "<group>"; };
-		AB5F62941486684C017F8540 /* AAAnswerAskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAnswerAskView.m; sourceTree = "<group>"; };
+		AB5F62941486684C017F8540 /* AAAnswerAskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAnswerAskViewController.m; sourceTree = "<group>"; };
+		AB5F62FDCDF107D17AF336A6 /* AAAskingPersonMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAskingPersonMessageView.h; sourceTree = "<group>"; };
 		AB5F646443C0032A2C53B20E /* AAProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileViewController.m; sourceTree = "<group>"; };
 		AB5F64CD5C03F0749E568553 /* AAFbLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFbLoginViewController.h; sourceTree = "<group>"; };
-		AB5F65ABC14541C1D289132D /* AAAnswerAskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAnswerAskView.h; sourceTree = "<group>"; };
+		AB5F65ABC14541C1D289132D /* AAAnswerAskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAnswerAskViewController.h; sourceTree = "<group>"; };
 		AB5F65DEBD5227EA0748F1C6 /* AAAnswerYesNoOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAnswerYesNoOptionView.m; sourceTree = "<group>"; };
 		AB5F65F28D897600ADC6A72F /* AAAskPersonHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAskPersonHeaderView.m; sourceTree = "<group>"; };
 		AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListViewController.m; sourceTree = "<group>"; };
@@ -409,10 +412,12 @@
 		AB5F6C326901EE558A723514 /* answer */ = {
 			isa = PBXGroup;
 			children = (
-				AB5F65ABC14541C1D289132D /* AAAnswerAskView.h */,
-				AB5F62941486684C017F8540 /* AAAnswerAskView.m */,
+				AB5F65ABC14541C1D289132D /* AAAnswerAskViewController.h */,
+				AB5F62941486684C017F8540 /* AAAnswerAskViewController.m */,
 				AB5F6F16169A4CAC2945815A /* AAAnswerYesNoOptionView.h */,
 				AB5F65DEBD5227EA0748F1C6 /* AAAnswerYesNoOptionView.m */,
+				AB5F60696583B5B8936E79EF /* AAAskingPersonMessageView.m */,
+				AB5F62FDCDF107D17AF336A6 /* AAAskingPersonMessageView.h */,
 			);
 			path = answer;
 			sourceTree = "<group>";
@@ -591,8 +596,9 @@
 				AB5F6C797DF4443847534980 /* AAAskPersonHeaderView.m in Sources */,
 				AB5F6E4306E8F1112710E66E /* AAAskMessageView.m in Sources */,
 				AB5F6803F5FEFE01890EB38F /* AAAskOptionsView.m in Sources */,
-				AB5F6FE14B23E4157B3AA1EE /* AAAnswerAskView.m in Sources */,
+				AB5F6FE14B23E4157B3AA1EE /* AAAnswerAskViewController.m in Sources */,
 				AB5F6A63D13F5F0C8E3D0977 /* AAAnswerYesNoOptionView.m in Sources */,
+				AB5F622A2A2817FFFEF32C75 /* AAAskingPersonMessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

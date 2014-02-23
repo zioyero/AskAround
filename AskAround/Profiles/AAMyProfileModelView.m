@@ -232,7 +232,20 @@
 
 - (BOOL)showAnswerForAskForClickAt:(NSIndexPath *)indexPath
 {
+    if(indexPath.section==2){
+        return YES;
+    }
     return NO;
+}
+
+- (NSIndexPath *)willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section==2){
+        id object = [self objectAtIndexPath:indexPath];
+        if([object isKindOfClass:[AAAsk class]])
+            return indexPath;
+    }
+    return nil;
 }
 
 - (BOOL)showCreateAskForClickAt:(NSIndexPath *)indexPath

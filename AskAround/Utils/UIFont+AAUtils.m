@@ -42,7 +42,7 @@ HelveticaNeue-Italic
 {
     return @{ NSFontAttributeName : [UIFont mediumFontWithSize:size],
 //            NSUnderlineStyleAttributeName : @1 ,
-            NSStrokeColorAttributeName : color
+            NSForegroundColorAttributeName : color
     };
 }
 
@@ -50,10 +50,15 @@ HelveticaNeue-Italic
 {
     return @{ NSFontAttributeName : [UIFont mediumFontWithSize:size],
 //            NSUnderlineStyleAttributeName : @1 ,
-            NSStrokeColorAttributeName : color
+            NSForegroundColorAttributeName : color
     };
 }
 
-
++ (NSDictionary *)paragraphStyleForLineBreakStyle:(NSLineBreakMode)lineBreakMode
+{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = lineBreakMode;
+    return paragraphStyle;
+}
 
 @end

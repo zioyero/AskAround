@@ -52,7 +52,7 @@
                                                         attribute:NSLayoutAttributeHeight
                                                        multiplier:1.0 constant:0.0]];
 
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5.5-[label]"
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5.5-[label]-(>=5.5@900)-|"
                                                                              options:0
                                                                              metrics:nil views:views]];
     [self.contentView addConstraints:constraints];
@@ -91,6 +91,9 @@
                         initWithString:ask.body
                             attributes:[UIFont lightStringAttributesWithSize:12.0
                             withColor:[UIColor lighterTextColor]]] ];
+                [string addAttribute:NSParagraphStyleAttributeName value:[UIFont
+                        paragraphStyleForLineBreakStyle:NSLineBreakByTruncatingTail] range:NSMakeRange(0,
+                        [string length])];
                 self.nameLabel.attributedText = string;
 
 
