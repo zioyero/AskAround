@@ -113,6 +113,7 @@ static AAPerson * currentUser;
                 self.username = person.username;
                 self.birthday = person.birthday;
                 self.email = person.email;
+                self.objectId = person.objectId;
                 if(completion)
                     completion(YES);
             }
