@@ -2,19 +2,41 @@
   "images" : [
     {
       "idiom" : "iphone",
+<<<<<<< HEAD
+      "filename" : "AppIcon29x29.png",
+      "scale" : "1x"
+    },
+    {
       "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "AppIcon29x29@2x.png",
+=======
+      "size" : "29x29",
+>>>>>>> e994433f8f8beba75a60ad87256e1742c277a2a1
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Spotlight@2x.png",
+      "filename" : "AppIcon40x40@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "AppIcon57x57.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "AppIcon57x57@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "AppIcon@2x.png",
+      "filename" : "AppIcon60x60@2x.png",
       "scale" : "2x"
     }
   ],
