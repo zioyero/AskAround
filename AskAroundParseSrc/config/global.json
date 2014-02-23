@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "AskAround": {
+            "applicationId": "kVViVSOYYHOuHetEpHTXNM2mCriXlqenfzxEFiOw", 
+            "masterKey": "YqmAgnuRYBiSidy39rFkqhMdxtpQoJJb4YWYgjgM"
+        }, 
+        "_default": {
+            "link": "AskAround"
+        }
+    }
+}

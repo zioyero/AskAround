@@ -68,7 +68,11 @@
 
 #pragma mark Friends
 
++ (void)mutualFriendsWith:(AAPerson *)otherPerson withBlock:(void (^)(NSArray *mutualFriends, NSError *error))block;
+
 + (void)friendsWithBlock:(void (^)(NSArray *friends, NSError *error))block;
+
+- (void)friendsWithBlock:(void (^)(NSArray *friends, NSError *error))block;
 
 #pragma mark Facebook
 
@@ -81,6 +85,8 @@
 - (void)populateLikesWithBlock:(void (^)(NSSet *likes))block;
 
 #pragma mark Parse
+
+- (void)fetchPictureWithBlock:(void (^)(UIImage *picture, NSError *error))block;
 
 + (NSString *)parseClassName;
 

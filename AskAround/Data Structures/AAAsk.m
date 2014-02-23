@@ -6,6 +6,7 @@
 #import "AAAsk.h"
 #import "AAPerson.h"
 #import "AAAnswer.h"
+#import "NSArray+OCTotallyLazy.h"
 
 
 @implementation AAAsk
@@ -40,6 +41,13 @@
 -(void)sendOut
 {
     [self.fromPerson sendAsk:self];
+
+    // Add trustees (for now only mutual friends)
+    [AAPerson mutualFriendsWith:self.aboutPerson withBlock:^(NSArray * mutualFriends, NSError * error)
+    {
+        self.trustees = [[mutualFriends subarrayWithRange:NSMakeRange(0, MIN(10, mutualFriends.count))] asSet];
+        [self saveInBackground];
+    }];
 }
 
 - (void)addAnswer:(AAAnswer *)answer

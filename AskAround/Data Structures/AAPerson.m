@@ -9,6 +9,8 @@
 #import "FBRequest.h"
 #import "AAAsk.h"
 #import "NSArray+OCTotallyLazy.h"
+#import "AskAroundDefines.h"
+#import "FBSession.h"
 
 
 @implementation AAPerson
@@ -23,6 +25,22 @@
 @dynamic facebookID;
 @dynamic facebookLikes;
 @dynamic picture;
+
+#pragma mark Current User
+
++(AAPerson *)currentUser
+{
+    static AAPerson * currentUser = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^
+    {
+        [FBRequestConnection startWithGraphPath:@"me" parameters:nil HTTPMethod:@"GET" completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
+        {
+            currentUser = [[AAPerson alloc] initWithFacebookID:response[@"id"]];
+        }];
+    });
+    return currentUser;
+}
 
 #pragma mark Parse
 
@@ -64,9 +82,9 @@
                 self.facebookID = facebookID;
                 [self initializeWithDataFromFacebookWithCompletion:^(BOOL done)
                 {
+                    if(completion)
+                        completion(done);
                 }];
-                if(completion)
-                    completion(NO);
             }
         }];
     }
@@ -134,6 +152,29 @@
 
 #pragma mark Facebook Helpers
 
++ (void)mutualFriendsWith:(AAPerson *)otherPerson withBlock:(void (^)(NSArray * mutualFriends, NSError *error))block
+{
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"me/mutualfriends/%@", otherPerson.facebookID]
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection * connection, NSDictionary * response, NSError * error)
+    {
+        NSArray * bareBones = response[@"data"];
+        NSMutableArray * ret = [[NSMutableArray alloc] initWithCapacity:[bareBones count]];
+        for(NSDictionary * personDict in bareBones)
+        {
+            AAPerson * person = [[AAPerson alloc] initWithFacebookID:personDict[@"id"]];
+            [ret addObject:person];
+        }
+
+        if(block)
+        {
+            block(ret, error);
+        }
+    }];
+}
+
+
 /**
 * Friends array is an array of AAPerson objects
 */
@@ -171,6 +212,41 @@
             block(ret, error);
         }
     }];
+}
+
+- (void)friendsWithBlock:(void (^)(NSArray * friends, NSError * error))block
+{
+    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/friends", self.facebookID]
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection *connection, NSDictionary * response, NSError * error)
+                          {
+                              if(error)
+                              {
+                                  if(block)
+                                  {
+                                      block(nil, error);
+                                  }
+                                  return;
+                              }
+
+                              //Turn friends into AAPerson objects
+                              NSMutableArray * ret = [NSMutableArray array];
+
+                              NSArray * friendBareBones = response[@"data"];
+                              for(NSDictionary * bareBonesProfile in friendBareBones)
+                              {
+                                  AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"] completion:^(BOOL done)
+                                  {
+                                  }];
+                                  [ret addObject:person];
+                              }
+
+                              if(block)
+                              {
+                                  block(ret, error);
+                              }
+                          }];
 }
 
 + (void)currentUserFacebookIDWithBlock:(void (^)(NSString * facebookID, NSError * error))block
