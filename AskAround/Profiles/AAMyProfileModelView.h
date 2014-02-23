@@ -21,11 +21,15 @@
 
 - (NSInteger)numberOfRowsInSection:(NSUInteger)section;
 
+- (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSString *)headerTitleForSection:(NSInteger)section;
+
+- (NSString *)emptyTextAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)registerCellIdentifiersFor:(UITableView *)tableView;
 @end

@@ -43,6 +43,7 @@
 		AB5F62F81B9A2D5611ED7F7C /* AAProfileBirthdayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F68D108AC88137548E353 /* AAProfileBirthdayCell.m */; };
 		AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */; };
 		AB5F63CAC4189C561AE521E1 /* AAProfilePhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */; };
+		AB5F6678B22D098FB955BC8D /* AAProfileAsk.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D73CFE1B7076D7C7183 /* AAProfileAsk.m */; };
 		AB5F68B59DAC7B0996DE9A6B /* AAMyProfileModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6748A4551BD464BFF99F /* AAMyProfileModelView.m */; };
 		AB5F691BB9AA5D0354ECFDB5 /* AAProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F61D48C7F345087779DFC /* AAProfileCell.m */; };
 		AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */; };
@@ -102,6 +103,7 @@
 		AB3CAC113496BF8BB05B1D23 /* AAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAAppDelegate.m; sourceTree = "<group>"; };
 		AB3CAC805BC1A72B3126351E /* AskAroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AskAroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CAE13ADAD481896BC1835 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AB5F6018634868063E183E9F /* AAProfileAsk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileAsk.h; sourceTree = "<group>"; };
 		AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFbLoginViewController.m; sourceTree = "<group>"; };
 		AB5F6139B7BB879B0C8F2126 /* UIFont+AAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AAUtils.m"; sourceTree = "<group>"; };
 		AB5F61D48C7F345087779DFC /* AAProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileCell.m; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		AB5F6CB9477BFE6EE6166036 /* AAProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileCell.h; sourceTree = "<group>"; };
 		AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListModelView.m; sourceTree = "<group>"; };
 		AB5F6D28EA8BE437A78E7FB6 /* AAProfileBirthdayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileBirthdayCell.h; sourceTree = "<group>"; };
+		AB5F6D73CFE1B7076D7C7183 /* AAProfileAsk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileAsk.m; sourceTree = "<group>"; };
 		AB5F6DAF8AB1E69B2327E5E7 /* AAFriendsListModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendsListModelView.h; sourceTree = "<group>"; };
 		AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfilePhotoCell.m; sourceTree = "<group>"; };
 		AB5F6F0CB2655FE845CD8EFF /* AAProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileViewController.h; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				AB5F61D48C7F345087779DFC /* AAProfileCell.m */,
 				AB5F6D28EA8BE437A78E7FB6 /* AAProfileBirthdayCell.h */,
 				AB5F68D108AC88137548E353 /* AAProfileBirthdayCell.m */,
+				AB5F6018634868063E183E9F /* AAProfileAsk.h */,
+				AB5F6D73CFE1B7076D7C7183 /* AAProfileAsk.m */,
 			);
 			path = Profiles;
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 				AB5F62F81B9A2D5611ED7F7C /* AAProfileBirthdayCell.m in Sources */,
 				AB5F61F97B08822C984ABC14 /* UIColor+AAUtils.m in Sources */,
 				AB5F6160616C6AE4564567B6 /* UIFont+AAUtils.m in Sources */,
+				AB5F6678B22D098FB955BC8D /* AAProfileAsk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
