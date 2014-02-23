@@ -37,6 +37,7 @@
     self.facebookLoginButton = [[UIButton alloc] init];
     self.facebookLoginButton.backgroundColor = [UIColor blueColor];
     self.facebookLoginButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.facebookLoginButton addTarget:self action:@selector(loginPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.facebookLoginButton];
 
     // Disclaimer View
@@ -68,17 +69,48 @@
                                                                               @"logo.left = superview.left + 200",
                                                                               @"logo.right = superview.right -200",
                                                                               @"fbbutton.left >= superview.left + 100",
-                                                                              @"fbburron.right <= superview.right -100",
+                                                                              @"fbbutton.right <= superview.right -100",
                                                                               @"fbbutton.height = 100",
                                                                               @"fbbutton.bottom <= disclaimer.top - 20",
                                                                               @"disclaimer.bottom <= superview.bottom - 200",
                                                                               @"disclaimer.height = 200",
-                                                                              @"dislaimer.left >= fbbutton.left",
+                                                                              @"disclaimer.left >= fbbutton.left",
                                                                               @"disclaimer.right <= fbbuton.right"]
                                                                     metrics:nil
                                                                       views:NSDictionaryOfVariableBindings(logo, fbbutton, disclaimer, superview)];
     [self.view addConstraints:constraints];
     [self.view updateConstraints];
+}
+
+- (IBAction) loginPressed:(id)sender
+{
+    // Set permissions required from the facebook user account
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
+
+    // Login PFUser using facebook
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+//        [self.activityLogin stopAnimating]; // Hide loading indicator
+
+        if (!user) {
+            if (!error) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:@"Uh oh. The user cancelled the Facebook login." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+                [alert show];
+            } else {
+                NSLog(@"Uh oh. An error occurred: %@", error);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+                [alert show];
+            }
+        } else if (user.isNew) {
+            NSLog(@"User with facebook signed up and logged in!");
+//            [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+        } else {
+            NSLog(@"User with facebook logged in!");
+//          [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+        }
+    }];
+
+//    [self.activityLogin startAnimating]; // Show loading indicator until login is finished
 }
 
 
