@@ -1,22 +1,20 @@
 //
-//  AAProfileViewController.m
+//  AAFriendsListViewController.m
 //  AskAround
 //
-//  Created by Agathe Battestini on 2/21/14.
+//  Created by Agathe Battestini on 2/22/14.
 //  Copyright (c) 2014 Holy Moley. All rights reserved.
 //
 
-#import "AAProfileViewController.h"
-#import "AAPerson.h"
-#import "AAProfilePhotoCell.h"
+#import "AAFriendsListViewController.h"
+#import "AAFriendsListModelView.h"
+#import "AAFriendTableViewCell.h"
 
-@interface AAProfileViewController ()
+@interface AAFriendsListViewController ()
 
 @end
 
-
-
-@implementation AAProfileViewController
+@implementation AAFriendsListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,15 +29,7 @@
 {
     [super viewDidLoad];
 
-    self.title = @"Me";
-    [self.tableView registerClass:[AAProfilePhotoCell class] forCellReuseIdentifier:@"photoCell"];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"birthdayCell"];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"requestCell"];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"notificationsCell"];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:nil
-                                            selectedImage:nil];
+    self.title = @"Friends";
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -47,12 +37,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    #if 0
-    [AAPerson friendsWithBlock:^(NSArray * friends, NSError * error)
-    {
-        NSLog(@"%@", friends);
+    [self.tableView registerClass:[AAFriendTableViewCell class] forCellReuseIdentifier:@"friendCell"];
+
+
+    self.friendsModelView = [[AAFriendsListModelView alloc] init];
+
+    @weakify(self);
+    [RACObserve(self.friendsModelView, friends) subscribeNext:^(id x) {
+        @strongify(self);
+        [self.tableView reloadData];
     }];
-    #endif
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,88 +56,34 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setPerson:(AAPerson *)person {
-    _person = person;
-    [self.tableView reloadData];
-}
-
-
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-//    return 1; // profile info
-    return 2; // profile info + requests
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section){
-        case 0:
-        { // profile photo
-            return 2;
-        }
-        case 1:
-        { // notifications or requests
-            return 1;
-        }
-    }
-    return 0;
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return self.friendsModelView.friends.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *resultCell;
+    static NSString *CellIdentifier = @"friendCell";
+    AAFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.person = [self.friendsModelView.friends objectAtIndex:indexPath.row];
 
-
-    switch (indexPath.section){
-        case 0:
-        { // profile photo
-            if(indexPath.row==0){
-                // photo cell
-                AAProfilePhotoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"photoCell"];
-                resultCell = cell;
-            }
-            else if (indexPath.row==1){
-                resultCell = [tableView dequeueReusableCellWithIdentifier:@"birthdayCell"];
-                resultCell.textLabel.text = @"Birthday";
-            }
-            break;
-        }
-        case 1:
-        { // ?
-            resultCell = [tableView dequeueReusableCellWithIdentifier:@"requestCell"];
-            resultCell.textLabel.text = @"request";
-            break;
-        }
-    }
-
-    return resultCell;
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section==0 && indexPath.row==0){
-        return [AAProfilePhotoCell cellHeight];
-    }
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    switch (section){
-        case 0: return 0;
-        default:
-            return 44.0;
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-
-    switch (section){
-        case 0: return nil;
-        default: return @"Requests";
-    }
+    return 162.0 / 2.0;
+//    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 

@@ -14,4 +14,6 @@
     #import <UIKit/UIKit.h>
     #import <Parse/Parse.h>
     #import <Foundation/Foundation.h>
+    #import <ReactiveCocoa/ReactiveCocoa.h>
+    #import <libextobjc/EXTScope.h>
 #endif

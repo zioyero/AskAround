@@ -38,7 +38,10 @@
 		AB3CAD8D6DEC2E19805960FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA128E219B162C2F82FEC /* Foundation.framework */; };
 		AB3CAFC592940E55F66D1A63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CAB8F70D13CA534EE333A /* UIKit.framework */; };
 		AB5F62AB5B65ED72ED4032DC /* AAFbLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F605A6D75FFA16A77686B /* AAFbLoginViewController.m */; };
+		AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */; };
 		AB5F63CAC4189C561AE521E1 /* AAProfilePhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */; };
+		AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */; };
+		AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */; };
 		AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F646443C0032A2C53B20E /* AAProfileViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -97,8 +100,14 @@
 		AB5F624D76E2A42999270A1E /* AAProfilePhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfilePhotoCell.h; sourceTree = "<group>"; };
 		AB5F646443C0032A2C53B20E /* AAProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfileViewController.m; sourceTree = "<group>"; };
 		AB5F64CD5C03F0749E568553 /* AAFbLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFbLoginViewController.h; sourceTree = "<group>"; };
+		AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListViewController.m; sourceTree = "<group>"; };
+		AB5F69855705537F15388E35 /* AAFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendTableViewCell.h; sourceTree = "<group>"; };
+		AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendsListModelView.m; sourceTree = "<group>"; };
+		AB5F6DAF8AB1E69B2327E5E7 /* AAFriendsListModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendsListModelView.h; sourceTree = "<group>"; };
 		AB5F6E2FADFCD263B65AB367 /* AAProfilePhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProfilePhotoCell.m; sourceTree = "<group>"; };
 		AB5F6F0CB2655FE845CD8EFF /* AAProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileViewController.h; sourceTree = "<group>"; };
+		AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendTableViewCell.m; sourceTree = "<group>"; };
+		AB5F6FA7CCAA5E483F8112E8 /* AAFriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendsListViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,8 +263,30 @@
 				AB3CA26BE2F7372679270207 /* AskAroundDefines.h */,
 				AB3CAAFC815E8C36D4415911 /* Utils */,
 				AB5F6830D07A878E5A239551 /* Profiles */,
+				AB5F67396A5C155E2C2639D9 /* Friends */,
+				AB5F60BB747D00395A502CCD /* tableViews */,
 			);
 			path = AskAround;
+			sourceTree = "<group>";
+		};
+		AB5F60BB747D00395A502CCD /* tableViews */ = {
+			isa = PBXGroup;
+			children = (
+				AB5F69855705537F15388E35 /* AAFriendTableViewCell.h */,
+				AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */,
+			);
+			path = tableViews;
+			sourceTree = "<group>";
+		};
+		AB5F67396A5C155E2C2639D9 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				AB5F6FA7CCAA5E483F8112E8 /* AAFriendsListViewController.h */,
+				AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */,
+				AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */,
+				AB5F6DAF8AB1E69B2327E5E7 /* AAFriendsListModelView.h */,
+			);
+			path = Friends;
 			sourceTree = "<group>";
 		};
 		AB5F6830D07A878E5A239551 /* Profiles */ = {
@@ -327,7 +358,7 @@
 				ORGANIZATIONNAME = "Holy Moley";
 				TargetAttributes = {
 					AB3CACEE2FC30032E41BA68B = {
-						DevelopmentTeam = BR8U28N786;
+						DevelopmentTeam = PTA88CMJZF;
 					};
 				};
 			};
@@ -425,6 +456,9 @@
 				AB3CA41DB456B3F6AA4EB106 /* NSArray+AskAround.m in Sources */,
 				AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */,
 				AB5F63CAC4189C561AE521E1 /* AAProfilePhotoCell.m in Sources */,
+				AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */,
+				AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */,
+				AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
