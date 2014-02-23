@@ -105,19 +105,27 @@
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
 //        [self.activityLogin stopAnimating]; // Hide loading indicator
 
-        if (!user) {
-            if (!error) {
+        if (!user)
+        {
+            if (!error)
+            {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:@"Uh oh. The user cancelled the Facebook login." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
                 [alert show];
-            } else {
+            }
+            else
+            {
                 NSLog(@"Uh oh. An error occurred: %@", error);
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
                 [alert show];
             }
-        } else if (user.isNew) {
+        }
+        else if (user.isNew)
+        {
             NSLog(@"User with facebook signed up and logged in!");
-        } else {
+        }
+        else
+        {
             NSLog(@"User with facebook logged in!");
         }
     }];

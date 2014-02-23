@@ -37,7 +37,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    if(NO && [PFUser currentUser])
+    if([PFUser currentUser])
     {
 //      AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
         AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
