@@ -38,4 +38,6 @@
 - (BOOL)showFriendsListViewControllerForClickAt:(NSIndexPath *)indexPath;
 
 - (BOOL)showCreateAskForClickAt:(NSIndexPath *)indexPath;
+
+- (void)refreshPerson;
 @end

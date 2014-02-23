@@ -98,10 +98,15 @@
     [super viewDidAppear:animated];
 
     if (self.currentUserView){
-        AAPerson *person = [AAPerson currentUser];
-        if(person)
-            self.profileModelView.person = person;
 
+        if(!self.profileModelView.person){
+            AAPerson *person = [AAPerson currentUser];
+            self.profileModelView.person = person;
+        }
+        [self.profileModelView refreshPerson];
+    }
+    else{
+        [self.profileModelView refreshPerson];
     }
 }
 

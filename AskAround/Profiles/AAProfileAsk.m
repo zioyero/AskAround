@@ -8,6 +8,8 @@
 
 #import "AAProfileAsk.h"
 #import "AAAsk.h"
+#import "AAPerson.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation AAProfileAsk
 
@@ -29,6 +31,7 @@
     self.nameLabel.numberOfLines = 0;
     self.nameLabel.font = [UIFont mediumFontWithSize:14.0];
     self.nameLabel.textColor = [UIColor darkerTextColor];
+    self.nameLabel.lineBreakMode = NSLineBreakByClipping;
 
     [self.contentView addSubview:self.nameLabel];
 
@@ -62,14 +65,23 @@
 {
     [super setObject:object];
 
-    AAAsk *ask = [self ask];
-    if(ask && ask != [NSNull null]){
-        if(ask.isDataAvailable)
-            self.nameLabel.text = [NSString stringWithFormat:@"%@", ask.title ];
-        else
-            self.nameLabel.text = [NSString stringWithFormat:@"Loading %@", ask.objectId ];
 
-    }
+    @weakify(self);
+    AAAsk *ask = [self ask];
+    [AAPerson findPersonWithFacebookID:ask.fromPersonID withBlock:^(AAPerson *person, NSError *error) {
+        @strongify(self);
+        if(ask && ask != [NSNull null]){
+            if(ask.isDataAvailable)
+                self.nameLabel.text = [NSString stringWithFormat:@"%@ is asking: %@\n%@",person.name,
+                                ask.title, ask.body ];
+            else
+                self.nameLabel.text = [NSString stringWithFormat:@"Loading %@", ask.objectId ];
+        }
+        [person fetchHttpPictureWithBlockWithBlock:^(NSURL *pictureURL, NSError *error) {
+            @strongify(self);
+            [self.pictureView setImageWithURL:pictureURL];
+        }];
+    }];
 }
 
 - (AAAsk*)ask

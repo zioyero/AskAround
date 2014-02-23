@@ -18,6 +18,7 @@
         self.lineView = [[UIView alloc] initWithFrame:self.bounds];
         self.lineView.backgroundColor = [UIColor backgroundGrayColor];
         [self.contentView addSubview:self.lineView];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }

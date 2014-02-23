@@ -31,6 +31,8 @@
     self.nameLabel.numberOfLines = 0;
     [self.contentView addSubview:self.nameLabel];
 
+    self.selectionStyle = UITableViewCellSelectionStyleGray;
+
 
     NSMutableArray *constraints = [@[] mutableCopy];
     NSDictionary *views = @{

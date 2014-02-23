@@ -37,15 +37,21 @@
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.text = @"Message";
+    self.titleLabel.font = [UIFont mediumFontWithSize:14.0];
+    self.titleLabel.textColor = [UIColor darkerTextColor];
     [self addSubview:self.titleLabel];
 
     self.textView = [[GCPlaceholderTextView alloc] init];
     self.textView.translatesAutoresizingMaskIntoConstraints = NO;
     self.textView.placeholder = @"I need a gift idea...";
+    self.textView.placeholderColor = [UIColor lighterTextColor];
+    self.textView.textColor = [UIColor lighterTextColor];
+    self.textView.font = [UIFont mediumFontWithSize:16.0];
     [self addSubview:self.textView];
 
     NSDictionary *metrics = @{
-            @"labelPad": @(24.0f),
+            @"labelPad": @(16.0f),
+            @"messagePad": @(12.0f),
             @"labelT": @(8.0f),
             @"messageT":@(2.0f),
             @"messageB": @(8.0f)
@@ -60,7 +66,7 @@
             @"|-(labelPad)-[label]-(labelPad)-|"
                              options:0 metrics:metrics views:views]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:
-            @"|-(labelPad)-[message]-(labelPad)-|"
+            @"|-(messagePad)-[message]-(messagePad)-|"
                              options:0 metrics:metrics views:views]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:
             @"V:|-(labelT)-[label]-(messageT)-[message]-(messageB)-|"
