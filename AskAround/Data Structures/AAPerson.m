@@ -209,6 +209,7 @@
         for(NSDictionary * bareBonesProfile in friendBareBones)
         {
             AAPerson * person = [[AAPerson alloc] initWithFacebookID:bareBonesProfile[@"id"]];
+            person.name = bareBonesProfile[@"name"];
             [ret addObject:person];
         }
 
