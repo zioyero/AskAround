@@ -32,7 +32,7 @@
 
     // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
     [PFFacebookUtils initializeFacebook];
-    [PFFacebookUtils logInWithPermissions:@[@"user_likes", @"user_about_me", @"user_work_history", @"friends_likes", @"friends_birthday", @"friends_about_me"]  block:nil];
+    [PFFacebookUtils logInWithPermissions:@[@"user_likes", @"user_about_me", @"user_work_history", @"friends_likes", @"friends_birthday", @"friends_about_me", @"friends_work_history", @"friends_location"]  block:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
