@@ -8,6 +8,7 @@
 
 #import "AAProfilePhotoCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "AAPerson.h"
 
 #define PHOTO_PADDING 80
 #define PHOTO_OFFSET_CENTER_Y 24
@@ -21,7 +22,7 @@
         // Initialization code
         self.contentView.autoresizesSubviews = YES;
         self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.backgroundColor = [UIColor grayColor];
+        self.backgroundColor = [UIColor clearColor];
 
         self.photoView = [[UIImageView alloc] init];
         self.photoView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -32,7 +33,7 @@
         self.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.contentView addSubview:self.nameLabel];
         self.nameLabel.numberOfLines = 0;
-        self.nameLabel.backgroundColor = [UIColor lightGrayColor];
+        self.nameLabel.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -46,15 +47,7 @@
     self.photoView.center = CGPointMake(self.contentView.center.x, self.contentView.center.y - PHOTO_OFFSET_CENTER_Y);
     self.photoView.backgroundColor = [UIColor whiteColor];
 
-
-    NSURL *url = [[NSURL alloc] initWithString:@"http://2.gravatar.com/avatar/c48138f2048cdf1044b71bebb04e29c6"];
-    [self.photoView setImageWithURL:url];
     self.photoView.layer.cornerRadius = ([AAProfilePhotoCell cellHeight] - PHOTO_PADDING) / 2.0;
-
-    self.nameLabel.text = @"My name\nSuper geek";
-    [self.nameLabel sizeToFit];
-    self.nameLabel.center = CGPointMake(self.contentView.center.x,
-            self.contentView.bounds.size.height - self.nameLabel.frame.size.height / 2.0 -8.0);
 
 }
 
@@ -69,4 +62,40 @@
 {
     return 200.0;
 }
+
+- (void)setObject:(id)object
+{
+    [super setObject:object];
+
+    AAPerson *person = [self person];
+    if(person){
+        @weakify(self);
+        [person fetchHttpPictureWithBlockWithBlock:^(NSURL *pictureURL, NSError *error) {
+            [self.photoView setImageWithURL:pictureURL];
+            [self updateName];
+        }];
+        [self updateName];
+        [self setNeedsDisplay];
+    }
+}
+
+- (AAPerson*)person
+{
+    if([self.object isKindOfClass:[AAPerson class]])
+        return  (AAPerson *) self.object;
+    return nil;
+}
+
+- (void) updateName
+{
+    AAPerson *person = [self person];
+    if(person){
+        self.nameLabel.text = /*person.name ? person.name :*/ person.facebookID;
+        self.nameLabel.frame = self.contentView.bounds;
+        [self.nameLabel sizeToFit];
+        self.nameLabel.center = CGPointMake(self.contentView.center.x,
+                self.contentView.bounds.size.height - self.nameLabel.frame.size.height / 2.0 -8.0);
+    }
+}
+
 @end

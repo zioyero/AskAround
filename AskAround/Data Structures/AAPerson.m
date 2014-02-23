@@ -318,6 +318,25 @@ static AAPerson * currentUser;
     }];
 }
 
+- (void)fetchHttpPictureWithBlockWithBlock:(void (^)(NSURL *pictureURL, NSError *error))block
+{
+    [self fetchPictureWithBlock:^(NSString *url, NSError *error) {
+        if(!error){
+            NSInteger colon = [url rangeOfString:@":"].location;
+            if (colon != NSNotFound) { // wtf how would it be missing
+                url = [url substringFromIndex:colon]; // strip off existing scheme
+                url = [@"http" stringByAppendingString:url];
+            }
+            if(block)
+                block([NSURL URLWithString:url], error);
+        }
+        else{
+            if(block)
+                block(nil, error);
+        }
+    }];
+}
+
 - (void)fetchPictureWithBlock:(void (^)(NSString *pictureURL, NSError *error))block
 {
     if(self.picture){
