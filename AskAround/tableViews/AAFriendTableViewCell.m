@@ -61,9 +61,16 @@
 - (void)setPerson:(AAPerson *)person {
     _person = person;
     self.nameLabel.text = [NSString stringWithFormat:@"%@\n%@", [self name], [self birthday]];
-    [person fetchPictureWithBlock:^(NSURL *url, NSError *error) {
-        if(!error)
-            [self.pictureView setImageWithURL:url];
+    [person fetchPictureWithBlock:^(NSString *url, NSError *error) {
+        if(!error){
+            NSInteger colon = [url rangeOfString:@":"].location;
+            if (colon != NSNotFound) { // wtf how would it be missing
+                url = [url substringFromIndex:colon]; // strip off existing scheme
+                url = [@"http" stringByAppendingString:url];
+            }
+            [self.pictureView setImageWithURL:[NSURL URLWithString:url]];
+        }
+
     }];
 }
 
@@ -75,7 +82,7 @@
 - (NSString*)birthday
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MMMM dd, YYYY"];
+    [dateFormat setDateFormat:@"MMMM dd"];
     if(self.person.birthday)
         return [dateFormat stringFromDate:self.person.birthday];
     return @"";

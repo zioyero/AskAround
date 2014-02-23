@@ -41,7 +41,7 @@
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * username;
 @property (nonatomic, strong) NSString * facebookID;
-@property (nonatomic, strong) UIImage * picture;
+@property (nonatomic, copy) NSString * picture;
 
 
 #pragma mark Initialization
@@ -86,7 +86,7 @@
 
 #pragma mark Parse
 
-- (void)fetchPictureWithBlock:(void (^)(NSURL *pictureURL, NSError *error))block;
+- (void)fetchPictureWithBlock:(void (^)(NSString *pictureURL, NSError *error))block;
 
 + (NSString *)parseClassName;
 

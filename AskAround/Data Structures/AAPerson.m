@@ -282,23 +282,32 @@
     }];
 }
 
-- (void)fetchPictureWithBlock:(void (^)(NSURL *pictureURL, NSError *error))block
+- (void)fetchPictureWithBlock:(void (^)(NSString *pictureURL, NSError *error))block
 {
-    [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/picture", self.facebookID]
-                                 parameters:@{@"redirect" : @0}
-                                 HTTPMethod:@"GET"
-                          completionHandler:^(FBRequestConnection * connection, id response, NSError * error)
-    {
-        if(response && !error)
+    if(self.picture){
+        if(block)
+            block(self.picture, nil);
+    }
+    else{
+        @weakify(self);
+        [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/picture", self.facebookID]
+                                     parameters:@{@"redirect" : @"0"}
+                                     HTTPMethod:@"GET"
+                              completionHandler:^(FBRequestConnection * connection, id response, NSError * error)
         {
-            if(block)
+            if(response && !error)
             {
-                block(response[@"data"][@"url"], error);
+                self.picture = response[@"data"][@"url"];
+                if(block)
+                {
+                    block(self.picture, error);
+                }
             }
-        }
 
 
-    }];
+        }];
+
+    }
 
 }
 
