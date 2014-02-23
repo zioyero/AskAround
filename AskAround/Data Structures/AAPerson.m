@@ -434,7 +434,7 @@ static AAPerson * currentUser;
     [q includeKey:@"pendingAsks"];
     [q includeKey:@"asksAbout"];
     [q includeKey:@"sentAsks"];
-//    [q setCachePolicy:kPFCachePolicyCacheElseNetwork];
+    [q setCachePolicy:kPFCachePolicyCacheElseNetwork];
 
     [q getFirstObjectInBackgroundWithBlock:^(PFObject * per, NSError *error)
     {
@@ -465,7 +465,7 @@ static AAPerson * currentUser;
     [compoundQuery includeKey:@"pendingAsks"];
     [compoundQuery includeKey:@"asksAbout"];
     [compoundQuery includeKey:@"sentAsks"];
-//    [compoundQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
+    [compoundQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
     [compoundQuery findObjectsInBackgroundWithBlock:^(NSArray * response, NSError * error)
     {
         // response is an array of AAPerson objects
