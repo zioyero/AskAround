@@ -46,17 +46,18 @@
     [super viewDidLoad];
 
     self.title = @"";
-    [self.tableView registerClass:[AAProfilePhotoCell class] forCellReuseIdentifier:@"photoCell"];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"birthdayCell"];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"requestCell"];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"notificationsCell"];
+    [self.profileModelView registerCellIdentifiersFor:self.tableView];
+//    [self.tableView registerClass:[AAProfilePhotoCell class] forCellReuseIdentifier:@"photoCell"];
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"birthdayCell"];
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"requestCell"];
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"notificationsCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:nil
                                             selectedImage:nil];
 
     @weakify(self);
-    [RACObserve(self.profileModelView, person) subscribeNext:^(id x) {
+    [RACObserve(self.profileModelView, sections) subscribeNext:^(id x) {
         @strongify(self);
         [self reloadProfile];
     }];
@@ -93,52 +94,48 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-//    return 1; // profile info
-    return 2; // profile info + requests
+    return [self.profileModelView numberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section){
-        case 0:
-        { // profile photo
-            return 2;
-        }
-        case 1:
-        { // notifications or requests
-            return 1;
-        }
-    }
-    return 0;
+    return [self.profileModelView numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *resultCell;
 
+    NSString *cellIdentifier = [self.profileModelView cellIdentifierAtIndexPath:indexPath];
+    resultCell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    id object = [self.profileModelView objectAtIndexPath:indexPath];
+    if([resultCell respondsToSelector:@selector(setObject:)])
+        [resultCell performSelector:@selector(setObject:) withObject:object];
+    else
+        resultCell.textLabel.text = @"something";
 
-    switch (indexPath.section){
-        case 0:
-        { // profile photo
-            if(indexPath.row==0){
-                // photo cell
-                AAProfilePhotoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"photoCell"];
-                resultCell = cell;
-            }
-            else if (indexPath.row==1){
-                resultCell = [tableView dequeueReusableCellWithIdentifier:@"birthdayCell"];
-                resultCell.textLabel.text = @"Birthday";
-            }
-            break;
-        }
-        case 1:
-        { // ?
-            resultCell = [tableView dequeueReusableCellWithIdentifier:@"requestCell"];
-            resultCell.textLabel.text = @"request";
-            break;
-        }
-    }
+//    switch (indexPath.section){
+//        case 0:
+//        { // profile photo
+//            if(indexPath.row==0){
+//                // photo cell
+//                AAProfilePhotoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"photoCell"];
+//                id object = [self.profileModelView objectAtIndexPath:indexPath];
+//                resultCell = cell;
+//            }
+//            else if (indexPath.row==1){
+//                resultCell = [tableView dequeueReusableCellWithIdentifier:@"birthdayCell"];
+//                resultCell.textLabel.text = @"Birthday";
+//            }
+//            break;
+//        }
+//        case 1:
+//        { // ?
+//            resultCell = [tableView dequeueReusableCellWithIdentifier:@"requestCell"];
+//            resultCell.textLabel.text = @"request";
+//            break;
+//        }
+//    }
 
     return resultCell;
 }

@@ -8,7 +8,9 @@
 
 
 
-@interface AAProfilePhotoCell : UITableViewCell
+#import "AAProfileCell.h"
+
+@interface AAProfilePhotoCell : AAProfileCell
 
 @property (nonatomic, strong) UIImageView *photoView;
 @property (nonatomic, strong) UILabel *nameLabel;

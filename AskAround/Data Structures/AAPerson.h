@@ -86,6 +86,8 @@
 
 #pragma mark Parse
 
+- (void)fetchHttpPictureWithBlockWithBlock:(void (^)(NSURL *pictureURL, NSError *error))block;
+
 - (void)fetchPictureWithBlock:(void (^)(NSString *pictureURL, NSError *error))block;
 
 + (AAPerson *)currentUser;

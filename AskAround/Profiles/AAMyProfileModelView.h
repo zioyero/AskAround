@@ -12,4 +12,18 @@
 @interface AAMyProfileModelView : RVMViewModel
 
 @property (nonatomic, strong) AAPerson* person;
+
+@property (nonatomic, strong) NSArray *sections;
+
+
+
+- (NSInteger)numberOfSections;
+
+- (NSInteger)numberOfRowsInSection:(NSUInteger)section;
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+
+- (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)registerCellIdentifiersFor:(UITableView *)tableView;
 @end
