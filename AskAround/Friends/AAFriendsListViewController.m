@@ -30,14 +30,6 @@
 {
     [super viewDidLoad];
 
-
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
     [self.tableView registerClass:[AAFriendTableViewCell class] forCellReuseIdentifier:@"friendCell"];
     self.tableView.separatorStyle = UITableViewCellEditingStyleNone;
 
@@ -49,6 +41,30 @@
         [self.tableView reloadData];
     }];
 
+}
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    NSMutableSet * letters = [NSMutableSet set];
+    
+    for( int i = 0; i< self.friendsModelView.friends.count; i++ ){
+        AAPerson * p = [self.friendsModelView.friends objectAtIndex:i];
+        NSString * abbrev = [p.name substringWithRange:NSMakeRange(0, 1)];
+        [letters addObject:abbrev];
+    }
+    return [letters sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES] ]];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    for( int i = 0; i< self.friendsModelView.friends.count; i++ ){
+        AAPerson * p = [self.friendsModelView.friends objectAtIndex:i];
+        NSString * abbrev = [p.name substringWithRange:NSMakeRange(0, 1)];
+        if( [abbrev isEqualToString:title] )
+        {
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+            return i;
+            break;
+        }
+    }
+    return 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,6 +103,12 @@
 //    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AAPerson * person = [self.friendsModelView.friends objectAtIndex:indexPath.row];
+    AAAsk * ask = [[AAAsk alloc] initWithTitle:@"New ask! For Debugging!" andBody:@"No body"];
+    [AAAsk sendOutAsk:ask aboutPerson:person];
+}
 
 /*
 // Override to support conditional editing of the table view.

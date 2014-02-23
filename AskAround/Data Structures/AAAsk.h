@@ -42,6 +42,9 @@
 */
 @property (nonatomic, copy) NSString * title;
 
+
+@property (nonatomic, copy) NSString * body;
+
 /**
 * Whether or not this ask can be answered by Yes/No
 */
@@ -49,7 +52,7 @@
 
 #pragma mark Initialization
 
-- (id)initWithFromPerson:(AAPerson *)from aboutPerson:(AAPerson *)about withTitle:(NSString *)title;
+- (id)initWithTitle:(NSString *)title andBody:(NSString *)body;
 
 #pragma mark Ask Around
 
