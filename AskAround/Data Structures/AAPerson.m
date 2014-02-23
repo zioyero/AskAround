@@ -113,6 +113,7 @@ static AAPerson * currentUser;
                 self.username = person.username;
                 self.birthday = person.birthday;
                 self.email = person.email;
+                self.objectId = person.objectId;
                 if(completion)
                     completion(YES);
             }
@@ -388,12 +389,15 @@ static AAPerson * currentUser;
 {
     PFQuery * q = [PFQuery queryWithClassName:[AAPerson parseClassName]];
     [q whereKey:@"facebookID" equalTo:facebookID];
+    [q includeKey:@"pendingAsks"];
+    [q includeKey:@"asksAbout"];
+    [q includeKey:@"sentAsks"];
 
     [q getFirstObjectInBackgroundWithBlock:^(PFObject * per, NSError *error)
     {
         if(!error && block)
         {
-            block((AAPerson*)per, nil);
+            block((AAPerson*)per, error);
         }
         else if(block)
         {
@@ -426,6 +430,17 @@ static AAPerson * currentUser;
         {
             block(nil, error);
         }
+    }];
+}
+
+-(void)refreshWithCompletion:(void (^)(AAPerson * person, NSError * error))block
+{
+    PFQuery * q = [PFQuery queryWithClassName:[AAPerson parseClassName]];
+    [q whereKey:AAPERSON_FACEBOOK_ID equalTo:self.facebookID];
+
+    [q getFirstObjectInBackgroundWithBlock:^(PFObject * obj, NSError * error)
+    {
+        NSLog(@"%@", obj);
     }];
 }
 

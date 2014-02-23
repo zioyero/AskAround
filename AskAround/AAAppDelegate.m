@@ -52,6 +52,7 @@
         AAFriendsListViewController *friendsListViewController = [[AAFriendsListViewController alloc] init];
         navigationController = [[UINavigationController alloc] initWithRootViewController:friendsListViewController];
         [tabBarController addChildViewController:navigationController];
+        [AAPerson currentUser];
     }
     else
     {
@@ -60,7 +61,6 @@
     }
 
 
-    [AAPerson currentUser];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
