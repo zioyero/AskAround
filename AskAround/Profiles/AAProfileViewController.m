@@ -52,9 +52,7 @@
 //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"requestCell"];
 //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"notificationsCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:nil
-                                            selectedImage:nil];
+    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"ME" image:[UIImage imageNamed:@"TabHome"] selectedImage:[UIImage imageNamed:@"TabHomeSelected"]];
 
     @weakify(self);
     [RACObserve(self.profileModelView, sections) subscribeNext:^(id x) {

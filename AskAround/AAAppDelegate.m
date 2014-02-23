@@ -14,6 +14,7 @@
 #import "AAAnswer.h"
 #import "AAFriendsListViewController.h"
 #import <Parse/PFFacebookUtils.h>
+#import "AATabBarController.h"
 
 @implementation AAAppDelegate
 
@@ -38,13 +39,13 @@
 //    AAFbLoginViewController *login = [[AAFbLoginViewController alloc] init];
     AAProfileViewController *meProfile = [[AAProfileViewController alloc] init];
 
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    AATabBarController *tabBarController = [[AATabBarController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:meProfile];
     navigationController.navigationBarHidden = NO;
     [tabBarController addChildViewController:navigationController];
     self.window.rootViewController = tabBarController;
 
-
+    
     AAFriendsListViewController *friendsListViewController = [[AAFriendsListViewController alloc] init];
     navigationController = [[UINavigationController alloc] initWithRootViewController:friendsListViewController];
     [tabBarController addChildViewController:navigationController];

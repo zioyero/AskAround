@@ -45,6 +45,7 @@
 		AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F66A8BB0583AC5A24678E /* AAFriendsListViewController.m */; };
 		AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F6D23430AAF6163551951 /* AAFriendsListModelView.m */; };
 		AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5F646443C0032A2C53B20E /* AAProfileViewController.m */; };
+		D2DB678518B9AAE400039857 /* AATabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DB678418B9AAE400039857 /* AATabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,8 @@
 		AB5F6F0CB2655FE845CD8EFF /* AAProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProfileViewController.h; sourceTree = "<group>"; };
 		AB5F6FA3FAF5E8FF19329681 /* AAFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendTableViewCell.m; sourceTree = "<group>"; };
 		AB5F6FA7CCAA5E483F8112E8 /* AAFriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendsListViewController.h; sourceTree = "<group>"; };
+		D2DB678318B9AAE400039857 /* AATabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AATabBarController.h; sourceTree = SOURCE_ROOT; };
+		D2DB678418B9AAE400039857 /* AATabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AATabBarController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 		AB3CA326E981B8CC2C265EE2 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				D2DB678318B9AAE400039857 /* AATabBarController.h */,
+				D2DB678418B9AAE400039857 /* AATabBarController.m */,
 			);
 			path = "User Interface";
 			sourceTree = "<group>";
@@ -368,7 +373,7 @@
 				ORGANIZATIONNAME = "Holy Moley";
 				TargetAttributes = {
 					AB3CACEE2FC30032E41BA68B = {
-						DevelopmentTeam = BR8U28N786;
+						DevelopmentTeam = A82MSV3363;
 					};
 				};
 			};
@@ -467,6 +472,7 @@
 				AB5F6CB9FC7EE9F8C78584F7 /* AAProfileViewController.m in Sources */,
 				AB5F63CAC4189C561AE521E1 /* AAProfilePhotoCell.m in Sources */,
 				AB5F6B6C1CCB97E7A8AD1811 /* AAFriendsListViewController.m in Sources */,
+				D2DB678518B9AAE400039857 /* AATabBarController.m in Sources */,
 				AB5F6CB6FF7E400C0181DD40 /* AAFriendsListModelView.m in Sources */,
 				AB5F632E105DB75F1D51F479 /* AAFriendTableViewCell.m in Sources */,
 				AB5F68B59DAC7B0996DE9A6B /* AAMyProfileModelView.m in Sources */,

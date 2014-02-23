@@ -38,7 +38,6 @@
 
     [self.tableView registerClass:[AAFriendTableViewCell class] forCellReuseIdentifier:@"friendCell"];
 
-
     self.friendsModelView = [[AAFriendsListModelView alloc] init];
 
     @weakify(self);
