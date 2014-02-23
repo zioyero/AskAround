@@ -11,6 +11,8 @@
 #import "NSArray+OCTotallyLazy.h"
 #import "AskAroundDefines.h"
 #import "FBSession.h"
+#import "AFHTTPRequestOperation.h"
+#import "AFHTTPSessionManager.h"
 
 
 @implementation AAPerson
@@ -279,23 +281,24 @@
     }];
 }
 
-- (void) fetchPictureWithBlock:(void (^)(UIImage * picture, NSError * error))block
+- (void)fetchPictureWithBlock:(void (^)(NSURL *pictureURL, NSError *error))block
 {
     [FBRequestConnection startWithGraphPath:[NSString stringWithFormat:@"%@/picture", self.facebookID]
-                                 parameters:nil
+                                 parameters:@{@"redirect" : @0}
                                  HTTPMethod:@"GET"
                           completionHandler:^(FBRequestConnection * connection, id response, NSError * error)
     {
         if(response && !error)
         {
-            self.picture = (UIImage *)response;
+            if(block)
+            {
+                block(response[@"data"][@"url"], error);
+            }
         }
 
-        if(block)
-        {
-            block(self.picture, error);
-        }
+
     }];
+
 }
 
 #pragma mark Query Methods
