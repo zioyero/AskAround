@@ -5,6 +5,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class AAAppDelegate;
+
+@protocol AALoginViewControllerDelegate
+
+- (void) loginSuceeded;
+
+@end
 
 @interface AALoginViewController : UIViewController
+
+@property (nonatomic, weak) id<AALoginViewControllerDelegate> delegate;
+
 @end
