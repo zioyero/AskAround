@@ -157,20 +157,13 @@
 {
     AAPerson *person = [self person];
     if(person){
-//        self.nameLabel.frame = CGRectMake(0, 0, self.contentView.bounds.size.width, self.contentView.bounds.size.height);
         self.nameLabel.text = person.name ?
-                [NSString stringWithFormat:@"%@ (%@)\nAwesome Hacker at Launch", person.name, person.objectId]
+                [NSString stringWithFormat:@"%@ (%@)\n%@", person.name, person.objectId,
+                                person.profession ? person.profession : @""]
                 : [NSString stringWithFormat:@"%@ (%@)\n", person.facebookID, person.objectId];
         [self.nameLabel sizeToFit];
         [self setNeedsUpdateConstraints];
         [self setNeedsDisplay];
-//        self.nameLabel.frame = CGRectMake(self.contentView.bounds.size.width / 2.0 - self.nameLabel.frame.size.width
-//                / 2.0,
-//                self.contentView.bounds.size.height - self.nameLabel.frame.size.height - 8.0,
-//                self.nameLabel.frame.size.width,
-//                self.nameLabel.frame.size.height);
-//        self.nameLabel.center = CGPointMake(self.contentView.center.x,
-//                self.contentView.bounds.size.height - self.nameLabel.frame.size.height / 2.0 -8.0);
     }
 }
 

@@ -71,9 +71,30 @@
     [AAPerson findPersonWithFacebookID:ask.fromPersonID withBlock:^(AAPerson *person, NSError *error) {
         @strongify(self);
         if(ask && ask != [NSNull null]){
-            if(ask.isDataAvailable)
-                self.nameLabel.text = [NSString stringWithFormat:@"%@ is asking: %@\n%@",person.name,
-                                ask.title, ask.body ];
+            if(ask.isDataAvailable){
+//                self.nameLabel.text = [NSString stringWithFormat:@"%@ is asking: %@\n%@",person.name,
+//                                ask.title, ask.body ];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] init];
+                [string appendAttributedString:[[NSAttributedString alloc]
+                        initWithString:person.name ? person.name :@"Somebody"
+                            attributes:[UIFont mediumStringAttributesWithSize:14.0
+                            withColor:[UIColor darkerTextColor]]] ];
+                [string appendAttributedString:[[NSAttributedString alloc]
+                                    initWithString:@" is asking: "
+                                        attributes:[UIFont mediumStringAttributesWithSize:14.0
+                                        withColor:[UIColor lighterTextColor]]] ];
+                [string appendAttributedString:[[NSAttributedString alloc]
+                        initWithString:[NSString stringWithFormat:@"%@\n", ask.title]
+                            attributes:[UIFont mediumStringAttributesWithSize:14.0
+                             withColor:[UIColor darkerTextColor]]] ];
+                [string appendAttributedString:[[NSAttributedString alloc]
+                        initWithString:ask.body
+                            attributes:[UIFont lightStringAttributesWithSize:12.0
+                            withColor:[UIColor lighterTextColor]]] ];
+                self.nameLabel.attributedText = string;
+
+
+            }
             else
                 self.nameLabel.text = [NSString stringWithFormat:@"Loading %@", ask.objectId ];
         }

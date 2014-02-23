@@ -38,6 +38,21 @@ HelveticaNeue-Italic
 }
 
 
++ (NSDictionary *)mediumStringAttributesWithSize:(CGFloat)size withColor:(UIColor*)color
+{
+    return @{ NSFontAttributeName : [UIFont mediumFontWithSize:size],
+//            NSUnderlineStyleAttributeName : @1 ,
+            NSStrokeColorAttributeName : color
+    };
+}
+
++ (NSDictionary *)lightStringAttributesWithSize:(CGFloat)size withColor:(UIColor*)color
+{
+    return @{ NSFontAttributeName : [UIFont mediumFontWithSize:size],
+//            NSUnderlineStyleAttributeName : @1 ,
+            NSStrokeColorAttributeName : color
+    };
+}
 
 
 

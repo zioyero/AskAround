@@ -16,4 +16,7 @@
 
 + (UIFont *)italicFontWithSize:(CGFloat)size;
 
++ (NSDictionary *)mediumStringAttributesWithSize:(CGFloat)size withColor:(UIColor *)color;
+
++ (NSDictionary *)lightStringAttributesWithSize:(CGFloat)size withColor:(UIColor *)color;
 @end
