@@ -42,6 +42,9 @@
 @property (nonatomic, strong) NSString * username;
 @property (nonatomic, strong) NSString * facebookID;
 @property (nonatomic, copy) NSString * picture;
+@property (nonatomic, copy) NSString * location;
+@property (nonatomic, copy) NSString *employer;
+@property (nonatomic, copy) NSString * profession;
 
 
 #pragma mark Initialization
