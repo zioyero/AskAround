@@ -134,7 +134,6 @@
         default:
             return nil;
     }
-    return nil;
 }
 
 - (NSString*)emptyTextAtIndexPath:(NSIndexPath *)indexPath
