@@ -11,9 +11,14 @@
 @class AAAnswersModelView;
 @class AAAsk;
 
+/**
+* ViewController that shows only the answers to an ask
+*/
 @interface AAAnswersViewController : UITableViewController
 
 @property (nonatomic, strong) AAAnswersModelView * answerModelView;
 
 - (id)initWithAsk:(AAAsk *)ask;
+
+- (id)initWithAsk:(AAAsk *)ask withAnswers:(NSArray *)answers;
 @end

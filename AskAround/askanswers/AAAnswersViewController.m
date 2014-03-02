@@ -26,6 +26,15 @@
     return self;
 }
 
+- (id)initWithAsk:(AAAsk *)ask withAnswers:(NSArray *)answers {
+    self = [super initWithStyle:UITableViewStylePlain];
+    if (!self) return nil;
+
+    self.answerModelView = [[AAAnswersModelView alloc] initWithAsk:ask withAnswers:answers];
+
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,6 +48,8 @@
         @strongify(self);
         [self.tableView reloadData];
     }];
+
+    self.view.backgroundColor = [UIColor redColor];
 
 }
 
