@@ -13,10 +13,14 @@
 
 @property (nonatomic, strong) NSArray *sections;
 
+@property (nonatomic, strong) NSArray *answers;
+
 @property (nonatomic, strong) AAAsk *ask;
 
 
 - (instancetype)initWithAsk:(AAAsk *)ask;
+
+- (instancetype)initWithAsk:(AAAsk *)ask withAnswers:(NSArray *)answers;
 
 - (NSInteger)numberOfSections;
 

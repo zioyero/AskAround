@@ -12,6 +12,7 @@
 @implementation AAAnswersModelView {
 
 }
+#pragma mark - Init methods
 
 -(instancetype)initWithAsk:(AAAsk *)ask{
     self = [super init];
@@ -37,6 +38,45 @@
     return self;
 }
 
+-(instancetype)initWithAnswers:(NSArray *)answers{
+    self = [super init];
+    if (!self) return nil;
+
+    self.sections = [NSArray array];
+
+    @weakify(self);
+    [RACObserve(self, answers) subscribeNext:^(id x) {
+        @strongify(self);
+        [self prepareData];
+    }];
+
+    self.answers = answers;
+    return self;
+}
+
+- (instancetype)initWithAsk:(AAAsk *)ask withAnswers:(NSArray *)answers {
+    self = [super init];
+    if (!self) return nil;
+
+    self.sections = [NSArray array];
+
+    @weakify(self);
+    RACSignal *askChangeSignal = RACObserve(self, ask);
+    RACSignal *answerChangeSignal = RACObserve(self, answers);
+
+    self.ask = ask;
+    self.answers = answers;
+
+    [[RACSignal combineLatest:@[askChangeSignal, answerChangeSignal]] subscribeNext:^(id x) {
+        @strongify(self);
+        [self prepareData];
+    }];
+
+    return self;
+}
+
+#pragma mark - prepping the data
+
 - (void)prepareData
 {
     if(self.ask){
@@ -48,12 +88,17 @@
             // about, from
 //            NSArray *firstSection = people;
 
-            NSArray *secondSection = self.ask.answers;
-            if(secondSection)
-                self.sections = @[secondSection];
+//            NSArray *secondSection = self.ask.answers;
+//            if(secondSection)
+                self.sections = @[ @[self.ask], self.answers];
+
 //        }];
     }
+    else if(self.answers)
+        self.sections = @[self.answers];
 }
+
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSections {
     // 0: profile image
@@ -122,6 +167,8 @@
             return nil;
     }
 }
+
+#pragma mark - Cell identifiers
 
 - (void)registerCellIdentifiersFor:(UITableView*)tableView
 {
