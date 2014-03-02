@@ -15,6 +15,8 @@
 #import "AAAsk.h"
 #import "AACreateAskViewController.h"
 #import "AAAnswerAskViewController.h"
+#import "AAAnswersViewController.h"
+#import "AAAnswer.h"
 
 @interface AAProfileViewController ()
 
@@ -30,7 +32,7 @@
     if (! self) { return nil ; }
 
     self.profileModelView = [[AAMyProfileModelView alloc] init];
-    self.currentUserView = YES;
+    self.configuredForCurrentUser = YES;
 
     return self;
 
@@ -51,7 +53,7 @@
 {
     [super viewDidLoad];
 
-    if(self.currentUserView){
+    if(self.configuredForCurrentUser){
         self.title = @"Me";
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Me"
                                                         image:[UIImage imageNamed:@"TabHome"]
@@ -110,15 +112,13 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    if (self.currentUserView){
-
+    if (self.configuredForCurrentUser){
         if(!self.profileModelView.person){
             AAPerson *person = [AAPerson currentUser];
             self.profileModelView.person = person;
         }
-        [self.profileModelView refreshPerson];
     }
-    else{
+    if(!self.profileModelView.person.isDataAvailable){
         [self.profileModelView refreshPerson];
     }
 }
@@ -167,7 +167,7 @@
 
     NSString *cellIdentifier = [self.profileModelView cellIdentifierAtIndexPath:indexPath];
     resultCell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    id object = [self.profileModelView objectAtIndexPath:indexPath];
+    RACTupleUnpack(id object, id second) = [self.profileModelView objectAtIndexPath:indexPath];
     if(object && [resultCell respondsToSelector:@selector(setObject:)])
         [resultCell performSelector:@selector(setObject:) withObject:object];
     else{
@@ -225,9 +225,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    id object = [self.profileModelView objectAtIndexPath:indexPath];
-    if([object isKindOfClass:[AAAsk class]]){
+    RACTupleUnpack(id object, id second) = [self.profileModelView objectAtIndexPath:indexPath];
+
+
+    if([object isKindOfClass:[AAAsk class]] && !second){
         AAAnswerAskViewController *viewController = [[AAAnswerAskViewController alloc] initWithAsk:(AAAsk *)object];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    else if([object isKindOfClass:[AAAsk class]] && second){
+        AAAnswer *a1 = [[AAAnswer alloc] init];
+        a1.answer = @"yes";
+        second = @[a1,];
+        AAAnswersViewController *viewController = [[AAAnswersViewController alloc] initWithAsk:(AAAsk *)object
+                                                                               withAnswers:[((AAAsk *) object) answers]];
+
+
+//        a1.responderID
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }

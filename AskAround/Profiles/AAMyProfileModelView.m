@@ -11,9 +11,15 @@
 #import "AAProfileAsk.h"
 #import "AAButtonCell.h"
 
+typedef NS_ENUM(NSInteger , MYPROFILE_SECTION){
+  MYPROFILE_SECTION_PROFILE = 0,
+  MYPROFILE_SECTION_FRIENDS_BUTTON=1,
+  MYPROFILE_SECTION_PENDING=2,
+  MYPROFILE_SECTION_MYASKS=3,
+  MYPROFILE_SECTION_TEST_BUTTON=4
 
+};
 @interface  AAMyProfileModelView()
-
 
 @end
 
@@ -44,9 +50,12 @@
     return self;
 }
 
+#pragma mark - Prepping the data by creating sections and rows
+
 - (void)prepareData
 {
     if(self.person){
+        // --- if changing the order of the section, you need to change the ENUM
         // profile things
         NSMutableArray *firstSection = [NSMutableArray array];
         [firstSection addObject:self.person];
@@ -84,6 +93,8 @@
     }
 }
 
+#pragma mark - Data source for the tableview in the controller
+
 - (NSInteger)numberOfSections {
     // 0: profile image
     // pending asks
@@ -100,8 +111,8 @@
 
 - (CGFloat)heightForHeaderInSection:(NSInteger)section {
     switch (section){
-        case 2:
-        case 3:
+        case MYPROFILE_SECTION_PENDING:
+        case MYPROFILE_SECTION_MYASKS:
             return 44.0;
         default:
             return 0;
@@ -112,41 +123,55 @@
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section){
-        case 0:
+        case MYPROFILE_SECTION_PROFILE:
         {
             if(indexPath.row==0)
                 return [AAProfilePhotoCell cellHeight];
             else
                 return 44.0;
         }
-        case 1:
-        case 4:
+        case MYPROFILE_SECTION_FRIENDS_BUTTON:
+        case MYPROFILE_SECTION_TEST_BUTTON:
             return 156.0/2.0;
 
-        case 2:
-        case 3:
+        case MYPROFILE_SECTION_PENDING:
+        case MYPROFILE_SECTION_MYASKS:
         {
-            id object = [self objectAtIndexPath:indexPath];
+            RACTupleUnpack(id object) = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
                 return 134 / 2.0;
             return 44.0;
         }
         default:
-            return 44.0; // big cell, 134/2, 84/2
+            return 44.0;
     }
 }
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+- (RACTuple *)objectAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section < self.sections.count && indexPath.row < [self numberOfRowsInSection:indexPath.section])
-        return [self.sections[indexPath.section] objectAtIndex:indexPath.row];
+    RACTuple *tuple;
+    NSUInteger section = indexPath.section;
+    NSUInteger row = indexPath.row;
+/*    if(indexPath.section == MYPROFILE_SECTION_PENDING && indexPath.row < [self numberOfRowsInSection:indexPath
+            .section]){
+        return [RACTuple tupleWithObjects:[self.sections[indexPath.section] objectAtIndex:indexPath.row], nil];
+    }
+    else */if(indexPath.section == MYPROFILE_SECTION_MYASKS && indexPath.row < [self numberOfRowsInSection:indexPath
+            .section]){
+        NSNumber *answerMode = @(0);
+        return [RACTuple tupleWithObjects:[self.sections[section] objectAtIndex:indexPath.row], answerMode, nil];
+    }
+    else if (indexPath.section < self.sections.count && indexPath.row < [self numberOfRowsInSection:indexPath
+            .section]){
+        return [RACTuple tupleWithObjects:[self.sections[indexPath.section] objectAtIndex:indexPath.row], nil];
+    }
     return nil;
 }
 
 - (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section){
-        case 0:
+        case MYPROFILE_SECTION_PROFILE:
         { // profile photo
             if(indexPath.row==0){
                 return @"photoCell";
@@ -155,21 +180,21 @@
                 return @"birthdayCell";
             }
         }
-        case 1:
-        case 4:
+        case MYPROFILE_SECTION_FRIENDS_BUTTON:
+        case MYPROFILE_SECTION_TEST_BUTTON:
         {
             return @"buttonCell";
         }
-        case 2:
+        case MYPROFILE_SECTION_PENDING:
         { // ?
-            id object = [self objectAtIndexPath:indexPath];
+            RACTupleUnpack(id object) = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
                 return @"askCell";
             return @"cell";
         }
-        case 3:
+        case MYPROFILE_SECTION_MYASKS:
         {
-            id object = [self objectAtIndexPath:indexPath];
+            RACTupleUnpack(id object) = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
                 return @"askCell";
             return @"cell";
@@ -181,12 +206,12 @@
 - (NSString *)headerTitleForSection:(NSInteger)section
 {
     switch (section){
-        case 2:
-        { // pending asks
+        case MYPROFILE_SECTION_PENDING:
+        {
             return @"PENDING ASKS";
         }
-        case 3:
-        { // my asks
+        case MYPROFILE_SECTION_MYASKS:
+        {
             return @"MY ASKS";
         }
         default:
@@ -197,18 +222,20 @@
 - (NSString*)emptyTextAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section){
-        case 2:
-        { // ?
+        case MYPROFILE_SECTION_PENDING:
+        {
             return @"No pending ask!";
         }
-        case 3:
-        { // ?
+        case MYPROFILE_SECTION_MYASKS:
+        {
             return @"You have not sent asks!";
         }
         default:
-            return nil;
+            return @"";
     }
 }
+
+#pragma mark - Cell identifiers for the VC
 
 - (void)registerCellIdentifiersFor:(UITableView*)tableView
 {
@@ -220,10 +247,12 @@
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"notificationsCell"];
 }
 
+#pragma mark Controlling whether things are clickable and what to show
+
 - (BOOL)showFriendsListViewControllerForClickAt:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==1 && indexPath.row==0){
-        id object = [self objectAtIndexPath:indexPath];
+    if (indexPath.section==MYPROFILE_SECTION_FRIENDS_BUTTON && indexPath.row==0){
+        RACTupleUnpack(id object) = [self objectAtIndexPath:indexPath];
         if([object isKindOfClass:[NSString class]])
             return YES;
     }
@@ -232,16 +261,23 @@
 
 - (BOOL)showAnswerForAskForClickAt:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==2){
+    if(indexPath.section==MYPROFILE_SECTION_PENDING){
         return YES;
     }
     return NO;
 }
 
+#pragma mark - Row selection
+
 - (NSIndexPath *)willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==2){
-        id object = [self objectAtIndexPath:indexPath];
+    if(indexPath.section==MYPROFILE_SECTION_PENDING){
+        RACTupleUnpack(id object) = [self objectAtIndexPath:indexPath];
+        if([object isKindOfClass:[AAAsk class]])
+            return indexPath;
+    }
+    else if (indexPath.section == MYPROFILE_SECTION_MYASKS){
+        RACTupleUnpack(id object) = [self objectAtIndexPath:indexPath];
         if([object isKindOfClass:[AAAsk class]])
             return indexPath;
     }
@@ -252,6 +288,8 @@
 {
     return NO;
 }
+
+#pragma mark - Updating the data
 
 - (void)refreshPerson
 {

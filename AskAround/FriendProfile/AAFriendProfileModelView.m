@@ -77,7 +77,7 @@
         }
         case 2:
         {
-            id object = [self objectAtIndexPath:indexPath];
+            RACTupleUnpack(id object) = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
                 return 134 / 2.0;
             return 44.0;
@@ -90,10 +90,10 @@
     }
 }
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath
+- (RACTuple *)objectAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section < self.sections.count && indexPath.row < [self numberOfRowsInSection:indexPath.section])
-        return [self.sections[indexPath.section] objectAtIndex:indexPath.row];
+        return [RACTuple tupleWithObjects:[self.sections[indexPath.section] objectAtIndex:indexPath.row], nil];
     return nil;
 }
 
@@ -115,7 +115,7 @@
         }
         case 2:
         { // ?
-            id object = [self objectAtIndexPath:indexPath];
+            RACTupleUnpack(id object) = [self objectAtIndexPath:indexPath];
             if(object != [NSNull null])
                 return @"askCell";
             return @"cell";

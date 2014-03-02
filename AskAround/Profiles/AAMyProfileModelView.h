@@ -9,10 +9,20 @@
 @class AAPerson;
 
 
+/**
+* A MyProfileModelView encapsulates and provide the structured data that we should about the logged in user
+* It provides lots of methods that are typically called to fill in a UITableView
+*/
 @interface AAMyProfileModelView : RVMViewModel
 
+/**
+* The person (here it would be the logged in person)
+*/
 @property (nonatomic, strong) AAPerson* person;
 
+/**
+* The structured data for the TableView, sections (table sections) contains arrays of objects (rows)
+*/
 @property (nonatomic, strong) NSArray *sections;
 
 
@@ -25,7 +35,7 @@
 
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (RACTuple *)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
 

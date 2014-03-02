@@ -8,7 +8,9 @@
 
 @class AAPerson;
 
-
+/**
+* A FriendProfile ModelView encapsulates the data that we show about somebody from the user's network
+*/
 @interface AAFriendProfileModelView : AAMyProfileModelView
 
 - (instancetype)initWithPerson:(AAPerson *)person;
