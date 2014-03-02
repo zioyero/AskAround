@@ -10,6 +10,9 @@
 
 @class AAPerson;
 
+/**
+* ViewController when creating an ask
+*/
 @interface AACreateAskViewController : UIViewController
 
 @property (nonatomic, strong)AAPerson *aboutPerson;

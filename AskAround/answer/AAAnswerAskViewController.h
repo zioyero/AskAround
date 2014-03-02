@@ -12,6 +12,9 @@
 @class AAAsk;
 @class AAAnswersViewController;
 
+/**
+* ViewController to REPLY to an ask
+*/
 @interface AAAnswerAskViewController : UIViewController
 
 @property (nonatomic, strong) AAAsk* ask;
